@@ -1,17 +1,7 @@
-The documentation in this tree is in plain text files and can be viewed using
-any text file viewer.
-
-It uses ReST (reStructuredText) [1], and the Sphinx documentation system [2].
-This allows it to be built into other forms for easier viewing and browsing.
-
-To create an HTML version of the docs:
-
-* Install Sphinx (using ``pip install Sphinx`` or some other method)
-
-* In this docs/ directory, type ``make html`` (or ``make.bat html`` on
-  Windows) at a shell prompt.
-
-The documentation in _build/html/index.html can then be viewed in a web browser.
-
-[1] http://docutils.sourceforge.net/rst.html
-[2] http://sphinx-doc.org/
+##如何使用这份翻译
+### 1、拉取到本地
+~ git pull https://github.com/bingoku/Django-Docs-Chinese.git
+### 2、进入目录后执行
+~ sphinx-intl update-txconfig-resources --pot-dir _build/locale/ --transifex-project-name django-docs --locale-dir locale && tx pull -l zh_CN && sphinx-intl update --language=zh_CN && sphinx-build -b dirhtml -n -d _build/doctrees -D language=zh_CN   . _build/html
+### 如何参与翻译
+注册并加入翻译团队：https://www.transifex.com/django/django-docs/language/zh_CN/_

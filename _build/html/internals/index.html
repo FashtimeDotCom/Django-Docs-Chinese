@@ -1,0 +1,320 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Django internals &mdash; Django 1.10.dev20160423182652 文档</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Django 1.10.dev20160423182652 文档" href="../"/>
+        <link rel="next" title="Contributing to Django" href="contributing/"/>
+        <link rel="prev" title="Archive of security issues" href="../releases/security/"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../contents/" class="icon icon-home"> Django
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.10
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search/" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../">Django 最新中文文档</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro/">开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../topics/">Using Django</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../howto/">&#8220;How-to&#8221; guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq/">Django FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/">元文件和杂记</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary/">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/">Release notes</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Django internals</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="contributing/">Contributing to Django</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mailing-lists/">Mailing lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="organization/">Organization of the Django Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="team/">Django team</a></li>
+<li class="toctree-l2"><a class="reference internal" href="roles/">Roles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security/">Django&#8217;s security policies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release-process/">Django&#8217;s release process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deprecation/">Django Deprecation Timeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="git/">The Django source code repository</a></li>
+<li class="toctree-l2"><a class="reference internal" href="howto-release-django/">How is Django Formed?</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../contents/">Django</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../contents/">Docs</a> &raquo;</li>
+      
+    <li>Django internals</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/internals/index.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="s-django-internals">
+<span id="django-internals"></span><h1>Django internals<a class="headerlink" href="#django-internals" title="永久链接至标题">¶</a></h1>
+<p>Documentation for people hacking on Django itself. This is the place to go if
+you&#8217;d like to help improve Django or learn about how Django is managed.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="contributing/">Contributing to Django</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="contributing/new-contributors/">Advice for new contributors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing/bugs-and-features/">Reporting bugs and requesting features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing/triaging-tickets/">Triaging tickets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing/writing-code/">Writing code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing/writing-documentation/">Writing documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing/localizing/">Localizing Django</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing/committing-code/">Committing code</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mailing-lists/">Mailing lists</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mailing-lists/#django-users"><code class="docutils literal"><span class="pre">django-users</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mailing-lists/#django-core-mentorship"><code class="docutils literal"><span class="pre">django-core-mentorship</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mailing-lists/#django-developers"><code class="docutils literal"><span class="pre">django-developers</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mailing-lists/#django-i18n"><code class="docutils literal"><span class="pre">django-i18n</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mailing-lists/#django-announce"><code class="docutils literal"><span class="pre">django-announce</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mailing-lists/#django-updates"><code class="docutils literal"><span class="pre">django-updates</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="organization/">Organization of the Django Project</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="organization/#principles">Principles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="organization/#core-team">Core team</a></li>
+<li class="toctree-l2"><a class="reference internal" href="organization/#technical-board">Technical board</a></li>
+<li class="toctree-l2"><a class="reference internal" href="organization/#changing-the-organization">Changing the organization</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="team/">Django team</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="team/#the-original-team">The original team</a></li>
+<li class="toctree-l2"><a class="reference internal" href="team/#the-current-team">The current team</a></li>
+<li class="toctree-l2"><a class="reference internal" href="team/#past-team-members">Past team members</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="roles/">Roles</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="roles/#technical-board">Technical board</a></li>
+<li class="toctree-l2"><a class="reference internal" href="roles/#committers">Committers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="roles/#security-team">Security team</a></li>
+<li class="toctree-l2"><a class="reference internal" href="roles/#releasers">Releasers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="roles/#ops-team">Ops team</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="security/">Django&#8217;s security policies</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="security/#reporting-security-issues">Reporting security issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security/#supported-versions">Supported versions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security/#how-django-discloses-security-issues">How Django discloses security issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security/#who-receives-advance-notification">Who receives advance notification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security/#requesting-notifications">Requesting notifications</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="release-process/">Django&#8217;s release process</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="release-process/#official-releases">Official releases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release-process/#release-cadence">Release cadence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release-process/#deprecation-policy">Deprecation policy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release-process/#supported-versions">Supported versions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release-process/#release-process">Release process</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="deprecation/">Django Deprecation Timeline</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="deprecation/#deprecation-removed-in-2-0">2.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deprecation/#deprecation-removed-in-1-10">1.10</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deprecation/#deprecation-removed-in-1-9">1.9</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deprecation/#deprecation-removed-in-1-8">1.8</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deprecation/#deprecation-removed-in-1-7">1.7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deprecation/#deprecation-removed-in-1-6">1.6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deprecation/#deprecation-removed-in-1-5">1.5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deprecation/#deprecation-removed-in-1-4">1.4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deprecation/#deprecation-removed-in-1-3">1.3</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="git/">The Django source code repository</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="git/#high-level-overview">High-level overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="git/#the-master-branch">The master branch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="git/#other-branches">Other branches</a></li>
+<li class="toctree-l2"><a class="reference internal" href="git/#id1">标签(Tags)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="howto-release-django/">How is Django Formed?</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="howto-release-django/#overview">概况</a></li>
+<li class="toctree-l2"><a class="reference internal" href="howto-release-django/#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="howto-release-django/#pre-release-tasks">Pre-release tasks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="howto-release-django/#preparing-for-release">Preparing for release</a></li>
+<li class="toctree-l2"><a class="reference internal" href="howto-release-django/#actually-rolling-the-release">Actually rolling the release</a></li>
+<li class="toctree-l2"><a class="reference internal" href="howto-release-django/#making-the-release-s-available-to-the-public">Making the release(s) available to the public</a></li>
+<li class="toctree-l2"><a class="reference internal" href="howto-release-django/#post-release">Post-release</a></li>
+<li class="toctree-l2"><a class="reference internal" href="howto-release-django/#new-stable-branch-tasks">New stable branch tasks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="howto-release-django/#notes-on-setting-the-version-tuple">Notes on setting the VERSION tuple</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="contributing/" class="btn btn-neutral float-right" title="Contributing to Django" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../releases/security/" class="btn btn-neutral" title="Archive of security issues" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 Django Software Foundation and contributors.
+      最后更新于 Jul 07, 2016.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.10.dev20160423182652',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

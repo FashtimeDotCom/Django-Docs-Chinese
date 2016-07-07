@@ -1,0 +1,401 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Geographic Feeds &mdash; Django 1.10.dev20160423182652 文档</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Django 1.10.dev20160423182652 文档" href="../../../../"/>
+        <link rel="up" title="GeoDjango" href="../"/>
+        <link rel="next" title="Geographic Sitemaps" href="../sitemaps/"/>
+        <link rel="prev" title="GeoDjango’s admin site" href="../admin/"/> 
+
+  
+  <script src="../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../../contents/" class="icon icon-home"> Django
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.10
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search/" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../">Django 最新中文文档</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../intro/">开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../topics/">Using Django</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../howto/">&#8220;How-to&#8221; guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../faq/">Django FAQ</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../applications/">Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../checks/">System check framework</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../class-based-views/">Built-in class-based views API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../clickjacking/">Clickjacking Protection</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../"><code class="docutils literal"><span class="pre">contrib</span></code> packages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../admin/">The Django admin site</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../auth/"><code class="docutils literal"><span class="pre">django.contrib.auth</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../contenttypes/">The contenttypes framework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flatpages/">The flatpages app</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../">GeoDjango</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../tutorial/">GeoDjango Tutorial</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../install/">GeoDjango Installation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../model-api/">GeoDjango Model API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../db-api/">GeoDjango Database API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../forms-api/">GeoDjango Forms API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../geoquerysets/">GeoQuerySet API Reference</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../functions/">Geographic Database Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../measure/">Measurement Objects</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../geos/">GEOS API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../gdal/">GDAL API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../geoip/">Geolocation with GeoIP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../geoip2/">Geolocation with GeoIP2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../utils/">GeoDjango Utilities</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../commands/">GeoDjango Management Commands</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../admin/">GeoDjango&#8217;s admin site</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="">Geographic Feeds</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sitemaps/">Geographic Sitemaps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../testing/">Testing GeoDjango apps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deployment/">Deploying GeoDjango</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../humanize/"><code class="docutils literal"><span class="pre">django.contrib.humanize</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../messages/">The messages framework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../postgres/"><code class="docutils literal"><span class="pre">django.contrib.postgres</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../redirects/">The redirects app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../sitemaps/">The sitemap framework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../sites/">The &#8220;sites&#8221; framework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../staticfiles/">The <code class="docutils literal"><span class="pre">staticfiles</span></code> app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../syndication/">The syndication feed framework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../#admin"><code class="docutils literal"><span class="pre">admin</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../#auth"><code class="docutils literal"><span class="pre">auth</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../#contenttypes"><code class="docutils literal"><span class="pre">contenttypes</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../#flatpages"><code class="docutils literal"><span class="pre">flatpages</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../#gis"><code class="docutils literal"><span class="pre">gis</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../#humanize"><code class="docutils literal"><span class="pre">humanize</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../#messages"><code class="docutils literal"><span class="pre">messages</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../#postgres"><code class="docutils literal"><span class="pre">postgres</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../#redirects"><code class="docutils literal"><span class="pre">redirects</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../#sessions"><code class="docutils literal"><span class="pre">sessions</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../#sites"><code class="docutils literal"><span class="pre">sites</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../#sitemaps"><code class="docutils literal"><span class="pre">sitemaps</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../#syndication"><code class="docutils literal"><span class="pre">syndication</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../#other-add-ons">Other add-ons</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../csrf/">Cross Site Request Forgery protection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../databases/">Databases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../django-admin/"><code class="docutils literal"><span class="pre">django-admin</span></code> and <code class="docutils literal"><span class="pre">manage.py</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../django-admin/#running-management-commands-from-your-code">Running management commands from your code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../exceptions/">Django Exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../files/">File handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../forms/">Forms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../middleware/">Middleware</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../migration-operations/">Migration Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../models/">Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../request-response/">Request and response objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../schema-editor/"><code class="docutils literal"><span class="pre">SchemaEditor</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../settings/">Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../signals/">Signals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../templates/">Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../template-response/"><code class="docutils literal"><span class="pre">TemplateResponse</span></code> and <code class="docutils literal"><span class="pre">SimpleTemplateResponse</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../unicode/">Unicode data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../urlresolvers/"><code class="docutils literal"><span class="pre">django.urls</span></code> utility functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../urls/"><code class="docutils literal"><span class="pre">django.conf.urls</span></code> utility functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../utils/">Django Utils</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../validators/">Validators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../views/">Built-in Views</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../misc/">元文件和杂记</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../glossary/">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../releases/">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../internals/">Django internals</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../../contents/">Django</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../../contents/">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../">API Reference</a> &raquo;</li>
+      
+          <li><a href="../../"><code class="docutils literal"><span class="pre">contrib</span></code> packages</a> &raquo;</li>
+      
+          <li><a href="../">GeoDjango</a> &raquo;</li>
+      
+    <li>Geographic Feeds</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../../../_sources/ref/contrib/gis/feeds.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="s-module-django.contrib.gis.feeds">
+<span id="s-geographic-feeds"></span><span id="module-django.contrib.gis.feeds"></span><span id="geographic-feeds"></span><h1>Geographic Feeds<a class="headerlink" href="#module-django.contrib.gis.feeds" title="永久链接至标题">¶</a></h1>
+<p>GeoDjango has its own <a class="reference internal" href="#django.contrib.gis.feeds.Feed" title="django.contrib.gis.feeds.Feed"><code class="xref py py-class docutils literal"><span class="pre">Feed</span></code></a> subclass that may embed location information
+in RSS/Atom feeds formatted according to either the <a class="reference external" href="http://georss.org/simple.html">Simple GeoRSS</a> or
+<a class="reference external" href="http://www.w3.org/2003/01/geo/">W3C Geo</a> standards.  Because GeoDjango&#8217;s syndication API is a superset of
+Django&#8217;s, please consult <a class="reference internal" href="../../syndication/"><em>Django&#8217;s syndication documentation</em></a> for details on general usage.</p>
+<div class="section" id="s-example">
+<span id="example"></span><h2>Example<a class="headerlink" href="#example" title="永久链接至标题">¶</a></h2>
+</div>
+<div class="section" id="s-api-reference">
+<span id="api-reference"></span><h2>API Reference<a class="headerlink" href="#api-reference" title="永久链接至标题">¶</a></h2>
+<div class="section" id="s-feed-subclass">
+<span id="feed-subclass"></span><h3><code class="docutils literal"><span class="pre">Feed</span></code> Subclass<a class="headerlink" href="#feed-subclass" title="永久链接至标题">¶</a></h3>
+<dl class="class">
+<dt id="django.contrib.gis.feeds.Feed">
+<em class="property">class </em><code class="descname">Feed</code><a class="reference internal" href="../../../../_modules/django/contrib/gis/feeds/#Feed"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#django.contrib.gis.feeds.Feed" title="永久链接至目标">¶</a></dt>
+<dd><p>In addition to methods provided by the
+<a class="reference internal" href="../../syndication/#django.contrib.syndication.views.Feed" title="django.contrib.syndication.views.Feed"><code class="xref py py-class docutils literal"><span class="pre">django.contrib.syndication.views.Feed</span></code></a> base class, GeoDjango&#8217;s
+<code class="docutils literal"><span class="pre">Feed</span></code> class provides the following overrides. Note that these overrides
+may be done in multiple ways:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.contrib.gis.feeds</span> <span class="kn">import</span> <span class="n">Feed</span>
+
+<span class="k">class</span> <span class="nc">MyFeed</span><span class="p">(</span><span class="n">Feed</span><span class="p">):</span>
+
+    <span class="c1"># First, as a class attribute.</span>
+    <span class="n">geometry</span> <span class="o">=</span> <span class="o">...</span>
+    <span class="n">item_geometry</span> <span class="o">=</span> <span class="o">...</span>
+
+    <span class="c1"># Also a function with no arguments</span>
+    <span class="k">def</span> <span class="nf">geometry</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="o">...</span>
+
+    <span class="k">def</span> <span class="nf">item_geometry</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="o">...</span>
+
+    <span class="c1"># And as a function with a single argument</span>
+    <span class="k">def</span> <span class="nf">geometry</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
+        <span class="o">...</span>
+
+    <span class="k">def</span> <span class="nf">item_geometry</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+        <span class="o">...</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="django.contrib.gis.feeds.Feed.geometry">
+<code class="descname">geometry</code>(<em>obj</em>)<a class="headerlink" href="#django.contrib.gis.feeds.Feed.geometry" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<p>Takes the object returned by <code class="docutils literal"><span class="pre">get_object()</span></code> and returns the <em>feed&#8217;s</em>
+geometry. Typically this is a <code class="docutils literal"><span class="pre">GEOSGeometry</span></code> instance, or can be a tuple
+to represent a point or a box. For example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ZipcodeFeed</span><span class="p">(</span><span class="n">Feed</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">geometry</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
+        <span class="c1"># Can also return: `obj.poly`, and `obj.poly.centroid`.</span>
+        <span class="k">return</span> <span class="n">obj</span><span class="o">.</span><span class="n">poly</span><span class="o">.</span><span class="n">extent</span> <span class="c1"># tuple like: (X0, Y0, X1, Y1).</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="django.contrib.gis.feeds.Feed.item_geometry">
+<code class="descname">item_geometry</code>(<em>item</em>)<a class="headerlink" href="#django.contrib.gis.feeds.Feed.item_geometry" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<p>Set this to return the geometry for each <em>item</em> in the feed. This can be a
+<code class="docutils literal"><span class="pre">GEOSGeometry</span></code> instance, or a tuple that represents a point coordinate or
+bounding box. For example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ZipcodeFeed</span><span class="p">(</span><span class="n">Feed</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">item_geometry</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
+        <span class="c1"># Returns the polygon.</span>
+        <span class="k">return</span> <span class="n">obj</span><span class="o">.</span><span class="n">poly</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="s-syndicationfeed-subclasses">
+<span id="syndicationfeed-subclasses"></span><h3><code class="docutils literal"><span class="pre">SyndicationFeed</span></code> Subclasses<a class="headerlink" href="#syndicationfeed-subclasses" title="永久链接至标题">¶</a></h3>
+<p>The following <a class="reference internal" href="../../../utils/#django.utils.feedgenerator.SyndicationFeed" title="django.utils.feedgenerator.SyndicationFeed"><code class="xref py py-class docutils literal"><span class="pre">django.utils.feedgenerator.SyndicationFeed</span></code></a> subclasses
+are available:</p>
+<dl class="class">
+<dt id="django.contrib.gis.feeds.GeoRSSFeed">
+<em class="property">class </em><code class="descname">GeoRSSFeed</code><a class="reference internal" href="../../../../_modules/django/contrib/gis/feeds/#GeoRSSFeed"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#django.contrib.gis.feeds.GeoRSSFeed" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="django.contrib.gis.feeds.GeoAtom1Feed">
+<em class="property">class </em><code class="descname">GeoAtom1Feed</code><a class="reference internal" href="../../../../_modules/django/contrib/gis/feeds/#GeoAtom1Feed"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#django.contrib.gis.feeds.GeoAtom1Feed" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="django.contrib.gis.feeds.W3CGeoFeed">
+<em class="property">class </em><code class="descname">W3CGeoFeed</code><a class="reference internal" href="../../../../_modules/django/contrib/gis/feeds/#W3CGeoFeed"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#django.contrib.gis.feeds.W3CGeoFeed" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last"><a class="reference external" href="http://www.w3.org/2003/01/geo/">W3C Geo</a> formatted feeds only support
+<a class="reference internal" href="../model-api/#django.contrib.gis.db.models.PointField" title="django.contrib.gis.db.models.PointField"><code class="xref py py-class docutils literal"><span class="pre">PointField</span></code></a> geometries.</p>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../sitemaps/" class="btn btn-neutral float-right" title="Geographic Sitemaps" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../admin/" class="btn btn-neutral" title="GeoDjango’s admin site" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 Django Software Foundation and contributors.
+      最后更新于 Apr 27, 2016.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../',
+            VERSION:'1.10.dev20160423182652',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

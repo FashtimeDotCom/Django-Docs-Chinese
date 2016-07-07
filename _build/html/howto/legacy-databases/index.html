@@ -1,0 +1,313 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Integrating Django with a legacy database &mdash; Django 1.10.dev20160423182652 文档</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Django 1.10.dev20160423182652 文档" href="../../"/>
+        <link rel="up" title="“How-to” guides" href="../"/>
+        <link rel="next" title="Outputting CSV with Django" href="../outputting-csv/"/>
+        <link rel="prev" title="Running Django on Jython" href="../jython/"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../contents/" class="icon icon-home"> Django
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.10
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search/" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../">Django 最新中文文档</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../intro/">开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../topics/">Using Django</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../">&#8220;How-to&#8221; guides</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../auth-remote-user/">使用身份验证 <code class="docutils literal"><span class="pre">REMOTE_USER</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../custom-management-commands/">Writing custom <code class="docutils literal"><span class="pre">django-admin</span></code> commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../custom-model-fields/">Writing custom model fields</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../custom-lookups/">自定义查找</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../custom-template-tags/">Custom template tags and filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../custom-file-storage/">Writing a custom storage system</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../deployment/">Deploying Django</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../upgrade-version/">Upgrading Django to a newer version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../error-reporting/">Error reporting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../initial-data/">Providing initial data for models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jython/">Running Django on Jython</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Integrating Django with a legacy database</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#give-django-your-database-parameters">Give Django your database parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#auto-generate-the-models">Auto-generate the models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#install-the-core-django-tables">Install the core Django tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#test-and-tweak">Test and tweak</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../outputting-csv/">Outputting CSV with Django</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outputting-pdf/">Outputting PDFs with Django</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../static-files/">Managing static files (e.g. images, JavaScript, CSS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../static-files/deployment/">Deploying static files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../windows/">How to install Django on Windows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../writing-migrations/">Writing database migrations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq/">Django FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ref/">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../misc/">元文件和杂记</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../internals/">Django internals</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../contents/">Django</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../contents/">Docs</a> &raquo;</li>
+      
+          <li><a href="../">&#8220;How-to&#8221; guides</a> &raquo;</li>
+      
+    <li>Integrating Django with a legacy database</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/howto/legacy-databases.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="s-integrating-django-with-a-legacy-database">
+<span id="integrating-django-with-a-legacy-database"></span><h1>Integrating Django with a legacy database<a class="headerlink" href="#integrating-django-with-a-legacy-database" title="永久链接至标题">¶</a></h1>
+<p>While Django is best suited for developing new applications, it&#8217;s quite
+possible to integrate it into legacy databases. Django includes a couple of
+utilities to automate as much of this process as possible.</p>
+<p>This document assumes you know the Django basics, as covered in the
+<a class="reference internal" href="../../intro/tutorial01/"><em>tutorial</em></a>.</p>
+<p>Once you&#8217;ve got Django set up, you&#8217;ll follow this general process to integrate
+with an existing database.</p>
+<div class="section" id="s-give-django-your-database-parameters">
+<span id="give-django-your-database-parameters"></span><h2>Give Django your database parameters<a class="headerlink" href="#give-django-your-database-parameters" title="永久链接至标题">¶</a></h2>
+<p>You&#8217;ll need to tell Django what your database connection parameters are, and
+what the name of the database is. Do that by editing the <a class="reference internal" href="../../ref/settings/#std:setting-DATABASES"><code class="xref std std-setting docutils literal"><span class="pre">DATABASES</span></code></a>
+setting and assigning values to the following keys for the <code class="docutils literal"><span class="pre">'default'</span></code>
+connection:</p>
+<ul class="simple">
+<li><a class="reference internal" href="../../ref/settings/#std:setting-NAME"><code class="xref std std-setting docutils literal"><span class="pre">NAME</span></code></a></li>
+<li><a class="reference internal" href="../../ref/settings/#std:setting-DATABASE-ENGINE"><code class="xref std std-setting docutils literal"><span class="pre">ENGINE</span></code></a></li>
+<li><a class="reference internal" href="../../ref/settings/#std:setting-USER"><code class="xref std std-setting docutils literal"><span class="pre">USER</span></code></a></li>
+<li><a class="reference internal" href="../../ref/settings/#std:setting-PASSWORD"><code class="xref std std-setting docutils literal"><span class="pre">PASSWORD</span></code></a></li>
+<li><a class="reference internal" href="../../ref/settings/#std:setting-HOST"><code class="xref std std-setting docutils literal"><span class="pre">HOST</span></code></a></li>
+<li><a class="reference internal" href="../../ref/settings/#std:setting-PORT"><code class="xref std std-setting docutils literal"><span class="pre">PORT</span></code></a></li>
+</ul>
+</div>
+<div class="section" id="s-auto-generate-the-models">
+<span id="auto-generate-the-models"></span><h2>Auto-generate the models<a class="headerlink" href="#auto-generate-the-models" title="永久链接至标题">¶</a></h2>
+<p>Django comes with a utility called <a class="reference internal" href="../../ref/django-admin/#django-admin-inspectdb"><code class="xref std std-djadmin docutils literal"><span class="pre">inspectdb</span></code></a> that can create models
+by introspecting an existing database. You can view the output by running this
+command:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ python manage.py inspectdb
+</pre></div>
+</div>
+<p>Save this as a file by using standard Unix output redirection:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ python manage.py inspectdb &gt; models.py
+</pre></div>
+</div>
+<p>This feature is meant as a shortcut, not as definitive model generation. See the
+<a class="reference internal" href="../../ref/django-admin/#django-admin-inspectdb"><code class="xref std std-djadmin docutils literal"><span class="pre">documentation</span> <span class="pre">of</span> <span class="pre">inspectdb</span></code></a> for more information.</p>
+<p>Once you&#8217;ve cleaned up your models, name the file <code class="docutils literal"><span class="pre">models.py</span></code> and put it in
+the Python package that holds your app. Then add the app to your
+<a class="reference internal" href="../../ref/settings/#std:setting-INSTALLED_APPS"><code class="xref std std-setting docutils literal"><span class="pre">INSTALLED_APPS</span></code></a> setting.</p>
+<p>By default, <a class="reference internal" href="../../ref/django-admin/#django-admin-inspectdb"><code class="xref std std-djadmin docutils literal"><span class="pre">inspectdb</span></code></a> creates unmanaged models. That is,
+<code class="docutils literal"><span class="pre">managed</span> <span class="pre">=</span> <span class="pre">False</span></code> in the model&#8217;s <code class="docutils literal"><span class="pre">Meta</span></code> class tells Django not to manage
+each table&#8217;s creation, modification, and deletion:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>class Person<span class="o">(</span>models.Model<span class="o">)</span>:
+    <span class="nv">id</span> <span class="o">=</span> models.IntegerField<span class="o">(</span><span class="nv">primary_key</span><span class="o">=</span>True<span class="o">)</span>
+    <span class="nv">first_name</span> <span class="o">=</span> models.CharField<span class="o">(</span><span class="nv">max_length</span><span class="o">=</span>70<span class="o">)</span>
+    class Meta:
+       <span class="nv">managed</span> <span class="o">=</span> False
+       <span class="nv">db_table</span> <span class="o">=</span> <span class="s1">&#39;CENSUS_PERSONS&#39;</span>
+</pre></div>
+</div>
+<p>If you do want to allow Django to manage the table&#8217;s lifecycle, you&#8217;ll need to
+change the <a class="reference internal" href="../../ref/models/options/#django.db.models.Options.managed" title="django.db.models.Options.managed"><code class="xref py py-attr docutils literal"><span class="pre">managed</span></code></a> option above to <code class="docutils literal"><span class="pre">True</span></code>
+(or simply remove it because <code class="docutils literal"><span class="pre">True</span></code> is its default value).</p>
+</div>
+<div class="section" id="s-install-the-core-django-tables">
+<span id="install-the-core-django-tables"></span><h2>Install the core Django tables<a class="headerlink" href="#install-the-core-django-tables" title="永久链接至标题">¶</a></h2>
+<p>Next, run the <a class="reference internal" href="../../ref/django-admin/#django-admin-migrate"><code class="xref std std-djadmin docutils literal"><span class="pre">migrate</span></code></a> command to install any extra needed database
+records such as admin permissions and content types:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ python manage.py migrate
+</pre></div>
+</div>
+</div>
+<div class="section" id="s-test-and-tweak">
+<span id="test-and-tweak"></span><h2>Test and tweak<a class="headerlink" href="#test-and-tweak" title="永久链接至标题">¶</a></h2>
+<p>Those are the basic steps &#8211; from here you&#8217;ll want to tweak the models Django
+generated until they work the way you&#8217;d like. Try accessing your data via the
+Django database API, and try editing objects via Django&#8217;s admin site, and edit
+the models file accordingly.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../outputting-csv/" class="btn btn-neutral float-right" title="Outputting CSV with Django" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../jython/" class="btn btn-neutral" title="Running Django on Jython" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 Django Software Foundation and contributors.
+      最后更新于 Apr 27, 2016.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.10.dev20160423182652',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,304 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Django 1.9.1 release notes &mdash; Django 1.10.dev20160423182652 文档</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Django 1.10.dev20160423182652 文档" href="../../"/>
+        <link rel="up" title="Release notes" href="../"/>
+        <link rel="next" title="Django 1.9 release notes" href="../1.9/"/>
+        <link rel="prev" title="Django 1.9.2 release notes" href="../1.9.2/"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../contents/" class="icon icon-home"> Django
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.10
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search/" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../">Django 最新中文文档</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../intro/">开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../topics/">Using Django</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../howto/">&#8220;How-to&#8221; guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq/">Django FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ref/">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../misc/">元文件和杂记</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/">Glossary</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../">Release notes</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../#final-releases">Final releases</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../#release">1.10 release</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../#id1">1.9 release</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../1.9.6/">Django 1.9.6 release notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../1.9.5/">Django 1.9.5 release notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../1.9.4/">Django 1.9.4 release notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../1.9.3/">Django 1.9.3 release notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../1.9.2/">Django 1.9.2 release notes</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="">Django 1.9.1 release notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../1.9/">Django 1.9 release notes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../#id2">1.8 release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../#id3">1.7 release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../#id4">1.6 release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../#id5">1.5 release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../#id6">1.4 release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../#id7">1.3 release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../#id8">1.2 release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../#id9">1.1 release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../#id10">1.0 release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../#pre-1-0-releases">Pre-1.0 releases</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../#security-releases">Security releases</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../internals/">Django internals</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../contents/">Django</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../contents/">Docs</a> &raquo;</li>
+      
+          <li><a href="../">Release notes</a> &raquo;</li>
+      
+    <li>Django 1.9.1 release notes</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/releases/1.9.1.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="s-django-1-9-1-release-notes">
+<span id="django-1-9-1-release-notes"></span><h1>Django 1.9.1 release notes<a class="headerlink" href="#django-1-9-1-release-notes" title="永久链接至标题">¶</a></h1>
+<p><em>January 2, 2016</em></p>
+<p>Django 1.9.1 fixes several bugs in 1.9.</p>
+<div class="section" id="s-bugfixes">
+<span id="bugfixes"></span><h2>Bugfixes<a class="headerlink" href="#bugfixes" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li>Fixed <code class="docutils literal"><span class="pre">BaseCache.get_or_set()</span></code> with the <code class="docutils literal"><span class="pre">DummyCache</span></code> backend
+(<a class="reference external" href="https://code.djangoproject.com/ticket/25840">#25840</a>).</li>
+<li>Fixed a regression in <code class="docutils literal"><span class="pre">FormMixin</span></code> causing forms to be validated twice
+(<a class="reference external" href="https://code.djangoproject.com/ticket/25548">#25548</a>, <a class="reference external" href="https://code.djangoproject.com/ticket/26018">#26018</a>).</li>
+<li>Fixed a system check crash with nested <code class="docutils literal"><span class="pre">ArrayField</span></code>s (<a class="reference external" href="https://code.djangoproject.com/ticket/25867">#25867</a>).</li>
+<li>Fixed a state bug when migrating a <code class="docutils literal"><span class="pre">SeparateDatabaseAndState</span></code> operation
+backwards (<a class="reference external" href="https://code.djangoproject.com/ticket/25896">#25896</a>).</li>
+<li>Fixed a regression in <code class="docutils literal"><span class="pre">CommonMiddleware</span></code> causing <code class="docutils literal"><span class="pre">If-None-Match</span></code> checks
+to always return HTTP 200 (<a class="reference external" href="https://code.djangoproject.com/ticket/25900">#25900</a>).</li>
+<li>Fixed missing <code class="docutils literal"><span class="pre">varchar/text_pattern_ops</span></code> index on <code class="docutils literal"><span class="pre">CharField</span></code> and
+<code class="docutils literal"><span class="pre">TextField</span></code> respectively when using <code class="docutils literal"><span class="pre">AlterField</span></code> on PostgreSQL
+(<a class="reference external" href="https://code.djangoproject.com/ticket/25412">#25412</a>).</li>
+<li>Fixed admin&#8217;s delete confirmation page&#8217;s summary counts of related objects
+(<a class="reference external" href="https://code.djangoproject.com/ticket/25883">#25883</a>).</li>
+<li>Added <code class="docutils literal"><span class="pre">from</span> <span class="pre">__future__</span> <span class="pre">import</span> <span class="pre">unicode_literals</span></code> to the default <code class="docutils literal"><span class="pre">apps.py</span></code>
+created by <code class="docutils literal"><span class="pre">startapp</span></code> on Python 2 (<a class="reference external" href="https://code.djangoproject.com/ticket/25909">#25909</a>). Add this line to your
+own <code class="docutils literal"><span class="pre">apps.py</span></code> files created using Django 1.9 if you want your migrations
+to work on both Python 2 and Python 3.</li>
+<li>Prevented <code class="docutils literal"><span class="pre">QuerySet.delete()</span></code> from crashing on MySQL when querying across
+relations (<a class="reference external" href="https://code.djangoproject.com/ticket/25882">#25882</a>).</li>
+<li>Fixed evaluation of zero-length slices of <code class="docutils literal"><span class="pre">QuerySet.values()</span></code>
+(<a class="reference external" href="https://code.djangoproject.com/ticket/25894">#25894</a>).</li>
+<li>Fixed a state bug when using an <code class="docutils literal"><span class="pre">AlterModelManagers</span></code> operation
+(<a class="reference external" href="https://code.djangoproject.com/ticket/25852">#25852</a>).</li>
+<li>Fixed <code class="docutils literal"><span class="pre">TypedChoiceField</span></code> change detection with nullable fields
+(<a class="reference external" href="https://code.djangoproject.com/ticket/25942">#25942</a>).</li>
+<li>Fixed incorrect timezone warnings in custom admin templates that don&#8217;t have
+a <code class="docutils literal"><span class="pre">data-admin-utc-offset</span></code> attribute in the <code class="docutils literal"><span class="pre">body</span></code> tag.
+(<a class="reference external" href="https://code.djangoproject.com/ticket/25845">#25845</a>).</li>
+<li>Fixed a regression which prevented using a language not in Django&#8217;s default
+language list (<a class="reference internal" href="../../ref/settings/#std:setting-LANGUAGES"><code class="xref std std-setting docutils literal"><span class="pre">LANGUAGES</span></code></a>) (<a class="reference external" href="https://code.djangoproject.com/ticket/25915">#25915</a>).</li>
+<li>Avoided hiding some exceptions, like an invalid <code class="docutils literal"><span class="pre">INSTALLED_APPS</span></code> setting,
+behind <code class="docutils literal"><span class="pre">AppRegistryNotReady</span></code> when starting <code class="docutils literal"><span class="pre">runserver</span></code> (<a class="reference external" href="https://code.djangoproject.com/ticket/25510">#25510</a>).
+This regression appeared in 1.8.5 as a side effect of fixing <a class="reference external" href="https://code.djangoproject.com/ticket/24704">#24704</a>
+and by mistake the fix wasn&#8217;t applied to the <code class="docutils literal"><span class="pre">stable/1.9.x</span></code> branch.</li>
+<li>Fixed <code class="docutils literal"><span class="pre">migrate</span> <span class="pre">--fake-initial</span></code> detection of many-to-many tables
+(<a class="reference external" href="https://code.djangoproject.com/ticket/25922">#25922</a>).</li>
+<li>Restored the functionality of the admin&#8217;s <code class="docutils literal"><span class="pre">list_editable</span></code> add and change
+buttons (<a class="reference external" href="https://code.djangoproject.com/ticket/25903">#25903</a>).</li>
+<li>Fixed <code class="docutils literal"><span class="pre">isnull</span></code> query lookup for <code class="docutils literal"><span class="pre">ForeignObject</span></code>
+(<a class="reference external" href="https://code.djangoproject.com/ticket/25972">#25972</a>).</li>
+<li>Fixed a regression in the admin which ignored line breaks in read-only fields
+instead of converting them to <code class="docutils literal"><span class="pre">&lt;br&gt;</span></code> (<a class="reference external" href="https://code.djangoproject.com/ticket/25465">#25465</a>).</li>
+<li>Fixed incorrect object reference in
+<code class="docutils literal"><span class="pre">SingleObjectMixin.get_context_object_name()</span></code> (<a class="reference external" href="https://code.djangoproject.com/ticket/26006">#26006</a>).</li>
+<li>Made <code class="docutils literal"><span class="pre">loaddata</span></code> skip disabling and enabling database constraints when it
+doesn&#8217;t load any fixtures (<a class="reference external" href="https://code.djangoproject.com/ticket/23372">#23372</a>).</li>
+<li>Restored <code class="docutils literal"><span class="pre">contrib.auth</span></code> hashers compatibility with py-bcrypt
+(<a class="reference external" href="https://code.djangoproject.com/ticket/26016">#26016</a>).</li>
+<li>Fixed a crash in <code class="docutils literal"><span class="pre">QuerySet.values()/values_list()</span></code> after an <code class="docutils literal"><span class="pre">annotate()</span></code>
+and <code class="docutils literal"><span class="pre">order_by()</span></code> when <code class="docutils literal"><span class="pre">values()/values_list()</span></code> includes a field not in
+the <code class="docutils literal"><span class="pre">order_by()</span></code> (<a class="reference external" href="https://code.djangoproject.com/ticket/25316">#25316</a>).</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../1.9/" class="btn btn-neutral float-right" title="Django 1.9 release notes" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../1.9.2/" class="btn btn-neutral" title="Django 1.9.2 release notes" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 Django Software Foundation and contributors.
+      最后更新于 Apr 27, 2016.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.10.dev20160423182652',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

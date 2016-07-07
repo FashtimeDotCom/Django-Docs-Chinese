@@ -1,0 +1,678 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>编写你的第一个Django补丁 &mdash; Django 1.10.dev20160423182652 文档</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Django 1.10.dev20160423182652 文档" href="../index.html"/>
+        <link rel="up" title="开始" href="index.html"/>
+        <link rel="next" title="Using Django" href="../topics/index.html"/>
+        <link rel="prev" title="What to read next" href="whatsnext.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../contents.html" class="icon icon-home"> Django
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.10
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Django 最新中文文档</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">开始</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="overview.html">初识 Django</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html">快速安装指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial01.html">编写你的第一个Django应用，第1部分</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial02.html">编写你的第一个Django应用，第2部分</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial03.html">编写你的第一个Django应用，第3部分</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial04.html">编写你的第一个Django应用，第4部分</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial05.html">编写你的第一个Django应用，第5部分</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial06.html">编写你的第一个Django应用，第7部分</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial07.html">编写你的第一个Django应用，第7部分</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reusable-apps.html">Advanced tutorial: How to write reusable apps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="whatsnext.html">What to read next</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">编写你的第一个Django补丁</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">介绍</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#who-s-this-tutorial-for">这个教程适合谁？</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#what-does-this-tutorial-cover">这个指南涵盖哪些内容？</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#code-of-conduct">代码规范</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#installing-git">安装Git.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#getting-a-copy-of-django-s-development-version">获得一个Django开发版本的拷贝</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rolling-back-to-a-previous-revision-of-django">回滚至你之前的Django版本</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#running-django-s-test-suite-for-the-first-time">首先运行 Django 的测试套件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#writing-some-tests-for-your-ticket">为你的ticket写一些测试用例</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#writing-some-tests-for-ticket-24788">为 ticket #24788 写测试</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#running-your-new-test">运行你的新测试</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#writing-the-code-for-your-ticket">Writing the code for your ticket</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#writing-the-code-for-ticket-24788">为标签 #24788 编写代码</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#verifying-your-test-now-passes">确保测试通过</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#running-django-s-test-suite-for-the-second-time">再次运行Django 的测试套件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#writing-documentation">书写文档</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#generating-a-patch-for-your-changes">为你的修改生成补丁</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#so-what-do-i-do-next">那么下面我要做什么?</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#more-information-for-new-contributors">针对新贡献者的更多注意事项</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#finding-your-first-real-ticket">寻找你的第一个真正的标签</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#what-s-next">接下来要做什么？</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../topics/index.html">Using Django</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../howto/index.html">&#8220;How-to&#8221; guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq/index.html">Django FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/index.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/index.html">元文件和杂记</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals/index.html">Django internals</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../contents.html">Django</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../contents.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">开始</a> &raquo;</li>
+      
+    <li>编写你的第一个Django补丁</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/intro/contributing.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="s-writing-your-first-patch-for-django">
+<span id="writing-your-first-patch-for-django"></span><h1>编写你的第一个Django补丁<a class="headerlink" href="#writing-your-first-patch-for-django" title="永久链接至标题">¶</a></h1>
+<div class="section" id="s-introduction">
+<span id="introduction"></span><h2>介绍<a class="headerlink" href="#introduction" title="永久链接至标题">¶</a></h2>
+<p>想为Django社区做一点贡献？你也许发现了一个想修复的bug，或者一个想添加的功能。</p>
+<p>为Django作贡献这件事本身就是使你的顾虑得到解决的最好方式。一开始这可能会使你怯步，但事实上是很简单的。整个过程中我们会一步一步为你解说，所以你可以通过例子学习。</p>
+<div class="section" id="s-who-s-this-tutorial-for">
+<span id="who-s-this-tutorial-for"></span><h3>这个教程适合谁？<a class="headerlink" href="#who-s-this-tutorial-for" title="永久链接至标题">¶</a></h3>
+<div class="admonition seealso">
+<p class="first admonition-title">参见</p>
+<p class="last">如果你正在寻找一个关于如何提交补丁的参考,请查看 <a class="reference internal" href="../internals/contributing/writing-code/submitting-patches.html"><em>Submitting patches</em></a> 文档.</p>
+</div>
+<p>使用教程前，我们希望你至少对于Django的运行方式有基础的了解. 这意味着你可以很容易地 <a class="reference internal" href="tutorial01.html"><em>写你自己的 Django app</em></a> . 时使用教程, 除此之外，你应该对于Python本身有很好的了解。 如果您并不太了解, 我们为您推荐  <a href="#id15"><span class="problematic" id="id16">`Dive Into Python`__</span></a> 对于初次使用Python的程序员来说这是一本很棒(而且免费)的在线电子书。</p>
+<p>那些不熟悉版本控制系统及缺陷跟踪的朋友可以查看这个教程,这个连接包含了正好足够的信息. 如果你打算定期的贡献Django,然而,你很可能像更多的阅读关于这些不同工具的信息.</p>
+<p>当然对于其中的大部分内容，Django会尽可能做出解释以帮助广大的读者。</p>
+<div class="admonition-where-to-get-help admonition">
+<p class="first admonition-title">从哪里获得帮助：</p>
+<p class="last">如果你在使用本教程时遇到困难, 你可以发送信息给 | django-developers | 或 登陆 <a href="#id15"><span class="problematic" id="id17">`#django-dev on irc.freenode.net`__</span></a> 向其他Django使用者需求帮助。</p>
+</div>
+</div>
+<div class="section" id="s-what-does-this-tutorial-cover">
+<span id="what-does-this-tutorial-cover"></span><h3>这个指南涵盖哪些内容？<a class="headerlink" href="#what-does-this-tutorial-cover" title="永久链接至标题">¶</a></h3>
+<p>我们将指导你贡献你的第一个Django补丁,在本教程完毕时,你将对相关工具及流程有一个基本的认识,特别的,我们将覆盖一下内容:</p>
+<ul class="simple">
+<li><p class="first">安装Git.</p>
+</li>
+<li><p class="first">如何下载Django的开发版</p>
+</li>
+<li><p class="first">运行Django的测试套件.</p>
+</li>
+<li><p class="first">为你的补丁写一个测试.</p>
+</li>
+<li><p class="first">为你的补丁写代码.</p>
+</li>
+<li><p class="first">测试你的补丁.</p>
+</li>
+<li><p class="first">为你的更改生成一个补丁文件.</p>
+</li>
+<li><p class="first">在哪里查找更多的信息.</p>
+</li>
+</ul>
+<p>一旦你完成了这份教程, 你可以浏览剩下的 <a class="reference internal" href="../internals/contributing/index.html"><em>Django&#8217;s documentation on contributing</em></a>.它包含了大量信息。任何想成为Django的正式贡献者必须去阅读它。如果你有问题，它也许会给你答案.</p>
+<div class="admonition-python-3-required admonition">
+<p class="first admonition-title">需求 Python 3 !</p>
+<p class="last">本教程假设您正在使用 Python 3. 获得最新版本 <a class="reference external" href="https://www.python.org/download/">Python 的下载页</a> 或使用您的操作系统的包管理器进行安装。</p>
+</div>
+<div class="admonition-for-windows-users admonition">
+<p class="first admonition-title">Windows 用户</p>
+<p class="last">当在Windows 上安装Python, 确保在环境变量path中 &#8220;添加 python.exe 的路径&#8221;, 这样才可以让它总是可以在命令行下运行。</p>
+</div>
+</div>
+</div>
+<div class="section" id="s-code-of-conduct">
+<span id="code-of-conduct"></span><h2>代码规范<a class="headerlink" href="#code-of-conduct" title="永久链接至标题">¶</a></h2>
+<p>作为一个贡献者, 你可以帮助我们保持Django的社区开放性和包容性. 请仔细阅读并遵守我们的 <a class="reference external" href="https://www.djangoproject.com/conduct/">Code of Conduct</a>.</p>
+</div>
+<div class="section" id="s-installing-git">
+<span id="installing-git"></span><h2>安装Git.<a class="headerlink" href="#installing-git" title="永久链接至标题">¶</a></h2>
+<p>使用教程前，你需要安装好Git，下载Django的最新开发版本并且为你作出的改变生成补丁文件</p>
+<p>要检查您是否已经安装的Git, 输入 <code class="docutils literal"><span class="pre">git</span></code> 进入命令行. 如果你得到的消息说，这个命令无法找到, 你必须下载并安装它, 查看 <a href="#id15"><span class="problematic" id="id18">`Git 下载页`__</span></a>.</p>
+<div class="admonition-for-windows-users admonition">
+<p class="first admonition-title">Windows 用户</p>
+<p class="last">在Windows上安装Git, 我们推荐选择 &#8220;Git Bash&#8221; 选项， 以便 Git 能在shell下正常运行. 本教程假定你这就是这样安装的。</p>
+</div>
+<p>如果你还不熟悉 Git, 你可以在命令行下输入 <code class="docutils literal"><span class="pre">git</span> <span class="pre">help</span></code>  了解更多关于Git命令的使用方法 (确认已安装)</p>
+</div>
+<div class="section" id="s-getting-a-copy-of-django-s-development-version">
+<span id="getting-a-copy-of-django-s-development-version"></span><h2>获得一个Django开发版本的拷贝<a class="headerlink" href="#getting-a-copy-of-django-s-development-version" title="永久链接至标题">¶</a></h2>
+<p>为Django贡献的第一步就是获取源代码复本. 在命令行离, 使用 <code class="docutils literal"><span class="pre">cd</span></code> 命令进入你想要保存Django的目录</p>
+<p>使用下面的命令来下载Django的源码库:</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> git clone https://github.com/django/django.git
+</pre></div>
+</div>
+<p>现在，你有Django的本地副本, 你可以安装它，就像你使用 <code class="docutils literal"><span class="pre">pip</span></code> 安装软件包. 最方便的方式是通过使用 <em>virtual environment</em>  (or virtualenv)这样做， 这是内置到Python中的功能，可以让你保持对每个项目安装的软件包的一个单独的目录，以便它们不会互相干扰。</p>
+<p>这是一个好主意，让你所有的 virtualenvs 保存在同一个地方, 例如 <code class="docutils literal"><span class="pre">.virtualenvs/</span></code> 你的主目录. 如果不存在？创建它：</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> mkdir ~/.virtualenvs
+</pre></div>
+</div>
+<p>现在创建新的虚拟运行环境</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> python3 -m venv ~/.virtualenvs/djangodev
+</pre></div>
+</div>
+<p>这个新的环境的路径将被保存在你的电脑上。</p>
+<div class="admonition-for-windows-users admonition">
+<p class="first admonition-title">Windows 用户</p>
+<p>使用内置的 <code class="docutils literal"><span class="pre">venv</span></code> 模块不能工作，你也可以使用在Windows上使用 Git Bash shell, 因为激活脚本只是创建了系统shell (<code class="docutils literal"><span class="pre">.bat</span></code>) 和 PowerShell (<code class="docutils literal"><span class="pre">.ps1</span></code>). 使用 <code class="docutils literal"><span class="pre">virtualenv</span></code> 软件包安装:</p>
+<div class="last highlight-none"><div class="highlight"><pre><span></span>$ pip install virtualenv
+$ virtualenv ~/.virtualenvs/djangodev
+</pre></div>
+</div>
+</div>
+<div class="admonition-for-ubuntu-users admonition">
+<p class="first admonition-title">Ubuntu 用户</p>
+<p>在Ubuntu的一些版本上使用 <code class="docutils literal"><span class="pre">virtualenv</span></code> 软件包安装可能会失败,首先要确保你有``pip3``:</p>
+<div class="last highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo apt-get install python3-pip
+<span class="gp">$</span> <span class="c1"># Prefix the next command with sudo if it gives a permission denied error</span>
+<span class="gp">$</span> pip3 install virtualenv
+<span class="gp">$</span> virtualenv --python<span class="o">=</span><span class="sb">`</span>which python3<span class="sb">`</span> ~/.virtualenvs/djangodev
+</pre></div>
+</div>
+</div>
+<p>最后一步是激活你的 virtualenv 设置:</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">source</span> ~/.virtualenvs/djangodev/bin/activate
+</pre></div>
+</div>
+<p>如果 <code class="docutils literal"><span class="pre">source</span></code> 命令不可用, 你可以尝试使用一个点 . 来代替:</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> . ~/.virtualenvs/djangodev/bin/activate
+</pre></div>
+</div>
+<div class="admonition-for-windows-users admonition">
+<p class="first admonition-title">Windows 用户</p>
+<p>在Windows上激活你的 virtualenv，运行:</p>
+<div class="last highlight-none"><div class="highlight"><pre><span></span>$ source ~/virtualenvs/djangodev/Scripts/activate
+</pre></div>
+</div>
+</div>
+<p>每当你打开一个新的终端窗口，你必须激活 virtualenv. <a href="#id15"><span class="problematic" id="id19">virtualenvwrapper__</span></a> 是为了让这种操作更方便的有用工具。</p>
+<p>从现在开始你通过``pip``安装任何软件包将被安装在新的 virtualenv ，来自其他环境和系统级封装隔离。此外，在命令行上显示当前激活的virtualenv的名称，以帮助您跟踪您正在使用那个环境。来吧，安装Django先前克隆副本：</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> pip install -e /path/to/your/local/clone/django/
+</pre></div>
+</div>
+<p>现在 Django安装的版本是指向您的本地副本</p>
+</div>
+<div class="section" id="s-rolling-back-to-a-previous-revision-of-django">
+<span id="rolling-back-to-a-previous-revision-of-django"></span><h2>回滚至你之前的Django版本<a class="headerlink" href="#rolling-back-to-a-previous-revision-of-django" title="永久链接至标题">¶</a></h2>
+<p>这个教程中，我们使用 <a class="reference external" href="https://code.djangoproject.com/ticket/24788">#24788</a> 问题来作为学习用例, 所以我们要把git中Django的版本回滚到这个问题的补丁没有提交之前。 这样的话我们就可以参与到从草稿到补丁的所有过程，包括运行Django的测试套件。</p>
+<p>请记住，我们将用Django的老版本来到达学习的目的，通常情况下你应当使用当前最新的开发版本来提交补丁！。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">这个补丁由 Paweł Marczewski 开发，并 Git  提交到 Django 源码 <a href="#id15"><span class="problematic" id="id20">`提交 4df7e8483b2679fc1cba3410f08960bac6f51115`__</span></a>. 因此, 我们要回到补丁提交之前的版本号， <a href="#id15"><span class="problematic" id="id21">`提交 4ccfc4439a7add24f8db4ef3960d02ef8ae09887`__</span></a>.</p>
+</div>
+<p>首先打开Django源码的根目录 (这个目录包含了 <code class="docutils literal"><span class="pre">django</span></code>, <code class="docutils literal"><span class="pre">docs</span></code>, <code class="docutils literal"><span class="pre">tests</span></code>, <code class="docutils literal"><span class="pre">AUTHORS</span></code>, etc.). 然后你你可以根据下面的教程check out老版本的Django：</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> git checkout 4ccfc4439a7add24f8db4ef3960d02ef8ae09887
+</pre></div>
+</div>
+</div>
+<div class="section" id="s-running-django-s-test-suite-for-the-first-time">
+<span id="running-django-s-test-suite-for-the-first-time"></span><h2>首先运行 Django 的测试套件<a class="headerlink" href="#running-django-s-test-suite-for-the-first-time" title="永久链接至标题">¶</a></h2>
+<p>当你贡献代码给Django的时候，一个非常重要的问题就是你修改的代码不要给其他部分引入新的bug。 有个办法可以在你更改代码之后检查Django是否能正常工作，就是运行Django的测试套件。如果所有的测试用例都通过，你就有理由相信你的改动完全没有破坏Django。如果你从来没有运行过Django的测试套件，那么比较好的做法是事先运行一遍，熟悉下正常情况下应该输出什么结果。</p>
+<p>运行测试之前，先 <code class="docutils literal"><span class="pre">cd</span></code> ，进入Django的 <code class="docutils literal"><span class="pre">test/</span></code> 目录，然后运行安装其依赖关系：</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> pip install -r requirements/py3.txt
+</pre></div>
+</div>
+<p>现在，我们已经准备好运行测试套件，如果你是用GNU/Linux, Mac OS X或者其你喜欢的其他Unix系统，执行：</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> ./runtests.py
+</pre></div>
+</div>
+<p>现在坐下来放松一下. Django的整个测试套件有超过9,600种不同的测试,所以它运行时间需要5到15分钟,这取决于你的电脑的速度。</p>
+<p>Django的测试套件运行时,您将看到一个字符流代表每个测试的运行的状态. <code class="docutils literal"><span class="pre">E</span></code> 表示测试中出现异常, 和 <code class="docutils literal"><span class="pre">F</span></code> 表示断言失败. 这两种情况都被认为测试失败, <code class="docutils literal"><span class="pre">x</span></code> 和 <code class="docutils literal"><span class="pre">s</span></code> 分别表示与期望结果不同和跳过测试, 点表示测试通过。</p>
+<p>Skipped tests are typically due to missing external libraries required to run
+the test; see <a class="reference internal" href="../internals/contributing/writing-code/unit-tests.html#running-unit-tests-dependencies"><span>Running all the tests</span></a> for a list of dependencies
+and be sure to install any for tests related to the changes you are making (we
+won&#8217;t need any for this tutorial). Some tests are specific to a particular
+database backend and will be skipped if not testing with that backend. SQLite
+is the database backend for the default settings. To run the tests using a
+different backend, see <a class="reference internal" href="../internals/contributing/writing-code/unit-tests.html#running-unit-tests-settings"><span>Using another settings module</span></a>.</p>
+<p>当测试执行完毕后，得到反馈信息显示测试已通过，或者测试失败。 因为还没有对 Django 的源码做任何修改, 所有的测试用例 <strong>应该should</strong> 测试通过. 如果测试失败或出现错误，回头确认以上执行操作是否正确. 查看 <a class="reference internal" href="../internals/contributing/writing-code/unit-tests.html#running-unit-tests"><span>Running the unit tests</span></a> 获取更多信息。</p>
+<p>注意最新版本 Django 分支不总稳定。当在分支上开发时, 你可以查看代码持续集成构建页面的信息 <a href="#id15"><span class="problematic" id="id22">`Django&#8217;s continuous integration builds`__</span></a> 来判断测试错误只在你指定的电脑上发生，还是官方版本中也存在该错误. 如果点击某个构建信息, 可以通过 &#8220;Configuration Matrix&#8221; 查看错误发生时 Python 以及后端数据库的信息。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">在本教程以及所用分支中, 测试使用数据库 SQLite 即可,然而在某些情况下需要 (有时需要) to <a class="reference internal" href="../internals/contributing/writing-code/unit-tests.html#running-unit-tests-settings"><span>运行测试更多不同的数据库</span></a>.</p>
+</div>
+</div>
+<div class="section" id="s-writing-some-tests-for-your-ticket">
+<span id="writing-some-tests-for-your-ticket"></span><h2>为你的ticket写一些测试用例<a class="headerlink" href="#writing-some-tests-for-your-ticket" title="永久链接至标题">¶</a></h2>
+<p>大多数情况下，Django 的补丁必需包含测试。Bug 修复补丁的测试是一个回归测试，确保该 Bug 不会再次在 Django 中出现。该测试应该在 Bug 存在时测试失败，在 Bug 已经修复后通过测试。新功能补丁的测试必须验证新功能是否正常运行。新功能的测试将在功能正常时通过测试，功能未执行时测试失败。</p>
+<p>最好的方式是在修改代码之前写测试单元代码. 这种开发风格叫做 <a href="#id15"><span class="problematic" id="id23">`测试驱动开发`__</span></a> 被应用在项目开发和单一补丁开发过程中。测试单元编写完毕后，执行测试单元，此时测试失败(因为目前还没有修复 BuG 或 添加新功能)，如果测试成功通过，你需要重新修改测试单元保证测试失败。然而测试单元并没有阻止 BUG 发生的作用。</p>
+<p>现在我们的操作示例。</p>
+<div class="section" id="s-writing-some-tests-for-ticket-24788">
+<span id="writing-some-tests-for-ticket-24788"></span><h3>为 ticket #24788 写测试<a class="headerlink" href="#writing-some-tests-for-ticket-24788" title="永久链接至标题">¶</a></h3>
+<p>Ticket <a class="reference external" href="https://code.djangoproject.com/ticket/24788">#24788</a> 提议增加小特性: 为表单类指定类级别的属性``prefix``，以便:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>[…] forms which ship with apps could effectively namespace themselves such
+that N overlapping form fields could be POSTed at once and resolved to the
+correct form.
+</pre></div>
+</div>
+<p>In order to resolve this ticket, we&#8217;ll add a <code class="docutils literal"><span class="pre">prefix</span></code> attribute to the
+<code class="docutils literal"><span class="pre">BaseForm</span></code> class. When creating instances of this class, passing a prefix to
+the <code class="docutils literal"><span class="pre">__init__()</span></code> method will still set that prefix on the created instance.
+But not passing a prefix (or passing <code class="docutils literal"><span class="pre">None</span></code>) will use the class-level prefix.
+Before we make those changes though, we&#8217;re going to write a couple tests to
+verify that our modification functions correctly and continues to function
+correctly in the future.</p>
+<p>Navigate to Django&#8217;s <code class="docutils literal"><span class="pre">tests/forms_tests/tests/</span></code> folder and open the
+<code class="docutils literal"><span class="pre">test_forms.py</span></code> file. Add the following code on line 1674 right before the
+<code class="docutils literal"><span class="pre">test_forms_with_null_boolean</span></code> function:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_class_prefix</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="c1"># Prefix can be also specified at the class level.</span>
+    <span class="k">class</span> <span class="nc">Person</span><span class="p">(</span><span class="n">Form</span><span class="p">):</span>
+        <span class="n">first_name</span> <span class="o">=</span> <span class="n">CharField</span><span class="p">()</span>
+        <span class="n">prefix</span> <span class="o">=</span> <span class="s1">&#39;foo&#39;</span>
+
+    <span class="n">p</span> <span class="o">=</span> <span class="n">Person</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">prefix</span><span class="p">,</span> <span class="s1">&#39;foo&#39;</span><span class="p">)</span>
+
+    <span class="n">p</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="n">prefix</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">prefix</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This new test checks that setting a class level prefix works as expected, and
+that passing a <code class="docutils literal"><span class="pre">prefix</span></code> parameter when creating an instance still works too.</p>
+<div class="admonition-but-this-testing-thing-looks-kinda-hard admonition">
+<p class="first admonition-title">But this testing thing looks kinda hard...</p>
+<p>If you&#8217;ve never had to deal with tests before, they can look a little hard
+to write at first glance. Fortunately, testing is a <em>very</em> big subject in
+computer programming, so there&#8217;s lots of information out there:</p>
+<ul class="last simple">
+<li>A good first look at writing tests for Django can be found in the
+documentation on <a class="reference internal" href="../topics/testing/overview.html"><em>Writing and running tests</em></a>.</li>
+<li>Dive Into Python (a free online book for beginning Python developers)
+includes a great <a href="#id15"><span class="problematic" id="id24">`introduction to Unit Testing`__</span></a>.</li>
+<li>After reading those, if you want something a little meatier to sink
+your teeth into, there&#8217;s always the <a href="#id15"><span class="problematic" id="id25">`Python unittest documentation`__</span></a>.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="s-running-your-new-test">
+<span id="running-your-new-test"></span><h3>运行你的新测试<a class="headerlink" href="#running-your-new-test" title="永久链接至标题">¶</a></h3>
+<p>Remember that we haven&#8217;t actually made any modifications to <code class="docutils literal"><span class="pre">BaseForm</span></code> yet,
+so our tests are going to fail. Let&#8217;s run all the tests in the <code class="docutils literal"><span class="pre">forms_tests</span></code>
+folder to make sure that&#8217;s really what happens. From the command line, <code class="docutils literal"><span class="pre">cd</span></code>
+into the Django <code class="docutils literal"><span class="pre">tests/</span></code> directory and run:</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> ./runtests.py forms_tests
+</pre></div>
+</div>
+<p>If the tests ran correctly, you should see one failure corresponding to the test
+method we added. If all of the tests passed, then you&#8217;ll want to make sure that
+you added the new test shown above to the appropriate folder and class.</p>
+</div>
+</div>
+<div class="section" id="s-writing-the-code-for-your-ticket">
+<span id="writing-the-code-for-your-ticket"></span><h2>Writing the code for your ticket<a class="headerlink" href="#writing-the-code-for-your-ticket" title="永久链接至标题">¶</a></h2>
+<p>Next we&#8217;ll be adding the functionality described in ticket <a class="reference external" href="https://code.djangoproject.com/ticket/24788">#24788</a> to
+Django.</p>
+<div class="section" id="s-writing-the-code-for-ticket-24788">
+<span id="writing-the-code-for-ticket-24788"></span><h3>为标签 #24788 编写代码<a class="headerlink" href="#writing-the-code-for-ticket-24788" title="永久链接至标题">¶</a></h3>
+<p>进入到 <code class="docutils literal"><span class="pre">django/django/forms/</span></code> 文件夹并打开 <code class="docutils literal"><span class="pre">forms.py</span></code> 文件。查找第72行的``BaseForm``类和``field_order``属性之后添加``prefix``类属性:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">BaseForm</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="c1"># This is the main implementation of all the Form logic. Note that this</span>
+    <span class="c1"># class is different than Form. See the comments by the Form class for</span>
+    <span class="c1"># more information. Any improvements to the form API should be made to</span>
+    <span class="c1"># *this* class, not to the Form class.</span>
+    <span class="n">field_order</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="n">prefix</span> <span class="o">=</span> <span class="bp">None</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="s-verifying-your-test-now-passes">
+<span id="verifying-your-test-now-passes"></span><h3>确保测试通过<a class="headerlink" href="#verifying-your-test-now-passes" title="永久链接至标题">¶</a></h3>
+<p>修改 Django 源码后，我们通过之前编写的测试方法来验证源码修改是否工作正常. 运行测试 <code class="docutils literal"><span class="pre">forms_tests</span></code> 目录下所有的测试方法, <code class="docutils literal"><span class="pre">cd</span></code> 进入到 Django的 <code class="docutils literal"><span class="pre">tests/</span></code> 目录然后在运行:</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> ./runtests.py forms_tests
+</pre></div>
+</div>
+<p>哦,好事是我们写了这些测试! 但仍然收到一个测试异常:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>AssertionError: None != &#39;foo&#39;
+</pre></div>
+</div>
+<p>我们忘了 &#8216;__init__&#8217; 方法中添加条件语句。往前走并更改 &#8216;self.prefix = prefix&#8217; 现在这在一行 87 &#8216;django/forms/forms.py &#8216; 中，添加一个条件语句:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">prefix</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">prefix</span> <span class="o">=</span> <span class="n">prefix</span>
+</pre></div>
+</div>
+<p>重新运行测试方法正常会通过测试. 如果没有通过测试, 请重新确认上面提到的类 <code class="docutils literal"><span class="pre">BaseForm</span></code> 以及新添加的测试方法是否被正确复制到指定位置。</p>
+</div>
+</div>
+<div class="section" id="s-running-django-s-test-suite-for-the-second-time">
+<span id="running-django-s-test-suite-for-the-second-time"></span><h2>再次运行Django 的测试套件<a class="headerlink" href="#running-django-s-test-suite-for-the-second-time" title="永久链接至标题">¶</a></h2>
+<p>如果已经确认补丁以及测试结果都正常，现在是时候运行 Django 完整的测试用例，验证你的修改是否对 Django 的其他部分造成新的 Bug。 虽然测试用例帮助识别容易被人忽略的错误，但测试通过并不能保证完全没有 Bug 存在。</p>
+<p>运行 Django 完整的测试用例，<code class="docutils literal"><span class="pre">cd</span></code> 进入 Django下的  <code class="docutils literal"><span class="pre">tests/</span></code> 目录并运行:</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> ./runtests.py
+</pre></div>
+</div>
+<p>只要没有看到测试异常，你可以继续下一步骤。</p>
+</div>
+<div class="section" id="s-writing-documentation">
+<span id="writing-documentation"></span><h2>书写文档<a class="headerlink" href="#writing-documentation" title="永久链接至标题">¶</a></h2>
+<p>这个新功能信息应该被记录到文档. 在 1068行 上添加以下部分内容 (在文本末)  <code class="docutils literal"><span class="pre">django/docs/ref/forms/api.txt</span></code>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>The prefix can also be specified on the form class::
+
+    &gt;&gt;&gt; class PersonForm(forms.Form):
+    ...     ...
+    ...     prefix = &#39;person&#39;
+
+.. versionadded:: 1.9
+
+    The ability to specify ``prefix`` on the form class was added.
+</pre></div>
+</div>
+<p>因此这一新功能将在未来的Django 1.9版本中也加入到注释，在164行文件``docs/releases/1.9.txt``在“Forms”部分:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>* A form prefix can be specified inside a form class, not only when
+  instantiating a form. See :ref:`form-prefix` for details.
+</pre></div>
+</div>
+<p>关于 <code class="docutils literal"><span class="pre">versionadded</span></code> 的解释以及文档编写的更多信息，请参考 <a class="reference internal" href="../internals/contributing/writing-documentation.html"><em>Writing documentation</em></a> . 这个页面还介绍了怎么在本地重新生成一份文档，你可以查看新生成的 HTML 文档页面.</p>
+</div>
+<div class="section" id="s-generating-a-patch-for-your-changes">
+<span id="generating-a-patch-for-your-changes"></span><h2>为你的修改生成补丁<a class="headerlink" href="#generating-a-patch-for-your-changes" title="永久链接至标题">¶</a></h2>
+<p>现在是时候生成一个补丁文件，这个补丁文件可以上传到 Trac 或者更新到其他 Django。 运行下面这个命令来查看你的补丁内容：</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> git diff
+</pre></div>
+</div>
+<p>这里显示的内容为当前代码与 check out 时候的代码变化，即之前的Django副本代码对所做修改前后的变化(你的更改)</p>
+<p>在浏览补丁内容后按 <code class="docutils literal"><span class="pre">q</span></code>  键退出命令行。如果你的补丁内容看起来正常，运行下面这个命令，在当前目录生成补丁文件：</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> git diff &gt; 24788.diff
+</pre></div>
+</div>
+<p>在 Django 的根目录生成补丁文件 <code class="docutils literal"><span class="pre">24788.diff</span></code> 。这个补丁文件包含所有的代码变动信息，看起来如下：</p>
+<div class="highlight-diff"><div class="highlight"><pre><span></span><span class="gh">diff --git a/django/forms/forms.py b/django/forms/forms.py</span>
+<span class="gh">index 509709f..d1370de 100644</span>
+<span class="gd">--- a/django/forms/forms.py</span>
+<span class="gi">+++ b/django/forms/forms.py</span>
+<span class="gu">@@ -75,6 +75,7 @@ class BaseForm(object):</span>
+     # information. Any improvements to the form API should be made to *this*
+     # class, not to the Form class.
+     field_order = None
+<span class="gi">+    prefix = None</span>
+
+     def __init__(self, data=None, files=None, auto_id=&#39;id_%s&#39;, prefix=None,
+                  initial=None, error_class=ErrorList, label_suffix=None,
+<span class="gu">@@ -83,7 +84,8 @@ class BaseForm(object):</span>
+         self.data = data or {}
+         self.files = files or {}
+         self.auto_id = auto_id
+<span class="gd">-        self.prefix = prefix</span>
+<span class="gi">+        if prefix is not None:</span>
+<span class="gi">+            self.prefix = prefix</span>
+         self.initial = initial or {}
+         self.error_class = error_class
+         # Translators: This is the default suffix added to form field labels
+<span class="gh">diff --git a/docs/ref/forms/api.txt b/docs/ref/forms/api.txt</span>
+<span class="gh">index 3bc39cd..008170d 100644</span>
+<span class="gd">--- a/docs/ref/forms/api.txt</span>
+<span class="gi">+++ b/docs/ref/forms/api.txt</span>
+<span class="gu">@@ -1065,3 +1065,13 @@ You can put several Django forms inside one ``&lt;form&gt;`` tag. To give each</span>
+     &gt;&gt;&gt; print(father.as_ul())
+     &lt;li&gt;&lt;label for=&quot;id_father-first_name&quot;&gt;First name:&lt;/label&gt; &lt;input type=&quot;text&quot; name=&quot;father-first_name&quot; id=&quot;id_father-first_name&quot; /&gt;&lt;/li&gt;
+     &lt;li&gt;&lt;label for=&quot;id_father-last_name&quot;&gt;Last name:&lt;/label&gt; &lt;input type=&quot;text&quot; name=&quot;father-last_name&quot; id=&quot;id_father-last_name&quot; /&gt;&lt;/li&gt;
+<span class="gi">+</span>
+<span class="gi">+The prefix can also be specified on the form class::</span>
+<span class="gi">+</span>
+<span class="gi">+    &gt;&gt;&gt; class PersonForm(forms.Form):</span>
+<span class="gi">+    ...     ...</span>
+<span class="gi">+    ...     prefix = &#39;person&#39;</span>
+<span class="gi">+</span>
+<span class="gi">+.. versionadded:: 1.9</span>
+<span class="gi">+</span>
+<span class="gi">+    The ability to specify ``prefix`` on the form class was added.</span>
+<span class="gh">diff --git a/docs/releases/1.9.txt b/docs/releases/1.9.txt</span>
+<span class="gh">index 5b58f79..f9bb9de 100644</span>
+<span class="gd">--- a/docs/releases/1.9.txt</span>
+<span class="gi">+++ b/docs/releases/1.9.txt</span>
+<span class="gu">@@ -161,6 +161,9 @@ Forms</span>
+   :attr:`~django.forms.Form.field_order` attribute, the ``field_order``
+   constructor argument , or the :meth:`~django.forms.Form.order_fields` method.
+
+<span class="gi">+* A form prefix can be specified inside a form class, not only when</span>
+<span class="gi">+  instantiating a form. See :ref:`form-prefix` for details.</span>
+<span class="gi">+</span>
+ Generic Views
+ ^^^^^^^^^^^^^
+
+<span class="gh">diff --git a/tests/forms_tests/tests/test_forms.py b/tests/forms_tests/tests/test_forms.py</span>
+<span class="gh">index 690f205..e07fae2 100644</span>
+<span class="gd">--- a/tests/forms_tests/tests/test_forms.py</span>
+<span class="gi">+++ b/tests/forms_tests/tests/test_forms.py</span>
+<span class="gu">@@ -1671,6 +1671,18 @@ class FormsTestCase(SimpleTestCase):</span>
+         self.assertEqual(p.cleaned_data[&#39;last_name&#39;], &#39;Lennon&#39;)
+         self.assertEqual(p.cleaned_data[&#39;birthday&#39;], datetime.date(1940, 10, 9))
+
+<span class="gi">+    def test_class_prefix(self):</span>
+<span class="gi">+        # Prefix can be also specified at the class level.</span>
+<span class="gi">+        class Person(Form):</span>
+<span class="gi">+            first_name = CharField()</span>
+<span class="gi">+            prefix = &#39;foo&#39;</span>
+<span class="gi">+</span>
+<span class="gi">+        p = Person()</span>
+<span class="gi">+        self.assertEqual(p.prefix, &#39;foo&#39;)</span>
+<span class="gi">+</span>
+<span class="gi">+        p = Person(prefix=&#39;bar&#39;)</span>
+<span class="gi">+        self.assertEqual(p.prefix, &#39;bar&#39;)</span>
+<span class="gi">+</span>
+     def test_forms_with_null_boolean(self):
+         # NullBooleanField is a bit of a special case because its presentation (widget)
+         # is different than its data. This is handled transparently, though.
+</pre></div>
+</div>
+</div>
+<div class="section" id="s-so-what-do-i-do-next">
+<span id="so-what-do-i-do-next"></span><h2>那么下面我要做什么?<a class="headerlink" href="#so-what-do-i-do-next" title="永久链接至标题">¶</a></h2>
+<p>恭喜，你已经生成了你的第一个 Django 补丁 ！现在你已经明白了整个过程，你可以好好利用这些技能帮助改善Django的代码库. 生成补丁和发送到 Trac 让人使用，然而我们推荐使用 <a class="reference internal" href="../internals/contributing/writing-code/working-with-git.html"><em>面向 git 的工作流</em></a> 。</p>
+<p>目前我们没有在本地对仓储做提交操作，我们可以通过下面这个命令放弃修改并回到最原始 Django 代码状态。</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> git reset --hard HEAD
+<span class="gp">$</span> git checkout master
+</pre></div>
+</div>
+<div class="section" id="s-more-information-for-new-contributors">
+<span id="more-information-for-new-contributors"></span><h3>针对新贡献者的更多注意事项<a class="headerlink" href="#more-information-for-new-contributors" title="永久链接至标题">¶</a></h3>
+<p>在你开始为 Django 编写补丁时，这里有些信息，你应该看一看：</p>
+<ul class="simple">
+<li><p class="first">你应该阅读了 Django 的参考文档 <a class="reference internal" href="../internals/contributing/writing-code/submitting-patches.html"><em>声明标签和提交补丁</em></a>.它涵盖了Trac 规则，如何声称自己的 tickets，补丁的编码风格和其他一些重要信息。</p>
+</li>
+<li><p class="first">第一次提交补丁额外应该阅读 <a class="reference internal" href="../internals/contributing/new-contributors.html"><em>首次贡献者文档</em></a>. 这里有很多对新手贡献者的建议。</p>
+</li>
+<li><p class="first">接下来，如果你想对源码贡献有更深入了解，可以阅读接下来的文档 <a class="reference internal" href="../internals/contributing/index.html"><em>在 Django 文档上作出贡献</em></a> . 它包含了大量的有用信息，这里可以解决你可能遇到的所有问题。</p>
+</li>
+</ul>
+</div>
+<div class="section" id="s-finding-your-first-real-ticket">
+<span id="finding-your-first-real-ticket"></span><h3>寻找你的第一个真正的标签<a class="headerlink" href="#finding-your-first-real-ticket" title="永久链接至标题">¶</a></h3>
+<p>一旦你看过了之前那些信息，你便已经具备了走出困境，为自己编写补丁寻找ticket的能力。对于那些有着“容易获得”标准的ticket要尤其注意。这些ticket实际上常常很简单而且对于第一次撰写补丁的人很有帮助。一旦你熟悉了给Django写补丁，你就可以进一步为更难且更复杂的ticket写补丁。</p>
+<p>如果你只是想要简单的了解 (没人会因此责备你!), 那么你可以尝试着查看这个`easy tickets that need patches`__ 和 <a href="#id15"><span class="problematic" id="id26">`easy tickets that have patches which need improvement`__</span></a>. 如果你比较擅长写测试，那么你也可以看看这个 <a href="#id15"><span class="problematic" id="id27">`easy tickets that need tests`__</span></a>. 一定要记得遵循在Django的文档声明标签和递交补丁中提到的关于声明标签的指导规则. <a class="reference internal" href="../internals/contributing/writing-code/submitting-patches.html"><em>声明标签和提交补丁</em></a>.</p>
+</div>
+<div class="section" id="s-what-s-next">
+<span id="what-s-next"></span><h3>接下来要做什么？<a class="headerlink" href="#what-s-next" title="永久链接至标题">¶</a></h3>
+<p>一旦一个标签有了补丁, 那么它就需要其他人来重审. 上传了一个补丁或递交了一个 pull request 之后, 一定记得更新标签的元数据，比如设置标签的标志状态为 &#8220;has patch&#8221;, &#8220;doesn&#8217;t need tests&#8221;, etc, 只有这样，其他人才能找到并重审这个标签。从零开始写补丁并不是做贡献的唯一方式.重审一些已经存在的补丁也是一种非常有用的做贡献方式。查看 <a class="reference internal" href="../internals/contributing/triaging-tickets.html"><em>Triaging tickets</em></a> 了解更多详细</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../topics/index.html" class="btn btn-neutral float-right" title="Using Django" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="whatsnext.html" class="btn btn-neutral" title="What to read next" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 Django Software Foundation and contributors.
+      最后更新于 Apr 27, 2016.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.10.dev20160423182652',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

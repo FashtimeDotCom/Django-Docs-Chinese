@@ -1,0 +1,329 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Django 0.95版本发行说明 &mdash; Django 1.10.dev20160423182652 文档</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Django 1.10.dev20160423182652 文档" href="../../"/>
+        <link rel="up" title="Release notes" href="../"/>
+        <link rel="next" title="Archive of security issues" href="../security/"/>
+        <link rel="prev" title="Django version 0.96 release notes" href="../0.96/"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../contents/" class="icon icon-home"> Django
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.10
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search/" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../">Django 最新中文文档</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../intro/">开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../topics/">Using Django</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../howto/">&#8220;How-to&#8221; guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq/">Django FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ref/">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../misc/">元文件和杂记</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/">Glossary</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../">Release notes</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../#final-releases">Final releases</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../#release">1.10 release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../#id1">1.9 release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../#id2">1.8 release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../#id3">1.7 release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../#id4">1.6 release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../#id5">1.5 release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../#id6">1.4 release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../#id7">1.3 release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../#id8">1.2 release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../#id9">1.1 release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../#id10">1.0 release</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../#pre-1-0-releases">Pre-1.0 releases</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../0.96/">Django version 0.96 release notes</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="">Django 0.95版本发行说明</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../#security-releases">Security releases</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../internals/">Django internals</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../contents/">Django</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../contents/">Docs</a> &raquo;</li>
+      
+          <li><a href="../">Release notes</a> &raquo;</li>
+      
+    <li>Django 0.95版本发行说明</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/releases/0.95.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="s-django-version-0-95-release-notes">
+<span id="django-version-0-95-release-notes"></span><h1>Django 0.95版本发行说明<a class="headerlink" href="#django-version-0-95-release-notes" title="永久链接至标题">¶</a></h1>
+<p>欢迎来到Django 0.95版本</p>
+<p>This represents a significant advance in Django development since the 0.91
+release in January 2006. The details of every change in this release would be
+too extensive to list in full, but a summary is presented below.</p>
+<div class="section" id="s-suitability-and-api-stability">
+<span id="suitability-and-api-stability"></span><h2>适用性和 API 的稳定性<a class="headerlink" href="#suitability-and-api-stability" title="永久链接至标题">¶</a></h2>
+<p>This release is intended to provide a stable reference point for developers
+wanting to work on production-level applications that use Django.</p>
+<p>However, it&#8217;s not the 1.0 release, and we&#8217;ll be introducing further changes
+before 1.0. For a clear look at which areas of the framework will change (and
+which ones will <em>not</em> change) before 1.0, see the <code class="docutils literal"><span class="pre">api-stability.txt</span></code> file,
+which lives in the docs/ directory of the distribution.</p>
+<p>You may have a need to use some of the features that are marked as
+&#8220;subject to API change&#8221; in that document, but that&#8217;s OK with us as long as it&#8217;s
+OK with you, and as long as you understand APIs may change in the future.</p>
+<p>Fortunately, most of Django&#8217;s core APIs won&#8217;t be changing before version 1.0.
+There likely won&#8217;t be as big of a change between 0.95 and 1.0 versions as there
+was between 0.91 and 0.95.</p>
+</div>
+<div class="section" id="s-changes-and-new-features">
+<span id="changes-and-new-features"></span><h2>改变及新特性<a class="headerlink" href="#changes-and-new-features" title="永久链接至标题">¶</a></h2>
+<p>The major changes in this release (for developers currently using the 0.91
+release) are a result of merging the &#8216;magic-removal&#8217; branch of development.
+This branch removed a number of constraints in the way Django code had to be
+written that were a consequence of decisions made in the early days of Django,
+prior to its open-source release. It&#8217;s now possible to write more natural,
+Pythonic code that works as expected, and there&#8217;s less &#8220;black magic&#8221; happening
+behind the scenes.</p>
+<p>Aside from that, another main theme of this release is a dramatic increase in
+usability. We&#8217;ve made countless improvements in error messages, documentation,
+etc., to improve developers&#8217; quality of life.</p>
+<p>在0.95版本中引入的新特性和变更包括：</p>
+<ul class="simple">
+<li>Django now uses a more consistent and natural filtering interface for
+retrieving objects from the database.</li>
+<li>User-defined models, functions and constants now appear in the module
+namespace they were defined in. (Previously everything was magically
+transferred to the django.models.* namespace.)</li>
+<li>Some optional applications, such as the FlatPage, Sites and Redirects
+apps, have been decoupled and moved into django.contrib. If you don&#8217;t
+want to use these applications, you no longer have to install their
+database tables.</li>
+<li>Django now has support for managing database transactions.</li>
+<li>We&#8217;ve added the ability to write custom authentication and authorization
+backends for authenticating users against alternate systems, such as
+LDAP.</li>
+<li>We&#8217;ve made it easier to add custom table-level functions to models,
+through a new &#8220;Manager&#8221; API.</li>
+<li>It&#8217;s now possible to use Django without a database. This simply means
+that the framework no longer requires you to have a working database set
+up just to serve dynamic pages. In other words, you can just use
+URLconfs/views on their own. Previously, the framework required that a
+database be configured, regardless of whether you actually used it.</li>
+<li>It&#8217;s now more explicit and natural to override save() and delete()
+methods on models, rather than needing to hook into the pre_save() and
+post_save() method hooks.</li>
+<li>Individual pieces of the framework now can be configured without
+requiring the setting of an environment variable. This permits use of,
+for example, the Django templating system inside other applications.</li>
+<li>More and more parts of the framework have been internationalized, as
+we&#8217;ve expanded internationalization (i18n) support. The Django
+codebase, including code and templates, has now been translated, at least
+in part, into 31 languages. From Arabic to Chinese to Hungarian to Welsh,
+it is now possible to use Django&#8217;s admin site in your native language.</li>
+</ul>
+<p>The number of changes required to port from 0.91-compatible code to the 0.95
+code base are significant in some cases. However, they are, for the most part,
+reasonably routine and only need to be done once. A list of the necessary
+changes is described in the <a class="reference external" href="https://code.djangoproject.com/wiki/RemovingTheMagic">Removing The Magic</a> wiki page. There is also an
+easy <a class="reference external" href="https://code.djangoproject.com/wiki/MagicRemovalCheatSheet">checklist</a> for reference when undertaking the porting operation.</p>
+</div>
+<div class="section" id="s-problem-reports-and-getting-help">
+<span id="problem-reports-and-getting-help"></span><h2>报告问题以及获取帮助<a class="headerlink" href="#problem-reports-and-getting-help" title="永久链接至标题">¶</a></h2>
+<p>Need help resolving a problem with Django? The documentation in the
+distribution is also available <a class="reference internal" href="../../"><em>online</em></a> at the <a class="reference external" href="https://www.djangoproject.com/">Django website</a>.
+The <a class="reference internal" href="../../faq/"><em>FAQ</em></a> document is especially recommended, as it contains
+a number of issues that come up time and again.</p>
+<p>For more personalized help, the <a class="reference external" href="https://groups.google.com/group/django-users">django-users</a> mailing list is a very active
+list, with more than 2,000 subscribers who can help you solve any sort of
+Django problem. We recommend you search the archives first, though, because
+many common questions appear with some regularity, and any particular problem
+may already have been answered.</p>
+<p>Finally, for those who prefer the more immediate feedback offered by IRC,
+there&#8217;s a #django channel on irc.freenode.net that is regularly populated by
+Django users and developers from around the world. Friendly people are usually
+available at any hour of the day &#8211; to help, or just to chat.</p>
+<p>Thanks for using Django!</p>
+<p>Django 项目始于 2006 年 7 月</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../security/" class="btn btn-neutral float-right" title="Archive of security issues" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../0.96/" class="btn btn-neutral" title="Django version 0.96 release notes" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 Django Software Foundation and contributors.
+      最后更新于 Apr 27, 2016.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.10.dev20160423182652',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

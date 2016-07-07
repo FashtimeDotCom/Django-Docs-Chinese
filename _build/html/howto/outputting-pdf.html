@@ -1,0 +1,393 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Outputting PDFs with Django &mdash; Django 1.10.dev20160423182652 文档</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Django 1.10.dev20160423182652 文档" href="../index.html"/>
+        <link rel="up" title="“How-to” guides" href="index.html"/>
+        <link rel="next" title="Managing static files (e.g. images, JavaScript, CSS)" href="static-files/index.html"/>
+        <link rel="prev" title="Outputting CSV with Django" href="outputting-csv.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../contents.html" class="icon icon-home"> Django
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.10
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Django 最新中文文档</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../topics/index.html">Using Django</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">&#8220;How-to&#8221; guides</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="auth-remote-user.html">使用身份验证 <code class="docutils literal"><span class="pre">REMOTE_USER</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="custom-management-commands.html">Writing custom <code class="docutils literal"><span class="pre">django-admin</span></code> commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="custom-model-fields.html">Writing custom model fields</a></li>
+<li class="toctree-l2"><a class="reference internal" href="custom-lookups.html">自定义查找</a></li>
+<li class="toctree-l2"><a class="reference internal" href="custom-template-tags.html">Custom template tags and filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="custom-file-storage.html">Writing a custom storage system</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deployment/index.html">Deploying Django</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upgrade-version.html">Upgrading Django to a newer version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="error-reporting.html">Error reporting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="initial-data.html">Providing initial data for models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jython.html">Running Django on Jython</a></li>
+<li class="toctree-l2"><a class="reference internal" href="legacy-databases.html">Integrating Django with a legacy database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="outputting-csv.html">Outputting CSV with Django</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Outputting PDFs with Django</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#install-reportlab">Install ReportLab</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#write-your-view">Write your view</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#complex-pdfs">Complex PDFs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#further-resources">Further resources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#other-formats">Other formats</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="static-files/index.html">Managing static files (e.g. images, JavaScript, CSS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="static-files/deployment.html">Deploying static files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="windows.html">How to install Django on Windows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="writing-migrations.html">Writing database migrations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../faq/index.html">Django FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/index.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/index.html">元文件和杂记</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals/index.html">Django internals</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../contents.html">Django</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../contents.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">&#8220;How-to&#8221; guides</a> &raquo;</li>
+      
+    <li>Outputting PDFs with Django</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/howto/outputting-pdf.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="s-outputting-pdfs-with-django">
+<span id="outputting-pdfs-with-django"></span><h1>Outputting PDFs with Django<a class="headerlink" href="#outputting-pdfs-with-django" title="永久链接至标题">¶</a></h1>
+<p>This document explains how to output PDF files dynamically using Django views.
+This is made possible by the excellent, open-source <a class="reference external" href="http://www.reportlab.com/opensource/">ReportLab</a> Python PDF
+library.</p>
+<p>The advantage of generating PDF files dynamically is that you can create
+customized PDFs for different purposes &#8211; say, for different users or different
+pieces of content.</p>
+<p>For example, Django was used at <a class="reference external" href="http://www.kusports.com/">kusports.com</a> to generate customized,
+printer-friendly NCAA tournament brackets, as PDF files, for people
+participating in a March Madness contest.</p>
+<div class="section" id="s-install-reportlab">
+<span id="install-reportlab"></span><h2>Install ReportLab<a class="headerlink" href="#install-reportlab" title="永久链接至标题">¶</a></h2>
+<p>The ReportLab library is <a class="reference external" href="https://pypi.python.org/pypi/reportlab">available on PyPI</a>. A <a class="reference external" href="http://www.reportlab.com/docs/reportlab-userguide.pdf">user guide</a> (not
+coincidentally, a PDF file) is also available for download.
+You can install ReportLab with <code class="docutils literal"><span class="pre">pip</span></code>:</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> pip install reportlab
+</pre></div>
+</div>
+<p>Test your installation by importing it in the Python interactive interpreter:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">reportlab</span>
+</pre></div>
+</div>
+<p>If that command doesn&#8217;t raise any errors, the installation worked.</p>
+</div>
+<div class="section" id="s-write-your-view">
+<span id="write-your-view"></span><h2>Write your view<a class="headerlink" href="#write-your-view" title="永久链接至标题">¶</a></h2>
+<p>The key to generating PDFs dynamically with Django is that the ReportLab API
+acts on file-like objects, and Django&#8217;s <a class="reference internal" href="../ref/request-response.html#django.http.HttpResponse" title="django.http.HttpResponse"><code class="xref py py-class docutils literal"><span class="pre">HttpResponse</span></code></a>
+objects are file-like objects.</p>
+<p>Here&#8217;s a &#8220;Hello World&#8221; example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">reportlab.pdfgen</span> <span class="kn">import</span> <span class="n">canvas</span>
+<span class="kn">from</span> <span class="nn">django.http</span> <span class="kn">import</span> <span class="n">HttpResponse</span>
+
+<span class="k">def</span> <span class="nf">some_view</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="c1"># Create the HttpResponse object with the appropriate PDF headers.</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="n">content_type</span><span class="o">=</span><span class="s1">&#39;application/pdf&#39;</span><span class="p">)</span>
+    <span class="n">response</span><span class="p">[</span><span class="s1">&#39;Content-Disposition&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;attachment; filename=&quot;somefilename.pdf&quot;&#39;</span>
+
+    <span class="c1"># Create the PDF object, using the response object as its &quot;file.&quot;</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">canvas</span><span class="o">.</span><span class="n">Canvas</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+
+    <span class="c1"># Draw things on the PDF. Here&#39;s where the PDF generation happens.</span>
+    <span class="c1"># See the ReportLab documentation for the full list of functionality.</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="s2">&quot;Hello world.&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Close the PDF object cleanly, and we&#39;re done.</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">showPage</span><span class="p">()</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">response</span>
+</pre></div>
+</div>
+<p>The code and comments should be self-explanatory, but a few things deserve a
+mention:</p>
+<ul>
+<li><p class="first">The response gets a special MIME type, <em class="mimetype">application/pdf</em>. This
+tells browsers that the document is a PDF file, rather than an HTML file.
+If you leave this off, browsers will probably interpret the output as
+HTML, which would result in ugly, scary gobbledygook in the browser
+window.</p>
+</li>
+<li><p class="first">The response gets an additional <code class="docutils literal"><span class="pre">Content-Disposition</span></code> header, which
+contains the name of the PDF file. This filename is arbitrary: Call it
+whatever you want. It&#8217;ll be used by browsers in the &#8220;Save as...&#8221; dialog, etc.</p>
+</li>
+<li><p class="first">The <code class="docutils literal"><span class="pre">Content-Disposition</span></code> header starts with <code class="docutils literal"><span class="pre">'attachment;</span> <span class="pre">'</span></code> in this
+example. This forces Web browsers to pop-up a dialog box
+prompting/confirming how to handle the document even if a default is set
+on the machine. If you leave off <code class="docutils literal"><span class="pre">'attachment;'</span></code>, browsers will handle
+the PDF using whatever program/plugin they&#8217;ve been configured to use for
+PDFs. Here&#8217;s what that code would look like:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;Content-Disposition&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;filename=&quot;somefilename.pdf&quot;&#39;</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Hooking into the ReportLab API is easy: Just pass <code class="docutils literal"><span class="pre">response</span></code> as the
+first argument to <code class="docutils literal"><span class="pre">canvas.Canvas</span></code>. The <code class="docutils literal"><span class="pre">Canvas</span></code> class expects a
+file-like object, and <a class="reference internal" href="../ref/request-response.html#django.http.HttpResponse" title="django.http.HttpResponse"><code class="xref py py-class docutils literal"><span class="pre">HttpResponse</span></code></a> objects fit the
+bill.</p>
+</li>
+<li><p class="first">Note that all subsequent PDF-generation methods are called on the PDF
+object (in this case, <code class="docutils literal"><span class="pre">p</span></code>) &#8211; not on <code class="docutils literal"><span class="pre">response</span></code>.</p>
+</li>
+<li><p class="first">Finally, it&#8217;s important to call <code class="docutils literal"><span class="pre">showPage()</span></code> and <code class="docutils literal"><span class="pre">save()</span></code> on the PDF
+file.</p>
+</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">ReportLab is not thread-safe. Some of our users have reported odd issues
+with building PDF-generating Django views that are accessed by many people
+at the same time.</p>
+</div>
+</div>
+<div class="section" id="s-complex-pdfs">
+<span id="complex-pdfs"></span><h2>Complex PDFs<a class="headerlink" href="#complex-pdfs" title="永久链接至标题">¶</a></h2>
+<p>If you&#8217;re creating a complex PDF document with ReportLab, consider using the
+<a class="reference external" href="https://docs.python.org/3/library/io.html#module-io" title="(在 Python v3.5)"><code class="xref py py-mod docutils literal"><span class="pre">io</span></code></a> library as a temporary holding place for your PDF file. This
+library provides a file-like object interface that is particularly efficient.
+Here&#8217;s the above &#8220;Hello World&#8221; example rewritten to use <a class="reference external" href="https://docs.python.org/3/library/io.html#module-io" title="(在 Python v3.5)"><code class="xref py py-mod docutils literal"><span class="pre">io</span></code></a>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">BytesIO</span>
+<span class="kn">from</span> <span class="nn">reportlab.pdfgen</span> <span class="kn">import</span> <span class="n">canvas</span>
+<span class="kn">from</span> <span class="nn">django.http</span> <span class="kn">import</span> <span class="n">HttpResponse</span>
+
+<span class="k">def</span> <span class="nf">some_view</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="c1"># Create the HttpResponse object with the appropriate PDF headers.</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="n">content_type</span><span class="o">=</span><span class="s1">&#39;application/pdf&#39;</span><span class="p">)</span>
+    <span class="n">response</span><span class="p">[</span><span class="s1">&#39;Content-Disposition&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;attachment; filename=&quot;somefilename.pdf&quot;&#39;</span>
+
+    <span class="nb">buffer</span> <span class="o">=</span> <span class="n">BytesIO</span><span class="p">()</span>
+
+    <span class="c1"># Create the PDF object, using the BytesIO object as its &quot;file.&quot;</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">canvas</span><span class="o">.</span><span class="n">Canvas</span><span class="p">(</span><span class="nb">buffer</span><span class="p">)</span>
+
+    <span class="c1"># Draw things on the PDF. Here&#39;s where the PDF generation happens.</span>
+    <span class="c1"># See the ReportLab documentation for the full list of functionality.</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="s2">&quot;Hello world.&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Close the PDF object cleanly.</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">showPage</span><span class="p">()</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+    <span class="c1"># Get the value of the BytesIO buffer and write it to the response.</span>
+    <span class="n">pdf</span> <span class="o">=</span> <span class="nb">buffer</span><span class="o">.</span><span class="n">getvalue</span><span class="p">()</span>
+    <span class="nb">buffer</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">response</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">pdf</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">response</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="s-further-resources">
+<span id="further-resources"></span><h2>Further resources<a class="headerlink" href="#further-resources" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li><a class="reference external" href="http://www.pdflib.org/">PDFlib</a> is another PDF-generation library that has Python bindings. To
+use it with Django, just use the same concepts explained in this article.</li>
+<li><a class="reference external" href="https://github.com/xhtml2pdf/xhtml2pdf">XHTML2PDF</a> is yet another PDF-generation library. It ships with an example
+of how to integrate it with Django.</li>
+<li><a class="reference external" href="https://www.msweet.org/projects.php?Z1">HTMLdoc</a> is a command-line script that can convert HTML to PDF. It
+doesn&#8217;t have a Python interface, but you can escape out to the shell
+using <code class="docutils literal"><span class="pre">system</span></code> or <code class="docutils literal"><span class="pre">popen</span></code> and retrieve the output in Python.</li>
+</ul>
+</div>
+<div class="section" id="s-other-formats">
+<span id="other-formats"></span><h2>Other formats<a class="headerlink" href="#other-formats" title="永久链接至标题">¶</a></h2>
+<p>Notice that there isn&#8217;t a lot in these examples that&#8217;s PDF-specific &#8211; just the
+bits using <code class="docutils literal"><span class="pre">reportlab</span></code>. You can use a similar technique to generate any
+arbitrary format that you can find a Python library for. Also see
+<a class="reference internal" href="outputting-csv.html"><em>Outputting CSV with Django</em></a> for another example and some techniques you can use
+when generated text-based formats.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="static-files/index.html" class="btn btn-neutral float-right" title="Managing static files (e.g. images, JavaScript, CSS)" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="outputting-csv.html" class="btn btn-neutral" title="Outputting CSV with Django" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 Django Software Foundation and contributors.
+      最后更新于 Apr 27, 2016.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.10.dev20160423182652',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

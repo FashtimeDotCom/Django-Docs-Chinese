@@ -1,0 +1,307 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Django 1.5.2 release notes &mdash; Django 1.10.dev20160423182652 文档</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Django 1.10.dev20160423182652 文档" href="../../"/>
+        <link rel="up" title="Release notes" href="../"/>
+        <link rel="next" title="Django 1.5.1 release notes" href="../1.5.1/"/>
+        <link rel="prev" title="Django 1.5.3 release notes" href="../1.5.3/"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../contents/" class="icon icon-home"> Django
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.10
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search/" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../">Django 最新中文文档</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../intro/">开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../topics/">Using Django</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../howto/">&#8220;How-to&#8221; guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq/">Django FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ref/">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../misc/">元文件和杂记</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/">Glossary</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../">Release notes</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../#final-releases">Final releases</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../#release">1.10 release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../#id1">1.9 release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../#id2">1.8 release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../#id3">1.7 release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../#id4">1.6 release</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../#id5">1.5 release</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../1.5.12/">Django 1.5.12 release notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../1.5.11/">Django 1.5.11 release notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../1.5.10/">Django 1.5.10 release notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../1.5.9/">Django 1.5.9 release notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../1.5.8/">Django 1.5.8 release notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../1.5.7/">Django 1.5.7 release notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../1.5.6/">Django 1.5.6 release notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../1.5.5/">Django 1.5.5 release notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../1.5.4/">Django 1.5.4 release notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../1.5.3/">Django 1.5.3 release notes</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="">Django 1.5.2 release notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../1.5.1/">Django 1.5.1 release notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../1.5/">Django 1.5 release notes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../#id6">1.4 release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../#id7">1.3 release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../#id8">1.2 release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../#id9">1.1 release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../#id10">1.0 release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../#pre-1-0-releases">Pre-1.0 releases</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../#security-releases">Security releases</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../internals/">Django internals</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../contents/">Django</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../contents/">Docs</a> &raquo;</li>
+      
+          <li><a href="../">Release notes</a> &raquo;</li>
+      
+    <li>Django 1.5.2 release notes</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/releases/1.5.2.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="s-django-1-5-2-release-notes">
+<span id="django-1-5-2-release-notes"></span><h1>Django 1.5.2 release notes<a class="headerlink" href="#django-1-5-2-release-notes" title="永久链接至标题">¶</a></h1>
+<p><em>August 13, 2013</em></p>
+<p>This is Django 1.5.2, a bugfix and security release for Django 1.5.</p>
+<div class="section" id="s-mitigated-possible-xss-attack-via-user-supplied-redirect-urls">
+<span id="mitigated-possible-xss-attack-via-user-supplied-redirect-urls"></span><h2>Mitigated possible XSS attack via user-supplied redirect URLs<a class="headerlink" href="#mitigated-possible-xss-attack-via-user-supplied-redirect-urls" title="永久链接至标题">¶</a></h2>
+<p>Django relies on user input in some cases (e.g.
+<a class="reference internal" href="../../topics/auth/default/#django.contrib.auth.views.login" title="django.contrib.auth.views.login"><code class="xref py py-func docutils literal"><span class="pre">django.contrib.auth.views.login()</span></code></a>, <code class="docutils literal"><span class="pre">django.contrib.comments</span></code>, and
+<a class="reference internal" href="../../topics/i18n/"><em>i18n</em></a>) to redirect the user to an &#8220;on success&#8221; URL.
+The security checks for these redirects (namely
+<code class="docutils literal"><span class="pre">django.utils.http.is_safe_url()</span></code>) didn&#8217;t check if the scheme is <code class="docutils literal"><span class="pre">http(s)</span></code>
+and as such allowed <code class="docutils literal"><span class="pre">javascript:...</span></code> URLs to be entered. If a developer
+relied on <code class="docutils literal"><span class="pre">is_safe_url()</span></code> to provide safe redirect targets and put such a
+URL into a link, they could suffer from a XSS attack. This bug doesn&#8217;t affect
+Django currently, since we only put this URL into the <code class="docutils literal"><span class="pre">Location</span></code> response
+header and browsers seem to ignore JavaScript there.</p>
+</div>
+<div class="section" id="s-xss-vulnerability-in-django-contrib-admin">
+<span id="xss-vulnerability-in-django-contrib-admin"></span><h2>XSS vulnerability in <a class="reference internal" href="../../ref/contrib/admin/#module-django.contrib.admin" title="django.contrib.admin: Django's admin site."><code class="xref py py-mod docutils literal"><span class="pre">django.contrib.admin</span></code></a><a class="headerlink" href="#xss-vulnerability-in-django-contrib-admin" title="永久链接至标题">¶</a></h2>
+<p>If a <a class="reference internal" href="../../ref/models/fields/#django.db.models.URLField" title="django.db.models.URLField"><code class="xref py py-class docutils literal"><span class="pre">URLField</span></code></a> is used in Django 1.5, it displays the
+current value of the field and a link to the target on the admin change page.
+The display routine of this widget was flawed and allowed for XSS.</p>
+</div>
+<div class="section" id="s-bugfixes">
+<span id="bugfixes"></span><h2>Bugfixes<a class="headerlink" href="#bugfixes" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li>Fixed a crash with <a class="reference internal" href="../../ref/models/querysets/#django.db.models.query.QuerySet.prefetch_related" title="django.db.models.query.QuerySet.prefetch_related"><code class="xref py py-meth docutils literal"><span class="pre">prefetch_related()</span></code></a>
+(#19607) as well as some <code class="docutils literal"><span class="pre">pickle</span></code> regressions with <code class="docutils literal"><span class="pre">prefetch_related</span></code>
+(#20157 and #20257).</li>
+<li>Fixed a regression in <a class="reference internal" href="../../ref/contrib/gis/#module-django.contrib.gis" title="django.contrib.gis: Geographic Information System (GIS) extensions for Django"><code class="xref py py-mod docutils literal"><span class="pre">django.contrib.gis</span></code></a> in the Google Map output on
+Python 3 (#20773).</li>
+<li>Made <code class="docutils literal"><span class="pre">DjangoTestSuiteRunner.setup_databases</span></code> properly handle aliases for
+the default database (#19940) and prevented <code class="docutils literal"><span class="pre">teardown_databases</span></code> from
+attempting to tear down aliases (#20681).</li>
+<li>Fixed the <code class="docutils literal"><span class="pre">django.core.cache.backends.memcached.MemcachedCache</span></code> backend&#8217;s
+<code class="docutils literal"><span class="pre">get_many()</span></code> method on Python 3 (#20722).</li>
+<li>Fixed <a class="reference internal" href="../../ref/contrib/humanize/#module-django.contrib.humanize" title="django.contrib.humanize: A set of Django template filters useful for adding a &quot;human touch&quot; to data."><code class="xref py py-mod docutils literal"><span class="pre">django.contrib.humanize</span></code></a> translation syntax errors. Affected
+languages: Mexican Spanish, Mongolian, Romanian, Turkish (#20695).</li>
+<li>Added support for wheel packages (#19252).</li>
+<li>The CSRF token now rotates when a user logs in.</li>
+<li>Some Python 3 compatibility fixes including #20212 and #20025.</li>
+<li>Fixed some rare cases where <a class="reference internal" href="../../ref/models/querysets/#django.db.models.query.QuerySet.get" title="django.db.models.query.QuerySet.get"><code class="xref py py-meth docutils literal"><span class="pre">get()</span></code></a>
+exceptions recursed infinitely (#20278).</li>
+<li><a class="reference internal" href="../../ref/django-admin/#django-admin-makemessages"><code class="xref std std-djadmin docutils literal"><span class="pre">makemessages</span></code></a> no longer crashes with <code class="docutils literal"><span class="pre">UnicodeDecodeError</span></code>
+(#20354).</li>
+<li>Fixed <code class="docutils literal"><span class="pre">geojson</span></code> detection with Spatialite.</li>
+<li><a class="reference internal" href="../../topics/testing/tools/#django.test.SimpleTestCase.assertContains" title="django.test.SimpleTestCase.assertContains"><code class="xref py py-meth docutils literal"><span class="pre">assertContains()</span></code></a> once again works with
+binary content (#20237).</li>
+<li>Fixed <a class="reference internal" href="../../ref/models/fields/#django.db.models.ManyToManyField" title="django.db.models.ManyToManyField"><code class="xref py py-class docutils literal"><span class="pre">ManyToManyField</span></code></a> if it has a unicode <code class="docutils literal"><span class="pre">name</span></code>
+parameter (#20207).</li>
+<li>Ensured that the WSGI request&#8217;s path is correctly based on the
+<code class="docutils literal"><span class="pre">SCRIPT_NAME</span></code> environment variable or the <a class="reference internal" href="../../ref/settings/#std:setting-FORCE_SCRIPT_NAME"><code class="xref std std-setting docutils literal"><span class="pre">FORCE_SCRIPT_NAME</span></code></a>
+setting, regardless of whether or not either has a trailing slash (#20169).</li>
+<li>Fixed an obscure bug with the <a class="reference internal" href="../../topics/testing/tools/#django.test.override_settings" title="django.test.override_settings"><code class="xref py py-func docutils literal"><span class="pre">override_settings()</span></code></a>
+decorator. If you hit an <code class="docutils literal"><span class="pre">AttributeError:</span> <span class="pre">'Settings'</span> <span class="pre">object</span> <span class="pre">has</span> <span class="pre">no</span> <span class="pre">attribute</span>
+<span class="pre">'_original_allowed_hosts'</span></code> exception, it&#8217;s probably fixed (#20636).</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../1.5.1/" class="btn btn-neutral float-right" title="Django 1.5.1 release notes" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../1.5.3/" class="btn btn-neutral" title="Django 1.5.3 release notes" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 Django Software Foundation and contributors.
+      最后更新于 Apr 27, 2016.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.10.dev20160423182652',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

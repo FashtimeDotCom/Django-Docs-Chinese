@@ -1,0 +1,276 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Models and databases &mdash; Django 1.10.dev20160423182652 文档</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Django 1.10.dev20160423182652 文档" href="../../"/>
+        <link rel="up" title="Using Django" href="../"/>
+        <link rel="next" title="模型" href="models/"/>
+        <link rel="prev" title="How to install Django" href="../install/"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../contents/" class="icon icon-home"> Django
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.10
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search/" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../">Django 最新中文文档</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../intro/">开始</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../">Using Django</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../install/">How to install Django</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Models and databases</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="models/">模型</a></li>
+<li class="toctree-l3"><a class="reference internal" href="queries/">Making queries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="aggregation/">Aggregation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="search/">Search</a></li>
+<li class="toctree-l3"><a class="reference internal" href="managers/">Managers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sql/">Performing raw SQL queries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="transactions/">Database transactions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="multi-db/">Multiple databases</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tablespaces/">Tablespaces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="optimization/">Database access optimization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples/">Examples of model relationship API usage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../http/">Handling HTTP requests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../forms/">Working with forms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../templates/">模板</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../class-based-views/">Class-based views</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../migrations/">Migrations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../files/">Managing files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/">Testing in Django</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../auth/">User authentication in Django</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cache/">Django&#8217;s cache framework</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../conditional-view-processing/">Conditional View Processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../signing/">Cryptographic signing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../email/">Sending email</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../i18n/">国际化和本地化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../logging/">Logging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pagination/">Pagination</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python3/">Porting to Python 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../security/">Security in Django</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../performance/">性能和优化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../serialization/">Serializing Django objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../settings/">Django settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../signals/">Signals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../checks/">System check framework</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../external-packages/">External packages</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../howto/">&#8220;How-to&#8221; guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq/">Django FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ref/">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../misc/">元文件和杂记</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../internals/">Django internals</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../contents/">Django</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../contents/">Docs</a> &raquo;</li>
+      
+          <li><a href="../">Using Django</a> &raquo;</li>
+      
+    <li>Models and databases</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/topics/db/index.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="s-module-django.db">
+<span id="s-models-and-databases"></span><span id="module-django.db"></span><span id="models-and-databases"></span><h1>Models and databases<a class="headerlink" href="#module-django.db" title="永久链接至标题">¶</a></h1>
+<p>A model is the single, definitive source of data about your data. It contains
+the essential fields and behaviors of the data you&#8217;re storing. Generally, each
+model maps to a single database table.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="models/">模型</a></li>
+<li class="toctree-l1"><a class="reference internal" href="queries/">Making queries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aggregation/">Aggregation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="search/">Search</a></li>
+<li class="toctree-l1"><a class="reference internal" href="managers/">Managers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sql/">Performing raw SQL queries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transactions/">Database transactions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi-db/">Multiple databases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tablespaces/">Tablespaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimization/">Database access optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/">Examples of model relationship API usage</a></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="models/" class="btn btn-neutral float-right" title="模型" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../install/" class="btn btn-neutral" title="How to install Django" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 Django Software Foundation and contributors.
+      最后更新于 Jul 07, 2016.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.10.dev20160423182652',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

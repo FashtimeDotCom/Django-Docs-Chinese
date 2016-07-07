@@ -1,0 +1,562 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Geolocation with GeoIP &mdash; Django 1.10.dev20160423182652 文档</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Django 1.10.dev20160423182652 文档" href="../../../../"/>
+        <link rel="up" title="GeoDjango" href="../"/>
+        <link rel="next" title="Geolocation with GeoIP2" href="../geoip2/"/>
+        <link rel="prev" title="GDAL API" href="../gdal/"/> 
+
+  
+  <script src="../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../../contents/" class="icon icon-home"> Django
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.10
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search/" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../">Django 最新中文文档</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../intro/">开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../topics/">Using Django</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../howto/">&#8220;How-to&#8221; guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../faq/">Django FAQ</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../applications/">Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../checks/">System check framework</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../class-based-views/">Built-in class-based views API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../clickjacking/">Clickjacking Protection</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../"><code class="docutils literal"><span class="pre">contrib</span></code> packages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../admin/">The Django admin site</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../auth/"><code class="docutils literal"><span class="pre">django.contrib.auth</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../contenttypes/">The contenttypes framework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flatpages/">The flatpages app</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../">GeoDjango</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../tutorial/">GeoDjango Tutorial</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../install/">GeoDjango Installation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../model-api/">GeoDjango Model API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../db-api/">GeoDjango Database API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../forms-api/">GeoDjango Forms API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../geoquerysets/">GeoQuerySet API Reference</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../functions/">Geographic Database Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../measure/">Measurement Objects</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../geos/">GEOS API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../gdal/">GDAL API</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="">Geolocation with GeoIP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../geoip2/">Geolocation with GeoIP2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../utils/">GeoDjango Utilities</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../commands/">GeoDjango Management Commands</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../admin/">GeoDjango&#8217;s admin site</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../feeds/">Geographic Feeds</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sitemaps/">Geographic Sitemaps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../testing/">Testing GeoDjango apps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deployment/">Deploying GeoDjango</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../humanize/"><code class="docutils literal"><span class="pre">django.contrib.humanize</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../messages/">The messages framework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../postgres/"><code class="docutils literal"><span class="pre">django.contrib.postgres</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../redirects/">The redirects app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../sitemaps/">The sitemap framework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../sites/">The &#8220;sites&#8221; framework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../staticfiles/">The <code class="docutils literal"><span class="pre">staticfiles</span></code> app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../syndication/">The syndication feed framework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../#admin"><code class="docutils literal"><span class="pre">admin</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../#auth"><code class="docutils literal"><span class="pre">auth</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../#contenttypes"><code class="docutils literal"><span class="pre">contenttypes</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../#flatpages"><code class="docutils literal"><span class="pre">flatpages</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../#gis"><code class="docutils literal"><span class="pre">gis</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../#humanize"><code class="docutils literal"><span class="pre">humanize</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../#messages"><code class="docutils literal"><span class="pre">messages</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../#postgres"><code class="docutils literal"><span class="pre">postgres</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../#redirects"><code class="docutils literal"><span class="pre">redirects</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../#sessions"><code class="docutils literal"><span class="pre">sessions</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../#sites"><code class="docutils literal"><span class="pre">sites</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../#sitemaps"><code class="docutils literal"><span class="pre">sitemaps</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../#syndication"><code class="docutils literal"><span class="pre">syndication</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../#other-add-ons">Other add-ons</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../csrf/">Cross Site Request Forgery protection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../databases/">Databases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../django-admin/"><code class="docutils literal"><span class="pre">django-admin</span></code> and <code class="docutils literal"><span class="pre">manage.py</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../django-admin/#running-management-commands-from-your-code">Running management commands from your code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../exceptions/">Django Exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../files/">File handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../forms/">Forms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../middleware/">Middleware</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../migration-operations/">Migration Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../models/">Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../request-response/">Request and response objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../schema-editor/"><code class="docutils literal"><span class="pre">SchemaEditor</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../settings/">Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../signals/">Signals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../templates/">Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../template-response/"><code class="docutils literal"><span class="pre">TemplateResponse</span></code> and <code class="docutils literal"><span class="pre">SimpleTemplateResponse</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../unicode/">Unicode data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../urlresolvers/"><code class="docutils literal"><span class="pre">django.urls</span></code> utility functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../urls/"><code class="docutils literal"><span class="pre">django.conf.urls</span></code> utility functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../utils/">Django Utils</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../validators/">Validators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../views/">Built-in Views</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../misc/">元文件和杂记</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../glossary/">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../releases/">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../internals/">Django internals</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../../contents/">Django</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../../contents/">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../">API Reference</a> &raquo;</li>
+      
+          <li><a href="../../"><code class="docutils literal"><span class="pre">contrib</span></code> packages</a> &raquo;</li>
+      
+          <li><a href="../">GeoDjango</a> &raquo;</li>
+      
+    <li>Geolocation with GeoIP</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../../../_sources/ref/contrib/gis/geoip.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="s-module-django.contrib.gis.geoip">
+<span id="s-geolocation-with-geoip"></span><span id="module-django.contrib.gis.geoip"></span><span id="geolocation-with-geoip"></span><h1>Geolocation with GeoIP<a class="headerlink" href="#module-django.contrib.gis.geoip" title="永久链接至标题">¶</a></h1>
+<div class="deprecated">
+<p><span class="versionmodified">1.9 版后已移除: </span>This module is deprecated in favor of <a class="reference internal" href="../geoip2/"><em>django.contrib.gis.geoip2</em></a>, which supports IPv6 and the GeoLite2 database
+format.</p>
+</div>
+<p>The <a class="reference internal" href="#django.contrib.gis.geoip.GeoIP" title="django.contrib.gis.geoip.GeoIP"><code class="xref py py-class docutils literal"><span class="pre">GeoIP</span></code></a> object is a ctypes wrapper for the
+<a class="reference external" href="https://www.maxmind.com/app/c">MaxMind GeoIP C API</a>. <a class="footnote-reference" href="#id6" id="id1">[1]</a></p>
+<p>In order to perform IP-based geolocation, the <a class="reference internal" href="#django.contrib.gis.geoip.GeoIP" title="django.contrib.gis.geoip.GeoIP"><code class="xref py py-class docutils literal"><span class="pre">GeoIP</span></code></a> object requires
+the GeoIP C library and either the GeoIP <a class="reference external" href="https://www.maxmind.com/app/country">Country</a> or <a class="reference external" href="https://www.maxmind.com/app/city">City</a>
+datasets in binary format (the CSV files will not work!).  These datasets may be
+<a class="reference external" href="https://www.maxmind.com/download/geoip/database/">downloaded from MaxMind</a>.  Grab the <code class="docutils literal"><span class="pre">GeoLiteCountry/GeoIP.dat.gz</span></code> and
+<code class="docutils literal"><span class="pre">GeoLiteCity.dat.gz</span></code> files and unzip them in a directory corresponding to what
+you set <a class="reference internal" href="../geoip2/#std:setting-GEOIP_PATH"><code class="xref std std-setting docutils literal"><span class="pre">GEOIP_PATH</span></code></a> with in your settings.  See the example and
+reference below for more details.</p>
+<div class="section" id="s-example">
+<span id="example"></span><h2>Example<a class="headerlink" href="#example" title="永久链接至标题">¶</a></h2>
+<p>Assuming you have the GeoIP C library installed, here is an example of its
+usage:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">django.contrib.gis.geoip</span> <span class="kn">import</span> <span class="n">GeoIP</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g</span> <span class="o">=</span> <span class="n">GeoIP</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g</span><span class="o">.</span><span class="n">country</span><span class="p">(</span><span class="s1">&#39;google.com&#39;</span><span class="p">)</span>
+<span class="go">{&#39;country_code&#39;: &#39;US&#39;, &#39;country_name&#39;: &#39;United States&#39;}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g</span><span class="o">.</span><span class="n">city</span><span class="p">(</span><span class="s1">&#39;72.14.207.99&#39;</span><span class="p">)</span>
+<span class="go">{&#39;area_code&#39;: 650,</span>
+<span class="go">&#39;city&#39;: &#39;Mountain View&#39;,</span>
+<span class="go">&#39;country_code&#39;: &#39;US&#39;,</span>
+<span class="go">&#39;country_code3&#39;: &#39;USA&#39;,</span>
+<span class="go">&#39;country_name&#39;: &#39;United States&#39;,</span>
+<span class="go">&#39;dma_code&#39;: 807,</span>
+<span class="go">&#39;latitude&#39;: 37.419200897216797,</span>
+<span class="go">&#39;longitude&#39;: -122.05740356445312,</span>
+<span class="go">&#39;postal_code&#39;: &#39;94043&#39;,</span>
+<span class="go">&#39;region&#39;: &#39;CA&#39;}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g</span><span class="o">.</span><span class="n">lat_lon</span><span class="p">(</span><span class="s1">&#39;salon.com&#39;</span><span class="p">)</span>
+<span class="go">(37.789798736572266, -122.39420318603516)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g</span><span class="o">.</span><span class="n">lon_lat</span><span class="p">(</span><span class="s1">&#39;uh.edu&#39;</span><span class="p">)</span>
+<span class="go">(-95.415199279785156, 29.77549934387207)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g</span><span class="o">.</span><span class="n">geos</span><span class="p">(</span><span class="s1">&#39;24.124.1.80&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">wkt</span>
+<span class="go">&#39;POINT (-95.2087020874023438 39.0392990112304688)&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="s-geoip-settings">
+<span id="geoip-settings"></span><h2><code class="docutils literal"><span class="pre">GeoIP</span></code> Settings<a class="headerlink" href="#geoip-settings" title="永久链接至标题">¶</a></h2>
+<div class="section" id="s-geoip-path">
+<span id="s-std:setting-GEOIP_PATH"></span><span id="geoip-path"></span><span id="std:setting-GEOIP_PATH"></span><h3><code class="docutils literal"><span class="pre">GEOIP_PATH</span></code><a class="headerlink" href="#geoip-path" title="永久链接至标题">¶</a></h3>
+<p>A string specifying the directory where the GeoIP data files are
+located.  This setting is <em>required</em> unless manually specified
+with <code class="docutils literal"><span class="pre">path</span></code> keyword when initializing the <a class="reference internal" href="#django.contrib.gis.geoip.GeoIP" title="django.contrib.gis.geoip.GeoIP"><code class="xref py py-class docutils literal"><span class="pre">GeoIP</span></code></a> object.</p>
+</div>
+<div class="section" id="s-geoip-library-path">
+<span id="s-std:setting-GEOIP_LIBRARY_PATH"></span><span id="geoip-library-path"></span><span id="std:setting-GEOIP_LIBRARY_PATH"></span><h3><code class="docutils literal"><span class="pre">GEOIP_LIBRARY_PATH</span></code><a class="headerlink" href="#geoip-library-path" title="永久链接至标题">¶</a></h3>
+<p>A string specifying the location of the GeoIP C library.  Typically,
+this setting is only used if the GeoIP C library is in a non-standard
+location (e.g., <code class="docutils literal"><span class="pre">/home/sue/lib/libGeoIP.so</span></code>).</p>
+</div>
+<div class="section" id="s-geoip-country">
+<span id="s-std:setting-GEOIP_COUNTRY"></span><span id="geoip-country"></span><span id="std:setting-GEOIP_COUNTRY"></span><h3><code class="docutils literal"><span class="pre">GEOIP_COUNTRY</span></code><a class="headerlink" href="#geoip-country" title="永久链接至标题">¶</a></h3>
+<p>The basename to use for the GeoIP country data file.
+Defaults to <code class="docutils literal"><span class="pre">'GeoIP.dat'</span></code>.</p>
+</div>
+<div class="section" id="s-geoip-city">
+<span id="s-std:setting-GEOIP_CITY"></span><span id="geoip-city"></span><span id="std:setting-GEOIP_CITY"></span><h3><code class="docutils literal"><span class="pre">GEOIP_CITY</span></code><a class="headerlink" href="#geoip-city" title="永久链接至标题">¶</a></h3>
+<p>The basename to use for the GeoIP city data file.
+Defaults to <code class="docutils literal"><span class="pre">'GeoLiteCity.dat'</span></code>.</p>
+</div>
+</div>
+<div class="section" id="s-geoip-api">
+<span id="geoip-api"></span><h2><code class="docutils literal"><span class="pre">GeoIP</span></code> API<a class="headerlink" href="#geoip-api" title="永久链接至标题">¶</a></h2>
+<dl class="class">
+<dt id="django.contrib.gis.geoip.GeoIP">
+<em class="property">class </em><code class="descname">GeoIP</code>(<em>path=None</em>, <em>cache=0</em>, <em>country=None</em>, <em>city=None</em>)<a class="headerlink" href="#django.contrib.gis.geoip.GeoIP" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<p>The <code class="docutils literal"><span class="pre">GeoIP</span></code> object does not require any parameters to use the default
+settings.  However, at the very least the <a class="reference internal" href="../geoip2/#std:setting-GEOIP_PATH"><code class="xref std std-setting docutils literal"><span class="pre">GEOIP_PATH</span></code></a> setting
+should be set with the path of the location of your GeoIP data sets.  The
+following initialization keywords may be used to customize any of the
+defaults.</p>
+<table class="docutils">
+<colgroup>
+<col width="26%" />
+<col width="74%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Keyword Arguments</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">path</span></code></td>
+<td>Base directory to where GeoIP data is located or the
+full path to where the city or country data files
+(.dat) are located.  Assumes that both the city and
+country data sets are located in this directory;
+overrides the <a class="reference internal" href="../geoip2/#std:setting-GEOIP_PATH"><code class="xref std std-setting docutils literal"><span class="pre">GEOIP_PATH</span></code></a> settings attribute.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">cache</span></code></td>
+<td>The cache settings when opening up the GeoIP datasets,
+and may be an integer in (0, 1, 2, 4) corresponding to
+the <code class="docutils literal"><span class="pre">GEOIP_STANDARD</span></code>, <code class="docutils literal"><span class="pre">GEOIP_MEMORY_CACHE</span></code>,
+<code class="docutils literal"><span class="pre">GEOIP_CHECK_CACHE</span></code>, and <code class="docutils literal"><span class="pre">GEOIP_INDEX_CACHE</span></code>
+<code class="docutils literal"><span class="pre">GeoIPOptions</span></code> C API settings, respectively.
+Defaults to 0 (<code class="docutils literal"><span class="pre">GEOIP_STANDARD</span></code>).</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">country</span></code></td>
+<td>The name of the GeoIP country data file.  Defaults
+to <code class="docutils literal"><span class="pre">GeoIP.dat</span></code>.  Setting this keyword overrides the
+<a class="reference internal" href="../geoip2/#std:setting-GEOIP_COUNTRY"><code class="xref std std-setting docutils literal"><span class="pre">GEOIP_COUNTRY</span></code></a> settings attribute.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">city</span></code></td>
+<td>The name of the GeoIP city data file.  Defaults to
+<code class="docutils literal"><span class="pre">GeoLiteCity.dat</span></code>.  Setting this keyword overrides
+the <a class="reference internal" href="../geoip2/#std:setting-GEOIP_CITY"><code class="xref std std-setting docutils literal"><span class="pre">GEOIP_CITY</span></code></a> settings attribute.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="s-geoip-methods">
+<span id="geoip-methods"></span><h2><code class="docutils literal"><span class="pre">GeoIP</span></code> Methods<a class="headerlink" href="#geoip-methods" title="永久链接至标题">¶</a></h2>
+<div class="section" id="s-querying">
+<span id="querying"></span><h3>Querying<a class="headerlink" href="#querying" title="永久链接至标题">¶</a></h3>
+<p>All the following querying routines may take either a string IP address
+or a fully qualified domain name (FQDN).  For example, both
+<code class="docutils literal"><span class="pre">'205.186.163.125'</span></code> and <code class="docutils literal"><span class="pre">'djangoproject.com'</span></code> would be valid query
+parameters.</p>
+<dl class="method">
+<dt id="django.contrib.gis.geoip.GeoIP.city">
+<code class="descclassname">GeoIP.</code><code class="descname">city</code>(<em>query</em>)<a class="headerlink" href="#django.contrib.gis.geoip.GeoIP.city" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<p>Returns a dictionary of city information for the given query.  Some
+of the values in the dictionary may be undefined (<code class="docutils literal"><span class="pre">None</span></code>).</p>
+<dl class="method">
+<dt id="django.contrib.gis.geoip.GeoIP.country">
+<code class="descclassname">GeoIP.</code><code class="descname">country</code>(<em>query</em>)<a class="headerlink" href="#django.contrib.gis.geoip.GeoIP.country" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<p>Returns a dictionary with the country code and country for the given
+query.</p>
+<dl class="method">
+<dt id="django.contrib.gis.geoip.GeoIP.country_code">
+<code class="descclassname">GeoIP.</code><code class="descname">country_code</code>(<em>query</em>)<a class="headerlink" href="#django.contrib.gis.geoip.GeoIP.country_code" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<p>Returns only the country code corresponding to the query.</p>
+<dl class="method">
+<dt id="django.contrib.gis.geoip.GeoIP.country_name">
+<code class="descclassname">GeoIP.</code><code class="descname">country_name</code>(<em>query</em>)<a class="headerlink" href="#django.contrib.gis.geoip.GeoIP.country_name" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<p>Returns only the country name corresponding to the query.</p>
+</div>
+<div class="section" id="s-coordinate-retrieval">
+<span id="coordinate-retrieval"></span><h3>Coordinate Retrieval<a class="headerlink" href="#coordinate-retrieval" title="永久链接至标题">¶</a></h3>
+<dl class="method">
+<dt id="django.contrib.gis.geoip.GeoIP.coords">
+<code class="descclassname">GeoIP.</code><code class="descname">coords</code>(<em>query</em>)<a class="headerlink" href="#django.contrib.gis.geoip.GeoIP.coords" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<p>Returns a coordinate tuple of (longitude, latitude).</p>
+<dl class="method">
+<dt id="django.contrib.gis.geoip.GeoIP.lon_lat">
+<code class="descclassname">GeoIP.</code><code class="descname">lon_lat</code>(<em>query</em>)<a class="headerlink" href="#django.contrib.gis.geoip.GeoIP.lon_lat" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<p>Returns a coordinate tuple of (longitude, latitude).</p>
+<dl class="method">
+<dt id="django.contrib.gis.geoip.GeoIP.lat_lon">
+<code class="descclassname">GeoIP.</code><code class="descname">lat_lon</code>(<em>query</em>)<a class="headerlink" href="#django.contrib.gis.geoip.GeoIP.lat_lon" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<p>Returns a coordinate tuple of (latitude, longitude),</p>
+<dl class="method">
+<dt id="django.contrib.gis.geoip.GeoIP.geos">
+<code class="descclassname">GeoIP.</code><code class="descname">geos</code>(<em>query</em>)<a class="headerlink" href="#django.contrib.gis.geoip.GeoIP.geos" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<p>Returns a <a class="reference internal" href="../geos/#django.contrib.gis.geos.Point" title="django.contrib.gis.geos.Point"><code class="xref py py-class docutils literal"><span class="pre">django.contrib.gis.geos.Point</span></code></a> object corresponding to the query.</p>
+</div>
+<div class="section" id="s-database-information">
+<span id="database-information"></span><h3>Database Information<a class="headerlink" href="#database-information" title="永久链接至标题">¶</a></h3>
+<dl class="attribute">
+<dt id="django.contrib.gis.geoip.GeoIP.country_info">
+<code class="descclassname">GeoIP.</code><code class="descname">country_info</code><a class="headerlink" href="#django.contrib.gis.geoip.GeoIP.country_info" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<p>This property returns information about the GeoIP country database.</p>
+<dl class="attribute">
+<dt id="django.contrib.gis.geoip.GeoIP.city_info">
+<code class="descclassname">GeoIP.</code><code class="descname">city_info</code><a class="headerlink" href="#django.contrib.gis.geoip.GeoIP.city_info" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<p>This property returns information about the GeoIP city database.</p>
+<dl class="attribute">
+<dt id="django.contrib.gis.geoip.GeoIP.info">
+<code class="descclassname">GeoIP.</code><code class="descname">info</code><a class="headerlink" href="#django.contrib.gis.geoip.GeoIP.info" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<p>This property returns information about all GeoIP databases (both city
+and country), and the version of the GeoIP C library (if supported).</p>
+</div>
+<div class="section" id="s-geoip-python-api-compatibility-methods">
+<span id="geoip-python-api-compatibility-methods"></span><h3>GeoIP-Python API compatibility methods<a class="headerlink" href="#geoip-python-api-compatibility-methods" title="永久链接至标题">¶</a></h3>
+<p>These methods exist to ease compatibility with any code using MaxMind&#8217;s
+existing Python API.</p>
+<dl class="classmethod">
+<dt id="django.contrib.gis.geoip.GeoIP.open">
+<em class="property">classmethod </em><code class="descclassname">GeoIP.</code><code class="descname">open</code>(<em>path</em>, <em>cache</em>)<a class="headerlink" href="#django.contrib.gis.geoip.GeoIP.open" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<p>This classmethod instantiates the GeoIP object from the given database path
+and given cache setting.</p>
+<dl class="method">
+<dt id="django.contrib.gis.geoip.GeoIP.region_by_addr">
+<code class="descclassname">GeoIP.</code><code class="descname">region_by_addr</code>(<em>query</em>)<a class="headerlink" href="#django.contrib.gis.geoip.GeoIP.region_by_addr" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="django.contrib.gis.geoip.GeoIP.region_by_name">
+<code class="descclassname">GeoIP.</code><code class="descname">region_by_name</code>(<em>query</em>)<a class="headerlink" href="#django.contrib.gis.geoip.GeoIP.region_by_name" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="django.contrib.gis.geoip.GeoIP.record_by_addr">
+<code class="descclassname">GeoIP.</code><code class="descname">record_by_addr</code>(<em>query</em>)<a class="headerlink" href="#django.contrib.gis.geoip.GeoIP.record_by_addr" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="django.contrib.gis.geoip.GeoIP.record_by_name">
+<code class="descclassname">GeoIP.</code><code class="descname">record_by_name</code>(<em>query</em>)<a class="headerlink" href="#django.contrib.gis.geoip.GeoIP.record_by_name" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="django.contrib.gis.geoip.GeoIP.country_code_by_addr">
+<code class="descclassname">GeoIP.</code><code class="descname">country_code_by_addr</code>(<em>query</em>)<a class="headerlink" href="#django.contrib.gis.geoip.GeoIP.country_code_by_addr" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="django.contrib.gis.geoip.GeoIP.country_code_by_name">
+<code class="descclassname">GeoIP.</code><code class="descname">country_code_by_name</code>(<em>query</em>)<a class="headerlink" href="#django.contrib.gis.geoip.GeoIP.country_code_by_name" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="django.contrib.gis.geoip.GeoIP.country_name_by_addr">
+<code class="descclassname">GeoIP.</code><code class="descname">country_name_by_addr</code>(<em>query</em>)<a class="headerlink" href="#django.contrib.gis.geoip.GeoIP.country_name_by_addr" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="django.contrib.gis.geoip.GeoIP.country_name_by_name">
+<code class="descclassname">GeoIP.</code><code class="descname">country_name_by_name</code>(<em>query</em>)<a class="headerlink" href="#django.contrib.gis.geoip.GeoIP.country_name_by_name" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<p class="rubric">Footnotes</p>
+<table class="docutils footnote" frame="void" id="id6" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>GeoIP(R) is a registered trademark of MaxMind, LLC of Boston, Massachusetts.</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../geoip2/" class="btn btn-neutral float-right" title="Geolocation with GeoIP2" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../gdal/" class="btn btn-neutral" title="GDAL API" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 Django Software Foundation and contributors.
+      最后更新于 Apr 27, 2016.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../',
+            VERSION:'1.10.dev20160423182652',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

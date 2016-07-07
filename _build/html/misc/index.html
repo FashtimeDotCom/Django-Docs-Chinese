@@ -1,0 +1,246 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>元文件和杂记 &mdash; Django 1.10.dev20160423182652 文档</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Django 1.10.dev20160423182652 文档" href="../"/>
+        <link rel="next" title="API的稳定性" href="api-stability/"/>
+        <link rel="prev" title="Built-in Views" href="../ref/views/"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../contents/" class="icon icon-home"> Django
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.10
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search/" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../">Django 最新中文文档</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro/">开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../topics/">Using Django</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../howto/">&#8220;How-to&#8221; guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq/">Django FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/">API Reference</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">元文件和杂记</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api-stability/">API的稳定性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design-philosophies/">设计理念</a></li>
+<li class="toctree-l2"><a class="reference internal" href="distributions/">Django的第三方发布包</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary/">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals/">Django internals</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../contents/">Django</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../contents/">Docs</a> &raquo;</li>
+      
+    <li>元文件和杂记</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/misc/index.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="s-meta-documentation-and-miscellany">
+<span id="meta-documentation-and-miscellany"></span><h1>元文件和杂记<a class="headerlink" href="#meta-documentation-and-miscellany" title="永久链接至标题">¶</a></h1>
+<p>Documentation that we can&#8217;t find a more organized place for. Like that drawer in
+your kitchen with the scissors, batteries, duct tape, and other junk.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api-stability/">API的稳定性</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api-stability/#what-stable-means">&#8220;稳定&#8221; 的含义</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api-stability/#stable-apis">稳定的API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api-stability/#exceptions">例外</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="design-philosophies/">设计理念</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="design-philosophies/#overall">总体</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design-philosophies/#models">模型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design-philosophies/#database-api">数据库API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design-philosophies/#url-design">URL设计</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design-philosophies/#template-system">模板系统</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design-philosophies/#views">视图</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design-philosophies/#cache-framework">缓存框架</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="distributions/">Django的第三方发布包</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="distributions/#for-distributors">对于发布者</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="api-stability/" class="btn btn-neutral float-right" title="API的稳定性" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../ref/views/" class="btn btn-neutral" title="Built-in Views" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 Django Software Foundation and contributors.
+      最后更新于 Apr 27, 2016.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.10.dev20160423182652',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

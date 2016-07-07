@@ -1,0 +1,489 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Django settings &mdash; Django 1.10.dev20160423182652 文档</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Django 1.10.dev20160423182652 文档" href="../../"/>
+        <link rel="up" title="Using Django" href="../"/>
+        <link rel="next" title="Signals" href="../signals/"/>
+        <link rel="prev" title="Serializing Django objects" href="../serialization/"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../contents/" class="icon icon-home"> Django
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.10
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search/" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../">Django 最新中文文档</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../intro/">开始</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../">Using Django</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../install/">How to install Django</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../db/">Models and databases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../http/">Handling HTTP requests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../forms/">Working with forms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../templates/">模板</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../class-based-views/">Class-based views</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../migrations/">Migrations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../files/">Managing files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/">Testing in Django</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../auth/">User authentication in Django</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cache/">Django&#8217;s cache framework</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../conditional-view-processing/">Conditional View Processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../signing/">Cryptographic signing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../email/">Sending email</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../i18n/">国际化和本地化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../logging/">Logging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pagination/">Pagination</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python3/">Porting to Python 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../security/">Security in Django</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../performance/">性能和优化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../serialization/">Serializing Django objects</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Django settings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#the-basics">基础</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#designating-the-settings">指定配置文件</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#the-django-admin-utility">The <code class="docutils literal"><span class="pre">django-admin</span></code> utility</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#on-the-server-mod-wsgi">On the server (<code class="docutils literal"><span class="pre">mod_wsgi</span></code>)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#default-settings">默认配置</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#seeing-which-settings-you-ve-changed">查看你已经更改了哪个配置项</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#using-settings-in-python-code">在Python代码中使用settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#altering-settings-at-runtime">运行时更改设置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#security">安全</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#available-settings">可用的配置项</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#creating-your-own-settings">创建你自己的配置文件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-settings-without-setting-django-settings-module">Using settings without setting <code class="docutils literal"><span class="pre">DJANGO_SETTINGS_MODULE</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#custom-default-settings">定制默认配置项</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#either-configure-or-django-settings-module-is-required">Either <code class="docutils literal"><span class="pre">configure()</span></code> or <code class="docutils literal"><span class="pre">DJANGO_SETTINGS_MODULE</span></code> is required</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#calling-django-setup-is-required-for-standalone-django-usage">Calling <code class="docutils literal"><span class="pre">django.setup()</span></code> is required for &#8220;standalone&#8221; Django usage</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../signals/">Signals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../checks/">System check framework</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../external-packages/">External packages</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../howto/">&#8220;How-to&#8221; guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq/">Django FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ref/">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../misc/">元文件和杂记</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../internals/">Django internals</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../contents/">Django</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../contents/">Docs</a> &raquo;</li>
+      
+          <li><a href="../">Using Django</a> &raquo;</li>
+      
+    <li>Django settings</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/topics/settings.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="s-django-settings">
+<span id="django-settings"></span><h1>Django settings<a class="headerlink" href="#django-settings" title="永久链接至标题">¶</a></h1>
+<p>Django的settings文件包含Django应用的所有配置项。该文档会介绍settings是如何运行，以及有哪些设置项是可用的。</p>
+<div class="section" id="s-the-basics">
+<span id="the-basics"></span><h2>基础<a class="headerlink" href="#the-basics" title="永久链接至标题">¶</a></h2>
+<p>配置文件只是一个使用模块级变量的一个Python模块。</p>
+<p>一组配置例子:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">ALLOWED_HOSTS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;www.example.com&#39;</span><span class="p">]</span>
+<span class="n">DEBUG</span> <span class="o">=</span> <span class="bp">False</span>
+<span class="n">DEFAULT_FROM_EMAIL</span> <span class="o">=</span> <span class="s1">&#39;webmaster@example.com&#39;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">If you set <a class="reference internal" href="../../ref/settings/#std:setting-DEBUG"><code class="xref std std-setting docutils literal"><span class="pre">DEBUG</span></code></a> to <code class="docutils literal"><span class="pre">False</span></code>, you also need to properly set
+the <a class="reference internal" href="../../ref/settings/#std:setting-ALLOWED_HOSTS"><code class="xref std std-setting docutils literal"><span class="pre">ALLOWED_HOSTS</span></code></a> setting.</p>
+</div>
+<p>因为配置文件是Python模块，所以要注意以下几项:</p>
+<ul>
+<li><p class="first">不能有Python语法错误</p>
+</li>
+<li><p class="first">可以用Python语法实现动态配置，例如:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">MY_SETTING</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">30</span><span class="p">)]</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">可以从其他配置文件中引入变量</p>
+</li>
+</ul>
+</div>
+<div class="section" id="s-designating-the-settings">
+<span id="s-django-settings-module"></span><span id="designating-the-settings"></span><span id="django-settings-module"></span><h2>指定配置文件<a class="headerlink" href="#designating-the-settings" title="永久链接至标题">¶</a></h2>
+<dl class="envvar">
+<dt id="envvar-DJANGO_SETTINGS_MODULE">
+<code class="descname">DJANGO_SETTINGS_MODULE</code><a class="headerlink" href="#envvar-DJANGO_SETTINGS_MODULE" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<p>使用Django时要通知Django当前使用的是哪个配置文件。可以改变环境变量 <code class="docutils literal"><span class="pre">DJANGO_SETTINGS_MODULE</span></code> 实现这一点。</p>
+<p><code class="docutils literal"><span class="pre">DJANGO_SETTINGS_MODULE</span></code> 的值是一个符合Python语法的路径，比如 <code class="docutils literal"><span class="pre">mysite.settings</span></code> 。要注意settings模块应该在Python可搜索到的路径中 <a class="reference external" href="http://www.diveintopython.net/getting_to_know_python/everything_is_an_object.html">import search path</a>.</p>
+<div class="section" id="s-the-django-admin-utility">
+<span id="the-django-admin-utility"></span><h3>The <code class="docutils literal"><span class="pre">django-admin</span></code> utility<a class="headerlink" href="#the-django-admin-utility" title="永久链接至标题">¶</a></h3>
+<p>When using <a class="reference internal" href="../../ref/django-admin/"><em>django-admin</em></a>, you can either set the
+environment variable once, or explicitly pass in the settings module each time
+you run the utility.</p>
+<p>例子（Unix Bash shell）:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>export DJANGO_SETTINGS_MODULE=mysite.settings
+django-admin runserver
+</pre></div>
+</div>
+<p>例子（Windows shell）:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>set DJANGO_SETTINGS_MODULE=mysite.settings
+django-admin runserver
+</pre></div>
+</div>
+<p>使用 <code class="docutils literal"><span class="pre">--settings</span></code> 命令行参数指定配置模块路径:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>django-admin runserver --settings=mysite.settings
+</pre></div>
+</div>
+</div>
+<div class="section" id="s-on-the-server-mod-wsgi">
+<span id="on-the-server-mod-wsgi"></span><h3>On the server (<code class="docutils literal"><span class="pre">mod_wsgi</span></code>)<a class="headerlink" href="#on-the-server-mod-wsgi" title="永久链接至标题">¶</a></h3>
+<p>在服务器环境下，要通知WSGI应用当前使用的是哪个配置文件，用到 <code class="docutils literal"><span class="pre">os.environ</span></code>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;DJANGO_SETTINGS_MODULE&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;mysite.settings&#39;</span>
+</pre></div>
+</div>
+<p>阅读 <a class="reference internal" href="../../howto/deployment/wsgi/modwsgi/"><em>Django mod_wsgi documentation</em></a> 了解更多关于Django WSGI应用的信息和相关设置。</p>
+</div>
+</div>
+<div class="section" id="s-default-settings">
+<span id="default-settings"></span><h2>默认配置<a class="headerlink" href="#default-settings" title="永久链接至标题">¶</a></h2>
+<p>在无需配置的情况下，Django配置文件没必要定义任何配置项。因为每个配置项都有一个明确的默认值。默认值都保存在模块 <code class="file docutils literal"><span class="pre">django/conf/global_settings.py</span></code> 中。</p>
+<p>Django按如下算法编译配置模块:</p>
+<ul class="simple">
+<li><p class="first">从 <code class="docutils literal"><span class="pre">global_settings.py</span></code> 中加载配置项</p>
+</li>
+<li><p class="first">从指定的配置文件中加载配置项, 覆盖对应的全局配置项.</p>
+</li>
+</ul>
+<p>注意: 配置文件中不要再重复引用 <code class="docutils literal"><span class="pre">global_settings</span></code> , 因为这样做是多余的.</p>
+<div class="section" id="s-seeing-which-settings-you-ve-changed">
+<span id="seeing-which-settings-you-ve-changed"></span><h3>查看你已经更改了哪个配置项<a class="headerlink" href="#seeing-which-settings-you-ve-changed" title="永久链接至标题">¶</a></h3>
+<p>查看你修改了哪几个配置项很容易, 在命令行输入 <code class="docutils literal"><span class="pre">python</span> <span class="pre">manage.py</span> <span class="pre">diffsettings</span></code> 就会显示当前配置与默认配置中的不同.</p>
+<p>想了解更多, 可以查看 <a class="reference internal" href="../../ref/django-admin/#django-admin-diffsettings"><code class="xref std std-djadmin docutils literal"><span class="pre">diffsettings</span></code></a> 文档.</p>
+</div>
+</div>
+<div class="section" id="s-using-settings-in-python-code">
+<span id="using-settings-in-python-code"></span><h2>在Python代码中使用settings<a class="headerlink" href="#using-settings-in-python-code" title="永久链接至标题">¶</a></h2>
+<p>在具体的Django应用中, 通过引入 <code class="docutils literal"><span class="pre">django.conf.settings</span></code> 使用配置, 例:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>from django.conf import settings
+
+if settings.DEBUG:
+    # Do something
+</pre></div>
+</div>
+<p>注意 <code class="docutils literal"><span class="pre">django.conf.settings</span></code> 并不是一个模块！&#8211; 而是一个对象！所以引入某个单独的设置项是不可能的:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.conf.settings</span> <span class="kn">import</span> <span class="n">DEBUG</span>  <span class="c1"># This won&#39;t work.</span>
+</pre></div>
+</div>
+<p>还要注意 <em>不应该</em> 直接引入 <code class="docutils literal"><span class="pre">global_settings</span></code> 和你自己的配置文件. <code class="docutils literal"><span class="pre">django.conf.settings</span></code> 整合了默认配置和网站指定配置, 从而只提供一个接口读取配置. 它也解耦了使用自定义配置文件的代码.</p>
+</div>
+<div class="section" id="s-altering-settings-at-runtime">
+<span id="altering-settings-at-runtime"></span><h2>运行时更改设置<a class="headerlink" href="#altering-settings-at-runtime" title="永久链接至标题">¶</a></h2>
+<p>不建议在运行时更改设置. 比如, 不要在view中这样用:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.conf</span> <span class="kn">import</span> <span class="n">settings</span>
+
+<span class="n">settings</span><span class="o">.</span><span class="n">DEBUG</span> <span class="o">=</span> <span class="bp">True</span>   <span class="c1"># Don&#39;t do this!</span>
+</pre></div>
+</div>
+<p>应该只在settings文件中更改设置.</p>
+</div>
+<div class="section" id="s-security">
+<span id="security"></span><h2>安全<a class="headerlink" href="#security" title="永久链接至标题">¶</a></h2>
+<p>由于配置文件包含敏感信息, 比如数据库密码, 所以应该限制对配置文件的访问. 比如更改文件权限, 从而只能令你和你的WEB服务器能读取配置文件. 这在共享主机的环境中非常重要!</p>
+</div>
+<div class="section" id="s-available-settings">
+<span id="available-settings"></span><h2>可用的配置项<a class="headerlink" href="#available-settings" title="永久链接至标题">¶</a></h2>
+<p>查看 <a class="reference internal" href="../../ref/settings/"><em>settings reference</em></a> 了解完整的配置项列表.</p>
+</div>
+<div class="section" id="s-creating-your-own-settings">
+<span id="creating-your-own-settings"></span><h2>创建你自己的配置文件<a class="headerlink" href="#creating-your-own-settings" title="永久链接至标题">¶</a></h2>
+<p>在应用中创建自己的配置文件很简单, 只要遵循以下的规范:</p>
+<ul class="simple">
+<li><p class="first">所有配置项名称都应该大写.</p>
+</li>
+<li><p class="first">不要重新设置已存在的配置项.</p>
+</li>
+</ul>
+<p>For settings that are sequences, Django itself uses lists, but this is only
+a convention.</p>
+</div>
+<div class="section" id="s-using-settings-without-setting-django-settings-module">
+<span id="s-settings-without-django-settings-module"></span><span id="using-settings-without-setting-django-settings-module"></span><span id="settings-without-django-settings-module"></span><h2>Using settings without setting <code class="docutils literal"><span class="pre">DJANGO_SETTINGS_MODULE</span></code><a class="headerlink" href="#using-settings-without-setting-django-settings-module" title="永久链接至标题">¶</a></h2>
+<p>某些场合中, 你想绕过 <code class="docutils literal"><span class="pre">DJANGO_SETTINGS_MODULE</span></code> 环境变量来进行配置. 比如, 你正在使用django自带的模板系统, 而你并不想使用环境变量指定某个具体的配置文件.</p>
+<p>在这种情况下, 可以手动设定Django的配置项. 要用到下面这个方法:</p>
+<dl class="function">
+<dt id="django.conf.settings.configure">
+<code class="descclassname">django.conf.settings.</code><code class="descname">configure</code>(<em>default_settings</em>, <em>**settings</em>)<a class="headerlink" href="#django.conf.settings.configure" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.conf</span> <span class="kn">import</span> <span class="n">settings</span>
+
+<span class="n">settings</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">DEBUG</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>通过 <code class="docutils literal"><span class="pre">configure()</span></code> 可以设置任何配置项, 每个参数对应一个值. 参数名称必须大写, 而且参数名必须是真实存在. 没有在 <code class="docutils literal"><span class="pre">configure()</span></code> 中出现的设置项在随后用到时, 仍会使用默认值.</p>
+<p>如果你并不想使用整个框架, 仅仅是其中一小部分时, 如上述这般配置Django是非常必要的. 事实上, 我们建议您这样做.</p>
+<p>因此, 通过 <code class="docutils literal"><span class="pre">settings.configure()</span></code> 配置django时, 并不会对当前进程的环境变量做任何修改.（可以查看 <a class="reference internal" href="../../ref/settings/#std:setting-TIME_ZONE"><code class="xref std std-setting docutils literal"><span class="pre">TIME_ZONE</span></code></a> 了解为什么要这么做）. 这意味着在上述情况下你仍然完全掌控着当前环境.</p>
+<div class="section" id="s-custom-default-settings">
+<span id="custom-default-settings"></span><h3>定制默认配置项<a class="headerlink" href="#custom-default-settings" title="永久链接至标题">¶</a></h3>
+<p>如果你实在不想使用 <code class="docutils literal"><span class="pre">django.conf.global_settings</span></code>, 而想自定义配置默认值, 你可以在调用 <code class="docutils literal"><span class="pre">configure()</span></code> 时使用 <code class="docutils literal"><span class="pre">default_settings</span></code> 参数(或是默认做为第一个参数传入). 该参数是一个提供默认值的模块或是类.</p>
+<p>在下面这个例子中, 由 <code class="docutils literal"><span class="pre">myapp_defaults</span></code> 提供默认值, 并令 <a class="reference internal" href="../../ref/settings/#std:setting-DEBUG"><code class="xref std std-setting docutils literal"><span class="pre">DEBUG</span></code></a> 被置为 <code class="docutils literal"><span class="pre">True</span></code> 而不是从 <code class="docutils literal"><span class="pre">myapp_defaults</span></code> 中获取:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.conf</span> <span class="kn">import</span> <span class="n">settings</span>
+<span class="kn">from</span> <span class="nn">myapp</span> <span class="kn">import</span> <span class="n">myapp_defaults</span>
+
+<span class="n">settings</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">default_settings</span><span class="o">=</span><span class="n">myapp_defaults</span><span class="p">,</span> <span class="n">DEBUG</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>接下来例子使用 <code class="docutils literal"><span class="pre">myapp_defaults</span></code> 做为一个位置参数, 这和上面的效果是等同的:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">settings</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">myapp_defaults</span><span class="p">,</span> <span class="n">DEBUG</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>一般来说, 没必要自行设置默认值. Django的默认设置是比较宽松的, 你可以放心地使用. 要注意的是, 如果你传入了新的默认模块, 那它就会完全 <em>替换</em> Django本身的默认设置. 因此, 你必须为接下来可能会用到的所有设置项都重新指定默认值. 查看 <code class="docutils literal"><span class="pre">django.conf.settings.global_settings</span></code> 了解全部默认值.</p>
+</div>
+<div class="section" id="s-either-configure-or-django-settings-module-is-required">
+<span id="either-configure-or-django-settings-module-is-required"></span><h3>Either <code class="docutils literal"><span class="pre">configure()</span></code> or <code class="docutils literal"><span class="pre">DJANGO_SETTINGS_MODULE</span></code> is required<a class="headerlink" href="#either-configure-or-django-settings-module-is-required" title="永久链接至标题">¶</a></h3>
+<p>在没有设置 <code class="docutils literal"><span class="pre">DJANGO_SETTINGS_MODULE</span></code> 环境的情况下, 就 <em>必须</em> 在运行读取配置项的代码之前就调用 <code class="docutils literal"><span class="pre">configure()</span></code> .</p>
+<p>如果你没有设置 <code class="docutils literal"><span class="pre">DJANGO_SETTINGS_MODULE</span></code> 也没有调用 <code class="docutils literal"><span class="pre">configure()</span></code> , 那么Django会在第一次访问配置项时抛出 <code class="docutils literal"><span class="pre">ImportError</span></code> 异常.</p>
+<p>如果已经调了 <code class="docutils literal"><span class="pre">DJANGO_SETTINGS_MODULE</span></code> , 再调用 <code class="docutils literal"><span class="pre">configure()</span></code> 的话, Django也会抛出一个 <code class="docutils literal"><span class="pre">RuntimeError</span></code> 异常, 表明已经配置了settings.</p>
+<p>For example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.conf</span> <span class="kn">import</span> <span class="n">settings</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">settings</span><span class="o">.</span><span class="n">configured</span><span class="p">:</span>
+    <span class="n">settings</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">myapp_defaults</span><span class="p">,</span> <span class="n">DEBUG</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>重复调用 <code class="docutils literal"><span class="pre">configure()</span></code> 或是在访问任何一个配置项后再调用 <code class="docutils literal"><span class="pre">configure()</span></code> , 也会引起错误.</p>
+<p>这意味着: 确保要使用 <code class="docutils literal"><span class="pre">configure()</span></code> 或 <code class="docutils literal"><span class="pre">DJANGO_SETTINGS_MODULE</span></code> 其中一个, 不要多, 也不要少.</p>
+</div>
+<div class="section" id="s-calling-django-setup-is-required-for-standalone-django-usage">
+<span id="calling-django-setup-is-required-for-standalone-django-usage"></span><h3>Calling <code class="docutils literal"><span class="pre">django.setup()</span></code> is required for &#8220;standalone&#8221; Django usage<a class="headerlink" href="#calling-django-setup-is-required-for-standalone-django-usage" title="永久链接至标题">¶</a></h3>
+<p>If you&#8217;re using components of Django &#8220;standalone&#8221; &#8211; for example, writing a
+Python script which loads some Django templates and renders them, or uses the
+ORM to fetch some data &#8211; there&#8217;s one more step you&#8217;ll need in addition to
+configuring settings.</p>
+<p>After you&#8217;ve either set <span class="target" id="index-0"></span><a class="reference internal" href="#envvar-DJANGO_SETTINGS_MODULE"><code class="xref std std-envvar docutils literal"><span class="pre">DJANGO_SETTINGS_MODULE</span></code></a> or called
+<code class="docutils literal"><span class="pre">configure()</span></code>, you&#8217;ll need to call <a class="reference internal" href="../../ref/applications/#django.setup" title="django.setup"><code class="xref py py-func docutils literal"><span class="pre">django.setup()</span></code></a> to load your
+settings and populate Django&#8217;s application registry. For example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">django</span>
+<span class="kn">from</span> <span class="nn">django.conf</span> <span class="kn">import</span> <span class="n">settings</span>
+<span class="kn">from</span> <span class="nn">myapp</span> <span class="kn">import</span> <span class="n">myapp_defaults</span>
+
+<span class="n">settings</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">default_settings</span><span class="o">=</span><span class="n">myapp_defaults</span><span class="p">,</span> <span class="n">DEBUG</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">django</span><span class="o">.</span><span class="n">setup</span><span class="p">()</span>
+
+<span class="c1"># Now this script or any imported module can use any part of Django it needs.</span>
+<span class="kn">from</span> <span class="nn">myapp</span> <span class="kn">import</span> <span class="n">models</span>
+</pre></div>
+</div>
+<p>Note that calling <code class="docutils literal"><span class="pre">django.setup()</span></code> is only necessary if your code is truly
+standalone. When invoked by your Web server, or through <a class="reference internal" href="../../ref/django-admin/"><em>django-admin</em></a>, Django will handle this for you.</p>
+<div class="admonition-django-setup-may-only-be-called-once admonition">
+<p class="first admonition-title"><code class="docutils literal"><span class="pre">django.setup()</span></code> may only be called once.</p>
+<p>Therefore, avoid putting reusable application logic in standalone scripts
+so that you have to import from the script elsewhere in your application.
+If you can&#8217;t avoid that, put the call to <code class="docutils literal"><span class="pre">django.setup()</span></code> inside an
+<code class="docutils literal"><span class="pre">if</span></code> block:</p>
+<div class="last highlight-python"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">django</span>
+    <span class="n">django</span><span class="o">.</span><span class="n">setup</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">参见</p>
+<dl class="last docutils">
+<dt><a class="reference internal" href="../../ref/settings/"><em>The Settings Reference</em></a></dt>
+<dd>Contains the complete list of core and contrib app settings.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../signals/" class="btn btn-neutral float-right" title="Signals" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../serialization/" class="btn btn-neutral" title="Serializing Django objects" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 Django Software Foundation and contributors.
+      最后更新于 Jul 07, 2016.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.10.dev20160423182652',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

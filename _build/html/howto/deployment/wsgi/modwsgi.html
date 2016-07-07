@@ -1,0 +1,435 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>How to use Django with Apache and mod_wsgi &mdash; Django 1.10.dev20160423182652 文档</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Django 1.10.dev20160423182652 文档" href="../../../index.html"/>
+        <link rel="up" title="How to deploy with WSGI" href="index.html"/>
+        <link rel="next" title="Authenticating against Django’s user database from Apache" href="apache-auth.html"/>
+        <link rel="prev" title="How to deploy with WSGI" href="index.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../contents.html" class="icon icon-home"> Django
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.10
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Django 最新中文文档</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../intro/index.html">开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../topics/index.html">Using Django</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">&#8220;How-to&#8221; guides</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../auth-remote-user.html">使用身份验证 <code class="docutils literal"><span class="pre">REMOTE_USER</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../custom-management-commands.html">Writing custom <code class="docutils literal"><span class="pre">django-admin</span></code> commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../custom-model-fields.html">Writing custom model fields</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../custom-lookups.html">自定义查找</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../custom-template-tags.html">Custom template tags and filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../custom-file-storage.html">Writing a custom storage system</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Deploying Django</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">How to deploy with WSGI</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="">How to use Django with Apache and <code class="docutils literal"><span class="pre">mod_wsgi</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apache-auth.html">Authenticating against Django&#8217;s user database from Apache</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gunicorn.html">How to use Django with Gunicorn</a></li>
+<li class="toctree-l4"><a class="reference internal" href="uwsgi.html">How to use Django with uWSGI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="index.html#the-application-object">The <code class="docutils literal"><span class="pre">application</span></code> object</a></li>
+<li class="toctree-l4"><a class="reference internal" href="index.html#configuring-the-settings-module">Configuring the settings module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="index.html#applying-wsgi-middleware">Applying WSGI middleware</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../checklist.html">Deployment checklist</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../upgrade-version.html">Upgrading Django to a newer version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../error-reporting.html">Error reporting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../initial-data.html">Providing initial data for models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../jython.html">Running Django on Jython</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../legacy-databases.html">Integrating Django with a legacy database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../outputting-csv.html">Outputting CSV with Django</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../outputting-pdf.html">Outputting PDFs with Django</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../static-files/index.html">Managing static files (e.g. images, JavaScript, CSS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../static-files/deployment.html">Deploying static files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../windows.html">How to install Django on Windows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../writing-migrations.html">Writing database migrations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq/index.html">Django FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ref/index.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../misc/index.html">元文件和杂记</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../releases/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../internals/index.html">Django internals</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../contents.html">Django</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../contents.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../index.html">&#8220;How-to&#8221; guides</a> &raquo;</li>
+      
+          <li><a href="../index.html">Deploying Django</a> &raquo;</li>
+      
+          <li><a href="index.html">How to deploy with WSGI</a> &raquo;</li>
+      
+    <li>How to use Django with Apache and <code class="docutils literal"><span class="pre">mod_wsgi</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../../_sources/howto/deployment/wsgi/modwsgi.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="s-how-to-use-django-with-apache-and-mod-wsgi">
+<span id="how-to-use-django-with-apache-and-mod-wsgi"></span><h1>How to use Django with Apache and <code class="docutils literal"><span class="pre">mod_wsgi</span></code><a class="headerlink" href="#how-to-use-django-with-apache-and-mod-wsgi" title="永久链接至标题">¶</a></h1>
+<p>Deploying Django with <a class="reference external" href="https://httpd.apache.org/">Apache</a> and <a class="reference external" href="http://www.modwsgi.org/">mod_wsgi</a> is a tried and tested way to get
+Django into production.</p>
+<p>mod_wsgi is an Apache module which can host any Python <a class="reference external" href="http://www.wsgi.org">WSGI</a> application,
+including Django. Django will work with any version of Apache which supports
+mod_wsgi.</p>
+<p>The <a class="reference external" href="https://modwsgi.readthedocs.org/">official mod_wsgi documentation</a> is fantastic; it&#8217;s your source for all
+the details about how to use mod_wsgi. You&#8217;ll probably want to start with the
+<a class="reference external" href="https://modwsgi.readthedocs.org/en/develop/installation.html">installation and configuration documentation</a>.</p>
+<div class="section" id="s-basic-configuration">
+<span id="basic-configuration"></span><h2>Basic configuration<a class="headerlink" href="#basic-configuration" title="永久链接至标题">¶</a></h2>
+<p>Once you&#8217;ve got mod_wsgi installed and activated, edit your Apache server&#8217;s
+<a class="reference external" href="https://wiki.apache.org/httpd/DistrosDefaultLayout">httpd.conf</a> file and add the following. If you are using a version of Apache
+older than 2.4, replace <code class="docutils literal"><span class="pre">Require</span> <span class="pre">all</span> <span class="pre">granted</span></code> with <code class="docutils literal"><span class="pre">Allow</span> <span class="pre">from</span> <span class="pre">all</span></code> and
+also add the line <code class="docutils literal"><span class="pre">Order</span> <span class="pre">deny,allow</span></code> above it.</p>
+<div class="highlight-apache"><div class="highlight"><pre><span></span><span class="nb">WSGIScriptAlias</span> / <span class="sx">/path/to/mysite.com/mysite/wsgi.py</span>
+<span class="nb">WSGIPythonPath</span> <span class="sx">/path/to/mysite.com</span>
+
+<span class="nt">&lt;Directory</span> <span class="s">/path/to/mysite.com/mysite</span><span class="nt">&gt;</span>
+<span class="nt">&lt;Files</span> <span class="s">wsgi.py</span><span class="nt">&gt;</span>
+<span class="nb">Require</span> <span class="k">all</span> granted
+<span class="nt">&lt;/Files&gt;</span>
+<span class="nt">&lt;/Directory&gt;</span>
+</pre></div>
+</div>
+<p>The first bit in the <code class="docutils literal"><span class="pre">WSGIScriptAlias</span></code> line is the base URL path you want to
+serve your application at (<code class="docutils literal"><span class="pre">/</span></code> indicates the root url), and the second is the
+location of a &#8220;WSGI file&#8221; &#8211; see below &#8211; on your system, usually inside of
+your project package (<code class="docutils literal"><span class="pre">mysite</span></code> in this example). This tells Apache to serve
+any request below the given URL using the WSGI application defined in that
+file.</p>
+<p>The <code class="docutils literal"><span class="pre">WSGIPythonPath</span></code> line ensures that your project package is available for
+import on the Python path; in other words, that <code class="docutils literal"><span class="pre">import</span> <span class="pre">mysite</span></code> works.</p>
+<p>The <code class="docutils literal"><span class="pre">&lt;Directory&gt;</span></code> piece just ensures that Apache can access your
+<code class="file docutils literal"><span class="pre">wsgi.py</span></code> file.</p>
+<p>Next we&#8217;ll need to ensure this <code class="file docutils literal"><span class="pre">wsgi.py</span></code> with a WSGI application object
+exists. As of Django version 1.4, <a class="reference internal" href="../../../ref/django-admin.html#django-admin-startproject"><code class="xref std std-djadmin docutils literal"><span class="pre">startproject</span></code></a> will have created one
+for you; otherwise, you&#8217;ll need to create it. See the <a class="reference internal" href="index.html"><em>WSGI overview
+documentation</em></a> for the default contents you
+should put in this file, and what else you can add to it.</p>
+<div class="admonition warning">
+<p class="first admonition-title">警告</p>
+<p>If multiple Django sites are run in a single mod_wsgi process, all of them
+will use the settings of whichever one happens to run first. This can be
+solved by changing:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">&quot;DJANGO_SETTINGS_MODULE&quot;</span><span class="p">,</span> <span class="s2">&quot;{{ project_name }}.settings&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>in <code class="docutils literal"><span class="pre">wsgi.py</span></code>, to:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;DJANGO_SETTINGS_MODULE&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;{{ project_name }}.settings&quot;</span>
+</pre></div>
+</div>
+<p class="last">or by <a class="reference internal" href="#daemon-mode"><span>using mod_wsgi daemon mode</span></a> and ensuring that each
+site runs in its own daemon process.</p>
+</div>
+<div class="admonition-fixing-unicodeencodeerror-for-file-uploads admonition">
+<p class="first admonition-title">Fixing <code class="docutils literal"><span class="pre">UnicodeEncodeError</span></code> for file uploads</p>
+<p>If you get a <code class="docutils literal"><span class="pre">UnicodeEncodeError</span></code> when uploading files with file names
+that contain non-ASCII characters, make sure Apache is configured to accept
+non-ASCII file names:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>export LANG=&#39;en_US.UTF-8&#39;
+export LC_ALL=&#39;en_US.UTF-8&#39;
+</pre></div>
+</div>
+<p>A common location to put this configuration is <code class="docutils literal"><span class="pre">/etc/apache2/envvars</span></code>.</p>
+<p class="last">See the <a class="reference internal" href="../../../ref/unicode.html#unicode-files"><span>Files</span></a> section of the Unicode reference guide for
+details.</p>
+</div>
+</div>
+<div class="section" id="s-using-a-virtualenv">
+<span id="using-a-virtualenv"></span><h2>Using a <code class="docutils literal"><span class="pre">virtualenv</span></code><a class="headerlink" href="#using-a-virtualenv" title="永久链接至标题">¶</a></h2>
+<p>If you install your project&#8217;s Python dependencies inside a <a class="reference external" href="http://www.virtualenv.org">virtualenv</a>,
+you&#8217;ll need to add the path to this virtualenv&#8217;s <code class="docutils literal"><span class="pre">site-packages</span></code> directory to
+your Python path as well. To do this, add an additional path to your
+<code class="docutils literal"><span class="pre">WSGIPythonPath</span></code> directive, with multiple paths separated by a colon (<code class="docutils literal"><span class="pre">:</span></code>)
+if using a UNIX-like system, or a semicolon (<code class="docutils literal"><span class="pre">;</span></code>) if using Windows. If any
+part of a directory path contains a space character, the complete argument
+string to <code class="docutils literal"><span class="pre">WSGIPythonPath</span></code> must be quoted:</p>
+<div class="highlight-apache"><div class="highlight"><pre><span></span><span class="nb">WSGIPythonPath</span> <span class="sx">/path/to/mysite.com</span>:/path/to/your/venv/lib/python3.X/site-packages
+</pre></div>
+</div>
+<p>Make sure you give the correct path to your virtualenv, and replace
+<code class="docutils literal"><span class="pre">python3.X</span></code> with the correct Python version (e.g. <code class="docutils literal"><span class="pre">python3.4</span></code>).</p>
+</div>
+<div class="section" id="s-using-mod-wsgi-daemon-mode">
+<span id="s-daemon-mode"></span><span id="using-mod-wsgi-daemon-mode"></span><span id="daemon-mode"></span><h2>Using <code class="docutils literal"><span class="pre">mod_wsgi</span></code> daemon mode<a class="headerlink" href="#using-mod-wsgi-daemon-mode" title="永久链接至标题">¶</a></h2>
+<p>&#8220;Daemon mode&#8221; is the recommended mode for running mod_wsgi (on non-Windows
+platforms). To create the required daemon process group and delegate the
+Django instance to run in it, you will need to add appropriate
+<code class="docutils literal"><span class="pre">WSGIDaemonProcess</span></code> and <code class="docutils literal"><span class="pre">WSGIProcessGroup</span></code> directives. A further change
+required to the above configuration if you use daemon mode is that you can&#8217;t
+use <code class="docutils literal"><span class="pre">WSGIPythonPath</span></code>; instead you should use the <code class="docutils literal"><span class="pre">python-path</span></code> option to
+<code class="docutils literal"><span class="pre">WSGIDaemonProcess</span></code>, for example:</p>
+<div class="highlight-apache"><div class="highlight"><pre><span></span><span class="nb">WSGIDaemonProcess</span> example.com python-path=/path/to/mysite.com:/path/to/venv/lib/python2.7/site-packages
+<span class="nb">WSGIProcessGroup</span> example.com
+</pre></div>
+</div>
+<p>If you want to serve your project in a subdirectory
+(<code class="docutils literal"><span class="pre">https://example.com/mysite</span></code> in this example), you can add <code class="docutils literal"><span class="pre">WSGIScriptAlias</span></code>
+to the configuration above:</p>
+<div class="highlight-apache"><div class="highlight"><pre><span></span><span class="nb">WSGIScriptAlias</span> <span class="sx">/mysite</span> <span class="sx">/path/to/mysite.com/mysite/wsgi.py</span> process-group=example.com
+</pre></div>
+</div>
+<p>See the official mod_wsgi documentation for <a class="reference external" href="https://modwsgi.readthedocs.org/en/develop/user-guides/quick-configuration-guide.html#delegation-to-daemon-process">details on setting up daemon
+mode</a>.</p>
+</div>
+<div class="section" id="s-serving-files">
+<span id="s-id1"></span><span id="serving-files"></span><span id="id1"></span><h2>Serving files<a class="headerlink" href="#serving-files" title="永久链接至标题">¶</a></h2>
+<p>Django doesn&#8217;t serve files itself; it leaves that job to whichever Web
+server you choose.</p>
+<p>We recommend using a separate Web server &#8211; i.e., one that&#8217;s not also running
+Django &#8211; for serving media. Here are some good choices:</p>
+<ul class="simple">
+<li><a class="reference external" href="http://wiki.nginx.org/Main">Nginx</a></li>
+<li>A stripped-down version of <a class="reference external" href="https://httpd.apache.org/">Apache</a></li>
+</ul>
+<p>If, however, you have no option but to serve media files on the same Apache
+<code class="docutils literal"><span class="pre">VirtualHost</span></code> as Django, you can set up Apache to serve some URLs as
+static media, and others using the mod_wsgi interface to Django.</p>
+<p>This example sets up Django at the site root, but serves <code class="docutils literal"><span class="pre">robots.txt</span></code>,
+<code class="docutils literal"><span class="pre">favicon.ico</span></code>, and anything in the <code class="docutils literal"><span class="pre">/static/</span></code> and <code class="docutils literal"><span class="pre">/media/</span></code> URL space as
+a static file. All other URLs will be served using mod_wsgi:</p>
+<div class="highlight-apache"><div class="highlight"><pre><span></span><span class="nb">Alias</span> <span class="sx">/robots.txt</span> <span class="sx">/path/to/mysite.com/static/robots.txt</span>
+<span class="nb">Alias</span> <span class="sx">/favicon.ico</span> <span class="sx">/path/to/mysite.com/static/favicon.ico</span>
+
+<span class="nb">Alias</span> <span class="sx">/media/</span> <span class="sx">/path/to/mysite.com/media/</span>
+<span class="nb">Alias</span> <span class="sx">/static/</span> <span class="sx">/path/to/mysite.com/static/</span>
+
+<span class="nt">&lt;Directory</span> <span class="s">/path/to/mysite.com/static</span><span class="nt">&gt;</span>
+<span class="nb">Require</span> <span class="k">all</span> granted
+<span class="nt">&lt;/Directory&gt;</span>
+
+<span class="nt">&lt;Directory</span> <span class="s">/path/to/mysite.com/media</span><span class="nt">&gt;</span>
+<span class="nb">Require</span> <span class="k">all</span> granted
+<span class="nt">&lt;/Directory&gt;</span>
+
+<span class="nb">WSGIScriptAlias</span> / <span class="sx">/path/to/mysite.com/mysite/wsgi.py</span>
+
+<span class="nt">&lt;Directory</span> <span class="s">/path/to/mysite.com/mysite</span><span class="nt">&gt;</span>
+<span class="nt">&lt;Files</span> <span class="s">wsgi.py</span><span class="nt">&gt;</span>
+<span class="nb">Require</span> <span class="k">all</span> granted
+<span class="nt">&lt;/Files&gt;</span>
+<span class="nt">&lt;/Directory&gt;</span>
+</pre></div>
+</div>
+<p>If you are using a version of Apache older than 2.4, replace
+<code class="docutils literal"><span class="pre">Require</span> <span class="pre">all</span> <span class="pre">granted</span></code> with <code class="docutils literal"><span class="pre">Allow</span> <span class="pre">from</span> <span class="pre">all</span></code> and also add the line
+<code class="docutils literal"><span class="pre">Order</span> <span class="pre">deny,allow</span></code> above it.</p>
+</div>
+<div class="section" id="s-serving-the-admin-files">
+<span id="s-id3"></span><span id="serving-the-admin-files"></span><span id="id3"></span><h2>Serving the admin files<a class="headerlink" href="#serving-the-admin-files" title="永久链接至标题">¶</a></h2>
+<p>When <a class="reference internal" href="../../../ref/contrib/staticfiles.html#module-django.contrib.staticfiles" title="django.contrib.staticfiles: An app for handling static files."><code class="xref py py-mod docutils literal"><span class="pre">django.contrib.staticfiles</span></code></a> is in <a class="reference internal" href="../../../ref/settings.html#std:setting-INSTALLED_APPS"><code class="xref std std-setting docutils literal"><span class="pre">INSTALLED_APPS</span></code></a>, the
+Django development server automatically serves the static files of the
+admin app (and any other installed apps). This is however not the case when you
+use any other server arrangement. You&#8217;re responsible for setting up Apache, or
+whichever Web server you&#8217;re using, to serve the admin files.</p>
+<p>The admin files live in (<code class="file docutils literal"><span class="pre">django/contrib/admin/static/admin</span></code>) of the
+Django distribution.</p>
+<p>We <strong>strongly</strong> recommend using <a class="reference internal" href="../../../ref/contrib/staticfiles.html#module-django.contrib.staticfiles" title="django.contrib.staticfiles: An app for handling static files."><code class="xref py py-mod docutils literal"><span class="pre">django.contrib.staticfiles</span></code></a> to handle the
+admin files (along with a Web server as outlined in the previous section; this
+means using the <a class="reference internal" href="../../../ref/contrib/staticfiles.html#django-admin-collectstatic"><code class="xref std std-djadmin docutils literal"><span class="pre">collectstatic</span></code></a> management command to collect the
+static files in <a class="reference internal" href="../../../ref/settings.html#std:setting-STATIC_ROOT"><code class="xref std std-setting docutils literal"><span class="pre">STATIC_ROOT</span></code></a>, and then configuring your Web server to
+serve <a class="reference internal" href="../../../ref/settings.html#std:setting-STATIC_ROOT"><code class="xref std std-setting docutils literal"><span class="pre">STATIC_ROOT</span></code></a> at <a class="reference internal" href="../../../ref/settings.html#std:setting-STATIC_URL"><code class="xref std std-setting docutils literal"><span class="pre">STATIC_URL</span></code></a>), but here are three
+other approaches:</p>
+<ol class="arabic simple">
+<li>Create a symbolic link to the admin static files from within your
+document root (this may require <code class="docutils literal"><span class="pre">+FollowSymLinks</span></code> in your Apache
+configuration).</li>
+<li>Use an <code class="docutils literal"><span class="pre">Alias</span></code> directive, as demonstrated above, to alias the appropriate
+URL (probably <a class="reference internal" href="../../../ref/settings.html#std:setting-STATIC_URL"><code class="xref std std-setting docutils literal"><span class="pre">STATIC_URL</span></code></a> + <code class="docutils literal"><span class="pre">admin/</span></code>) to the actual location of
+the admin files.</li>
+<li>Copy the admin static files so that they live within your Apache
+document root.</li>
+</ol>
+</div>
+<div class="section" id="s-authenticating-against-django-s-user-database-from-apache">
+<span id="authenticating-against-django-s-user-database-from-apache"></span><h2>Authenticating against Django&#8217;s user database from Apache<a class="headerlink" href="#authenticating-against-django-s-user-database-from-apache" title="永久链接至标题">¶</a></h2>
+<p>Django provides a handler to allow Apache to authenticate users directly
+against Django&#8217;s authentication backends. See the <a class="reference internal" href="apache-auth.html"><em>mod_wsgi authentication
+documentation</em></a>.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="apache-auth.html" class="btn btn-neutral float-right" title="Authenticating against Django’s user database from Apache" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="How to deploy with WSGI" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 Django Software Foundation and contributors.
+      最后更新于 Apr 27, 2016.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'1.10.dev20160423182652',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,266 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Django 1.5.1 release notes &mdash; Django 1.10.dev20160423182652 文档</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Django 1.10.dev20160423182652 文档" href="../../"/>
+        <link rel="up" title="Release notes" href="../"/>
+        <link rel="next" title="Django 1.5 release notes" href="../1.5/"/>
+        <link rel="prev" title="Django 1.5.2 release notes" href="../1.5.2/"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../contents/" class="icon icon-home"> Django
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.10
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search/" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../">Django 最新中文文档</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../intro/">开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../topics/">Using Django</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../howto/">&#8220;How-to&#8221; guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq/">Django FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ref/">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../misc/">元文件和杂记</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/">Glossary</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../">Release notes</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../#final-releases">Final releases</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../#release">1.10 release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../#id1">1.9 release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../#id2">1.8 release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../#id3">1.7 release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../#id4">1.6 release</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../#id5">1.5 release</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../1.5.12/">Django 1.5.12 release notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../1.5.11/">Django 1.5.11 release notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../1.5.10/">Django 1.5.10 release notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../1.5.9/">Django 1.5.9 release notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../1.5.8/">Django 1.5.8 release notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../1.5.7/">Django 1.5.7 release notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../1.5.6/">Django 1.5.6 release notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../1.5.5/">Django 1.5.5 release notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../1.5.4/">Django 1.5.4 release notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../1.5.3/">Django 1.5.3 release notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../1.5.2/">Django 1.5.2 release notes</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="">Django 1.5.1 release notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../1.5/">Django 1.5 release notes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../#id6">1.4 release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../#id7">1.3 release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../#id8">1.2 release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../#id9">1.1 release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../#id10">1.0 release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../#pre-1-0-releases">Pre-1.0 releases</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../#security-releases">Security releases</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../internals/">Django internals</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../contents/">Django</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../contents/">Docs</a> &raquo;</li>
+      
+          <li><a href="../">Release notes</a> &raquo;</li>
+      
+    <li>Django 1.5.1 release notes</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/releases/1.5.1.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="s-django-1-5-1-release-notes">
+<span id="django-1-5-1-release-notes"></span><h1>Django 1.5.1 release notes<a class="headerlink" href="#django-1-5-1-release-notes" title="永久链接至标题">¶</a></h1>
+<p><em>March 28, 2013</em></p>
+<p>This is Django 1.5.1, a bugfix release for Django 1.5. It&#8217;s completely backwards
+compatible with Django 1.5, but includes a handful of fixes.</p>
+<p>The biggest fix is for a memory leak introduced in Django 1.5. Under certain
+circumstances, repeated iteration over querysets could leak memory - sometimes
+quite a bit of it. If you&#8217;d like more information, the details are in
+<a class="reference external" href="https://code.djangoproject.com/ticket/19895">our ticket tracker</a> (and in <a class="reference external" href="https://bugs.python.org/issue17468">a related issue</a> in Python itself).</p>
+<p>If you&#8217;ve noticed memory problems under Django 1.5, upgrading to 1.5.1 should
+fix those issues.</p>
+<p>Django 1.5.1 also includes a couple smaller fixes:</p>
+<ul class="simple">
+<li>Module-level warnings emitted during tests are no longer silently hidden
+(<a class="reference external" href="https://code.djangoproject.com/ticket/18985">#18985</a>).</li>
+<li>Prevented filtering on password hashes in the user admin (<a class="reference external" href="https://code.djangoproject.com/ticket/20078">#20078</a>).</li>
+</ul>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../1.5/" class="btn btn-neutral float-right" title="Django 1.5 release notes" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../1.5.2/" class="btn btn-neutral" title="Django 1.5.2 release notes" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 Django Software Foundation and contributors.
+      最后更新于 Apr 27, 2016.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.10.dev20160423182652',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,400 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Built-in class-based views API &mdash; Django 1.10.dev20160423182652 文档</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Django 1.10.dev20160423182652 文档" href="../../"/>
+        <link rel="up" title="API Reference" href="../"/>
+        <link rel="next" title="Base views" href="base/"/>
+        <link rel="prev" title="System check framework" href="../checks/"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../contents/" class="icon icon-home"> Django
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.10
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search/" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../">Django 最新中文文档</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../intro/">开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../topics/">Using Django</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../howto/">&#8220;How-to&#8221; guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq/">Django FAQ</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../applications/">Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../checks/">System check framework</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Built-in class-based views API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="base/">Base views</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generic-display/">Generic display views</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generic-editing/">Generic editing views</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generic-date-based/">Generic date views</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mixins/">Class-based views mixins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="flattened-index/">Class-based generic views - flattened index</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#specification">Specification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#base-vs-generic-views">Base vs Generic views</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../clickjacking/">Clickjacking Protection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contrib/"><code class="docutils literal"><span class="pre">contrib</span></code> packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../csrf/">Cross Site Request Forgery protection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../databases/">Databases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../django-admin/"><code class="docutils literal"><span class="pre">django-admin</span></code> and <code class="docutils literal"><span class="pre">manage.py</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../django-admin/#running-management-commands-from-your-code">Running management commands from your code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../exceptions/">Django Exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../files/">File handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../forms/">Forms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../middleware/">Middleware</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../migration-operations/">Migration Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../models/">Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../request-response/">Request and response objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../schema-editor/"><code class="docutils literal"><span class="pre">SchemaEditor</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../settings/">Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../signals/">Signals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../templates/">Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../template-response/"><code class="docutils literal"><span class="pre">TemplateResponse</span></code> and <code class="docutils literal"><span class="pre">SimpleTemplateResponse</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../unicode/">Unicode data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../urlresolvers/"><code class="docutils literal"><span class="pre">django.urls</span></code> utility functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../urls/"><code class="docutils literal"><span class="pre">django.conf.urls</span></code> utility functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../utils/">Django Utils</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../validators/">Validators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../views/">Built-in Views</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../misc/">元文件和杂记</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../internals/">Django internals</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../contents/">Django</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../contents/">Docs</a> &raquo;</li>
+      
+          <li><a href="../">API Reference</a> &raquo;</li>
+      
+    <li>Built-in class-based views API</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/ref/class-based-views/index.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="s-built-in-class-based-views-api">
+<span id="built-in-class-based-views-api"></span><h1>Built-in class-based views API<a class="headerlink" href="#built-in-class-based-views-api" title="永久链接至标题">¶</a></h1>
+<p>Class-based views API reference. For introductory material, see the
+<a class="reference internal" href="../../topics/class-based-views/"><em>Class-based views</em></a> topic guide.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="base/">Base views</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="base/#view"><code class="docutils literal"><span class="pre">View</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="base/#templateview"><code class="docutils literal"><span class="pre">TemplateView</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="base/#redirectview"><code class="docutils literal"><span class="pre">RedirectView</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="generic-display/">Generic display views</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="generic-display/#detailview"><code class="docutils literal"><span class="pre">DetailView</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="generic-display/#listview"><code class="docutils literal"><span class="pre">ListView</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="generic-editing/">Generic editing views</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="generic-editing/#formview"><code class="docutils literal"><span class="pre">FormView</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="generic-editing/#createview"><code class="docutils literal"><span class="pre">CreateView</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="generic-editing/#updateview"><code class="docutils literal"><span class="pre">UpdateView</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="generic-editing/#deleteview"><code class="docutils literal"><span class="pre">DeleteView</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="generic-date-based/">Generic date views</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="generic-date-based/#archiveindexview"><code class="docutils literal"><span class="pre">ArchiveIndexView</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="generic-date-based/#yeararchiveview"><code class="docutils literal"><span class="pre">YearArchiveView</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="generic-date-based/#montharchiveview"><code class="docutils literal"><span class="pre">MonthArchiveView</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="generic-date-based/#weekarchiveview"><code class="docutils literal"><span class="pre">WeekArchiveView</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="generic-date-based/#dayarchiveview"><code class="docutils literal"><span class="pre">DayArchiveView</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="generic-date-based/#todayarchiveview"><code class="docutils literal"><span class="pre">TodayArchiveView</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="generic-date-based/#datedetailview"><code class="docutils literal"><span class="pre">DateDetailView</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mixins/">Class-based views mixins</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mixins-simple/">Simple mixins</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="mixins-simple/#contextmixin"><code class="docutils literal"><span class="pre">ContextMixin</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mixins-simple/#templateresponsemixin"><code class="docutils literal"><span class="pre">TemplateResponseMixin</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="mixins-single-object/">Single object mixins</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="mixins-single-object/#singleobjectmixin"><code class="docutils literal"><span class="pre">SingleObjectMixin</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mixins-single-object/#singleobjecttemplateresponsemixin"><code class="docutils literal"><span class="pre">SingleObjectTemplateResponseMixin</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="mixins-multiple-object/">Multiple object mixins</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="mixins-multiple-object/#multipleobjectmixin"><code class="docutils literal"><span class="pre">MultipleObjectMixin</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mixins-multiple-object/#multipleobjecttemplateresponsemixin"><code class="docutils literal"><span class="pre">MultipleObjectTemplateResponseMixin</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="mixins-editing/">Editing mixins</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="mixins-editing/#formmixin"><code class="docutils literal"><span class="pre">FormMixin</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mixins-editing/#modelformmixin"><code class="docutils literal"><span class="pre">ModelFormMixin</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mixins-editing/#processformview"><code class="docutils literal"><span class="pre">ProcessFormView</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mixins-editing/#deletionmixin"><code class="docutils literal"><span class="pre">DeletionMixin</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="mixins-date-based/">Date-based mixins</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="mixins-date-based/#yearmixin"><code class="docutils literal"><span class="pre">YearMixin</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mixins-date-based/#monthmixin"><code class="docutils literal"><span class="pre">MonthMixin</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mixins-date-based/#daymixin"><code class="docutils literal"><span class="pre">DayMixin</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mixins-date-based/#weekmixin"><code class="docutils literal"><span class="pre">WeekMixin</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mixins-date-based/#datemixin"><code class="docutils literal"><span class="pre">DateMixin</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mixins-date-based/#basedatelistview"><code class="docutils literal"><span class="pre">BaseDateListView</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="flattened-index/">Class-based generic views - flattened index</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="flattened-index/#simple-generic-views">Simple generic views</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="flattened-index/#view"><code class="docutils literal"><span class="pre">View</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="flattened-index/#templateview"><code class="docutils literal"><span class="pre">TemplateView</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="flattened-index/#redirectview"><code class="docutils literal"><span class="pre">RedirectView</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="flattened-index/#detail-views">Detail Views</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="flattened-index/#detailview"><code class="docutils literal"><span class="pre">DetailView</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="flattened-index/#list-views">List Views</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="flattened-index/#listview"><code class="docutils literal"><span class="pre">ListView</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="flattened-index/#editing-views">Editing views</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="flattened-index/#formview"><code class="docutils literal"><span class="pre">FormView</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="flattened-index/#createview"><code class="docutils literal"><span class="pre">CreateView</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="flattened-index/#updateview"><code class="docutils literal"><span class="pre">UpdateView</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="flattened-index/#deleteview"><code class="docutils literal"><span class="pre">DeleteView</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="flattened-index/#date-based-views">Date-based views</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="flattened-index/#archiveindexview"><code class="docutils literal"><span class="pre">ArchiveIndexView</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="flattened-index/#yeararchiveview"><code class="docutils literal"><span class="pre">YearArchiveView</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="flattened-index/#montharchiveview"><code class="docutils literal"><span class="pre">MonthArchiveView</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="flattened-index/#weekarchiveview"><code class="docutils literal"><span class="pre">WeekArchiveView</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="flattened-index/#dayarchiveview"><code class="docutils literal"><span class="pre">DayArchiveView</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="flattened-index/#todayarchiveview"><code class="docutils literal"><span class="pre">TodayArchiveView</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="flattened-index/#datedetailview"><code class="docutils literal"><span class="pre">DateDetailView</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="s-specification">
+<span id="specification"></span><h2>Specification<a class="headerlink" href="#specification" title="永久链接至标题">¶</a></h2>
+<p>Each request served by a class-based view has an independent state; therefore,
+it is safe to store state variables on the instance (i.e., <code class="docutils literal"><span class="pre">self.foo</span> <span class="pre">=</span> <span class="pre">3</span></code> is
+a thread-safe operation).</p>
+<p>A class-based view is deployed into a URL pattern using the
+<a class="reference internal" href="base/#django.views.generic.base.View.as_view" title="django.views.generic.base.View.as_view"><code class="xref py py-meth docutils literal"><span class="pre">as_view()</span></code></a> classmethod:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">url</span><span class="p">(</span><span class="s1">r&#39;^view/$&#39;</span><span class="p">,</span> <span class="n">MyView</span><span class="o">.</span><span class="n">as_view</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">42</span><span class="p">)),</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<div class="admonition-thread-safety-with-view-arguments admonition">
+<p class="first admonition-title">Thread safety with view arguments</p>
+<p class="last">Arguments passed to a view are shared between every instance of a view.
+This means that you shouldn&#8217;t use a list, dictionary, or any other
+mutable object as an argument to a view. If you do and the shared object
+is modified, the actions of one user visiting your view could have an
+effect on subsequent users visiting the same view.</p>
+</div>
+<p>Arguments passed into <a class="reference internal" href="base/#django.views.generic.base.View.as_view" title="django.views.generic.base.View.as_view"><code class="xref py py-meth docutils literal"><span class="pre">as_view()</span></code></a> will
+be assigned onto the instance that is used to service a request. Using the
+previous example, this means that every request on <code class="docutils literal"><span class="pre">MyView</span></code> is able to use
+<code class="docutils literal"><span class="pre">self.size</span></code>. Arguments must correspond to attributes that already exist on
+the class (return <code class="docutils literal"><span class="pre">True</span></code> on a <code class="docutils literal"><span class="pre">hasattr</span></code> check).</p>
+</div>
+<div class="section" id="s-base-vs-generic-views">
+<span id="base-vs-generic-views"></span><h2>Base vs Generic views<a class="headerlink" href="#base-vs-generic-views" title="永久链接至标题">¶</a></h2>
+<p>Base class-based views can be thought of as <em>parent</em> views, which can be
+used by themselves or inherited from. They may not provide all the
+capabilities required for projects, in which case there are Mixins which
+extend what base views can do.</p>
+<p>Django’s generic views are built off of those base views, and were developed
+as a shortcut for common usage patterns such as displaying the details of an
+object. They take certain common idioms and patterns found in view
+development and abstract them so that you can quickly write common views of
+data without having to repeat yourself.</p>
+<p>Most generic views require the <code class="docutils literal"><span class="pre">queryset</span></code> key, which is a <code class="docutils literal"><span class="pre">QuerySet</span></code>
+instance; see <a class="reference internal" href="../../topics/db/queries/"><em>Making queries</em></a> for more information about <code class="docutils literal"><span class="pre">QuerySet</span></code>
+objects.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="base/" class="btn btn-neutral float-right" title="Base views" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../checks/" class="btn btn-neutral" title="System check framework" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 Django Software Foundation and contributors.
+      最后更新于 Apr 27, 2016.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.10.dev20160423182652',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

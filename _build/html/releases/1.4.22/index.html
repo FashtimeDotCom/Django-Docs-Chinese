@@ -1,0 +1,282 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Django 1.4.22 release notes &mdash; Django 1.10.dev20160423182652 文档</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Django 1.10.dev20160423182652 文档" href="../../"/>
+        <link rel="up" title="Release notes" href="../"/>
+        <link rel="next" title="Django 1.4.21 release notes" href="../1.4.21/"/>
+        <link rel="prev" title="Django 1.5 release notes" href="../1.5/"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../contents/" class="icon icon-home"> Django
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.10
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search/" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../">Django 最新中文文档</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../intro/">开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../topics/">Using Django</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../howto/">&#8220;How-to&#8221; guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq/">Django FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ref/">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../misc/">元文件和杂记</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/">Glossary</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../">Release notes</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../#final-releases">Final releases</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../#release">1.10 release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../#id1">1.9 release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../#id2">1.8 release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../#id3">1.7 release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../#id4">1.6 release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../#id5">1.5 release</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../#id6">1.4 release</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="">Django 1.4.22 release notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../1.4.21/">Django 1.4.21 release notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../1.4.20/">Django 1.4.20 release notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../1.4.19/">Django 1.4.19 release notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../1.4.18/">Django 1.4.18 release notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../1.4.17/">Django 1.4.17 release notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../1.4.16/">Django 1.4.16 release notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../1.4.15/">Django 1.4.15 release notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../1.4.14/">Django 1.4.14 release notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../1.4.13/">Django 1.4.13 release notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../1.4.12/">Django 1.4.12 release notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../1.4.11/">Django 1.4.11 release notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../1.4.10/">Django 1.4.10 release notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../1.4.9/">Django 1.4.9 release notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../1.4.8/">Django 1.4.8 release notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../1.4.7/">Django 1.4.7 release notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../1.4.6/">Django 1.4.6 release notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../1.4.5/">Django 1.4.5 release notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../1.4.4/">Django 1.4.4 release notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../1.4.3/">Django 1.4.3 release notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../1.4.2/">Django 1.4.2 release notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../1.4.1/">Django 1.4.1 release notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../1.4/">Django 1.4 release notes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../#id7">1.3 release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../#id8">1.2 release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../#id9">1.1 release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../#id10">1.0 release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../#pre-1-0-releases">Pre-1.0 releases</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../#security-releases">Security releases</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../internals/">Django internals</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../contents/">Django</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../contents/">Docs</a> &raquo;</li>
+      
+          <li><a href="../">Release notes</a> &raquo;</li>
+      
+    <li>Django 1.4.22 release notes</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/releases/1.4.22.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="s-django-1-4-22-release-notes">
+<span id="django-1-4-22-release-notes"></span><h1>Django 1.4.22 release notes<a class="headerlink" href="#django-1-4-22-release-notes" title="永久链接至标题">¶</a></h1>
+<p><em>August 18, 2015</em></p>
+<p>Django 1.4.22 fixes a security issue in 1.4.21.</p>
+<p>It also fixes support with pip 7+ by disabling wheel support. Older versions
+of 1.4 would silently build a broken wheel when installed with those versions
+of pip.</p>
+<div class="section" id="s-denial-of-service-possibility-in-logout-view-by-filling-session-store">
+<span id="denial-of-service-possibility-in-logout-view-by-filling-session-store"></span><h2>Denial-of-service possibility in <code class="docutils literal"><span class="pre">logout()</span></code> view by filling session store<a class="headerlink" href="#denial-of-service-possibility-in-logout-view-by-filling-session-store" title="永久链接至标题">¶</a></h2>
+<p>Previously, a session could be created when anonymously accessing the
+<a class="reference internal" href="../../topics/auth/default/#django.contrib.auth.views.logout" title="django.contrib.auth.views.logout"><code class="xref py py-func docutils literal"><span class="pre">django.contrib.auth.views.logout()</span></code></a> view (provided it wasn&#8217;t decorated
+with <a class="reference internal" href="../../topics/auth/default/#django.contrib.auth.decorators.login_required" title="django.contrib.auth.decorators.login_required"><code class="xref py py-func docutils literal"><span class="pre">login_required()</span></code></a> as done in the
+admin). This could allow an attacker to easily create many new session records
+by sending repeated requests, potentially filling up the session store or
+causing other users&#8217; session records to be evicted.</p>
+<p>The <a class="reference internal" href="../../ref/middleware/#django.contrib.sessions.middleware.SessionMiddleware" title="django.contrib.sessions.middleware.SessionMiddleware"><code class="xref py py-class docutils literal"><span class="pre">SessionMiddleware</span></code></a> has been
+modified to no longer create empty session records, including when
+<a class="reference internal" href="../../ref/settings/#std:setting-SESSION_SAVE_EVERY_REQUEST"><code class="xref std std-setting docutils literal"><span class="pre">SESSION_SAVE_EVERY_REQUEST</span></code></a> is active.</p>
+<p>Additionally, the <code class="docutils literal"><span class="pre">contrib.sessions.backends.base.SessionBase.flush()</span></code> and
+<code class="docutils literal"><span class="pre">cache_db.SessionStore.flush()</span></code> methods have been modified to avoid creating
+a new empty session. Maintainers of third-party session backends should check
+if the same vulnerability is present in their backend and correct it if so.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../1.4.21/" class="btn btn-neutral float-right" title="Django 1.4.21 release notes" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../1.5/" class="btn btn-neutral" title="Django 1.5 release notes" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 Django Software Foundation and contributors.
+      最后更新于 Apr 27, 2016.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.10.dev20160423182652',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

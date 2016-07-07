@@ -1,0 +1,303 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Templates &mdash; Django 1.10.dev20160423182652 文档</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Django 1.10.dev20160423182652 文档" href="../../"/>
+        <link rel="up" title="API Reference" href="../"/>
+        <link rel="next" title="The Django template language" href="language/"/>
+        <link rel="prev" title="Signals" href="../signals/"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../contents/" class="icon icon-home"> Django
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.10
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search/" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../">Django 最新中文文档</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../intro/">开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../topics/">Using Django</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../howto/">&#8220;How-to&#8221; guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq/">Django FAQ</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../applications/">Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../checks/">System check framework</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../class-based-views/">Built-in class-based views API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../clickjacking/">Clickjacking Protection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contrib/"><code class="docutils literal"><span class="pre">contrib</span></code> packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../csrf/">Cross Site Request Forgery protection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../databases/">Databases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../django-admin/"><code class="docutils literal"><span class="pre">django-admin</span></code> and <code class="docutils literal"><span class="pre">manage.py</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../django-admin/#running-management-commands-from-your-code">Running management commands from your code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../exceptions/">Django Exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../files/">File handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../forms/">Forms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../middleware/">Middleware</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../migration-operations/">Migration Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../models/">Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../request-response/">Request and response objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../schema-editor/"><code class="docutils literal"><span class="pre">SchemaEditor</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../settings/">Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../signals/">Signals</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Templates</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="language/">The Django template language</a></li>
+<li class="toctree-l3"><a class="reference internal" href="builtins/">Built-in template tags and filters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/">The Django template language: for Python programmers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="upgrading/">Upgrading templates to Django 1.8</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../template-response/"><code class="docutils literal"><span class="pre">TemplateResponse</span></code> and <code class="docutils literal"><span class="pre">SimpleTemplateResponse</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../unicode/">Unicode data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../urlresolvers/"><code class="docutils literal"><span class="pre">django.urls</span></code> utility functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../urls/"><code class="docutils literal"><span class="pre">django.conf.urls</span></code> utility functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../utils/">Django Utils</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../validators/">Validators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../views/">Built-in Views</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../misc/">元文件和杂记</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../internals/">Django internals</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../contents/">Django</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../contents/">Docs</a> &raquo;</li>
+      
+          <li><a href="../">API Reference</a> &raquo;</li>
+      
+    <li>Templates</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/ref/templates/index.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="s-templates">
+<span id="templates"></span><h1>Templates<a class="headerlink" href="#templates" title="永久链接至标题">¶</a></h1>
+<p>Django&#8217;s template engine provides a powerful mini-language for defining the
+user-facing layer of your application, encouraging a clean separation of
+application and presentation logic. Templates can be maintained by anyone with
+an understanding of HTML; no knowledge of Python is required. For introductory
+material, see <a class="reference internal" href="../../topics/templates/"><em>模板</em></a> topic guide.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="language/">The Django template language</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="language/#templates">Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="language/#variables">Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="language/#filters">Filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="language/#tags">Tags</a></li>
+<li class="toctree-l2"><a class="reference internal" href="language/#comments">Comments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="language/#template-inheritance">Template inheritance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="language/#automatic-html-escaping">Automatic HTML escaping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="language/#accessing-method-calls">Accessing method calls</a></li>
+<li class="toctree-l2"><a class="reference internal" href="language/#custom-tag-and-filter-libraries">Custom tag and filter libraries</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="builtins/">Built-in template tags and filters</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="builtins/#built-in-tag-reference">Built-in tag reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builtins/#built-in-filter-reference">Built-in filter reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builtins/#internationalization-tags-and-filters">Internationalization tags and filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builtins/#other-tags-and-filters-libraries">Other tags and filters libraries</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/">The Django template language: for Python programmers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/#configuring-an-engine">Configuring an engine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/#loading-a-template">Loading a template</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/#rendering-a-context">Rendering a context</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/#playing-with-context-objects">Playing with <code class="docutils literal"><span class="pre">Context</span></code> objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/#loading-templates">Loading templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/#custom-loaders">Custom loaders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/#template-origin">Template origin</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="upgrading/">Upgrading templates to Django 1.8</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="upgrading/#the-templates-settings">The <code class="docutils literal"><span class="pre">TEMPLATES</span></code> settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upgrading/#django-template-loader"><code class="docutils literal"><span class="pre">django.template.loader</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="upgrading/#template"><code class="docutils literal"><span class="pre">Template()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">参见</p>
+<p class="last">For information on writing your own custom tags and filters, see
+<a class="reference internal" href="../../howto/custom-template-tags/"><em>Custom template tags and filters</em></a>.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="language/" class="btn btn-neutral float-right" title="The Django template language" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../signals/" class="btn btn-neutral" title="Signals" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 Django Software Foundation and contributors.
+      最后更新于 Apr 27, 2016.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.10.dev20160423182652',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

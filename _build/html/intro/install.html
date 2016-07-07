@@ -1,0 +1,301 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>快速安装指南 &mdash; Django 1.10.dev20160423182652 文档</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Django 1.10.dev20160423182652 文档" href="../index.html"/>
+        <link rel="up" title="开始" href="index.html"/>
+        <link rel="next" title="编写你的第一个Django应用，第1部分" href="tutorial01.html"/>
+        <link rel="prev" title="初识 Django" href="overview.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../contents.html" class="icon icon-home"> Django
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.10
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Django 最新中文文档</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">开始</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="overview.html">初识 Django</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">快速安装指南</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#install-python">安装Python</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-up-a-database">设定一个数据库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#remove-any-old-versions-of-django">移除任何老版本的Django</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#install-django">安装Django</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#verifying">验证</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#that-s-it">就是这个！</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial01.html">编写你的第一个Django应用，第1部分</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial02.html">编写你的第一个Django应用，第2部分</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial03.html">编写你的第一个Django应用，第3部分</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial04.html">编写你的第一个Django应用，第4部分</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial05.html">编写你的第一个Django应用，第5部分</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial06.html">编写你的第一个Django应用，第7部分</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial07.html">编写你的第一个Django应用，第7部分</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reusable-apps.html">Advanced tutorial: How to write reusable apps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="whatsnext.html">What to read next</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html">编写你的第一个Django补丁</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../topics/index.html">Using Django</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../howto/index.html">&#8220;How-to&#8221; guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq/index.html">Django FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/index.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/index.html">元文件和杂记</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals/index.html">Django internals</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../contents.html">Django</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../contents.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">开始</a> &raquo;</li>
+      
+    <li>快速安装指南</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/intro/install.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="s-quick-install-guide">
+<span id="quick-install-guide"></span><h1>快速安装指南<a class="headerlink" href="#quick-install-guide" title="永久链接至标题">¶</a></h1>
+<p>Before you can use Django, you&#8217;ll need to get it installed. We have a
+<a class="reference internal" href="../topics/install.html"><em>complete installation guide</em></a> that covers all the
+possibilities; this guide will guide you to a simple, minimal installation
+that&#8217;ll work while you walk through the introduction.</p>
+<div class="section" id="s-install-python">
+<span id="install-python"></span><h2>安装Python<a class="headerlink" href="#install-python" title="永久链接至标题">¶</a></h2>
+<p>Being a Python Web framework, Django requires Python. See
+<a class="reference internal" href="../faq/install.html#faq-python-version-support"><span>我应该使用哪个版本的Python来配合Django?</span></a> for details. Python includes a lightweight
+database called <a class="reference external" href="https://sqlite.org/">SQLite</a> so you won&#8217;t need to set up a database just yet.</p>
+<p>Get the latest version of Python at <a class="reference external" href="https://www.python.org/download/">https://www.python.org/download/</a> or with
+your operating system&#8217;s package manager.</p>
+<div class="admonition-django-on-jython admonition">
+<p class="first admonition-title">Django on Jython</p>
+<p class="last">如果你使用 <a class="reference external" href="http://www.jython.org/">Jython</a> (一个Java平台的Python实现), 你将需要进行一些额外的步骤. 请查看 <a class="reference internal" href="../howto/jython.html"><em>Running Django on Jython</em></a> 以获得更多细节.</p>
+</div>
+<p>你可以在你的shell中输入 <code class="docutils literal"><span class="pre">python</span></code> 来确定你是否安装过Python; 你看到的可能是像这样子的:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>Python 3.4.x
+[GCC 4.x] on linux
+Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+&gt;&gt;&gt;
+</pre></div>
+</div>
+</div>
+<div class="section" id="s-set-up-a-database">
+<span id="set-up-a-database"></span><h2>设定一个数据库<a class="headerlink" href="#set-up-a-database" title="永久链接至标题">¶</a></h2>
+<p>此步骤仅在你打算使用诸如 PostgreSQL, MySQL, 或者 Oracle这些大型数据库引擎时需要. 要安装这样一个数据库, 请参考 <a class="reference internal" href="../topics/install.html#database-installation"><span>数据库安装信息</span></a>.</p>
+</div>
+<div class="section" id="s-remove-any-old-versions-of-django">
+<span id="remove-any-old-versions-of-django"></span><h2>移除任何老版本的Django<a class="headerlink" href="#remove-any-old-versions-of-django" title="永久链接至标题">¶</a></h2>
+<p>如果你打算从前一版本的Django升级，, 你将需要 <a class="reference internal" href="../topics/install.html#removing-old-versions-of-django"><span>在安装新版本前删除旧版本的Django</span></a>.</p>
+</div>
+<div class="section" id="s-install-django">
+<span id="install-django"></span><h2>安装Django<a class="headerlink" href="#install-django" title="永久链接至标题">¶</a></h2>
+<p>你有三个简单的方法来安装Django:</p>
+<ul class="simple">
+<li><p class="first">安装 django <a class="reference internal" href="../misc/distributions.html"><em>操作系统所提供的发行包</em></a> 版本. 对于操作系统提供了 Django安装包 的人来说，这是最快捷的安装方法。</p>
+</li>
+<li><p class="first"><a class="reference internal" href="../topics/install.html#installing-official-release"><span>安装官方正式发布的版本</span></a>. 这对于想要安装一个稳定版本而不介意运行一个稍旧版本的Django的用户来说是最好的方式。</p>
+</li>
+<li><p class="first"><a class="reference internal" href="../topics/install.html#installing-development-version"><span>安装最新开发版</span></a>. 这个选择是针对那些想要最新和最好的特性的爱好者们，并不怕运行全新代码. 你在开发版中可能会遇到新的错误BUG, 但可以报告给社区团队帮助 Django开发. 此外, 第三方发行的软件包也可能不与开发版进行兼容。</p>
+</li>
+</ul>
+<div class="admonition-always-refer-to-the-documentation-that-corresponds-to-the-version-of-django-you-re-using admonition">
+<p class="first admonition-title">请始终参考与你所使用的版本对应的 Django文档！</p>
+<p class="last">如果采用了前两种方式进行安装, 你需要注意在文档中标明  <strong>在开发版中新增</strong>. 这个标记表明这个特性仅适用开发版 Django, 并且他们可能不会在官方发布的稳定版中工作。</p>
+</div>
+</div>
+<div class="section" id="s-verifying">
+<span id="verifying"></span><h2>验证<a class="headerlink" href="#verifying" title="永久链接至标题">¶</a></h2>
+<p>若要验证 Django可以被 Python 识别, 可以在shell中输入 <code class="docutils literal"><span class="pre">python</span></code> . 然后在 Python 提示符下，尝试导入 Django：:</p>
+<pre class="literal-block">
+&gt;&gt;&gt; import django
+&gt;&gt;&gt; print(django.get_version())
+1.10
+</pre>
+<p>当然了，你也可能安装的是其它版本的 Django。</p>
+</div>
+<div class="section" id="s-that-s-it">
+<span id="that-s-it"></span><h2>就是这个！<a class="headerlink" href="#that-s-it" title="永久链接至标题">¶</a></h2>
+<p>That&#8217;s it &#8211; you can now <a class="reference internal" href="tutorial01.html"><em>move onto the tutorial</em></a>.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="tutorial01.html" class="btn btn-neutral float-right" title="编写你的第一个Django应用，第1部分" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="overview.html" class="btn btn-neutral" title="初识 Django" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 Django Software Foundation and contributors.
+      最后更新于 Apr 27, 2016.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.10.dev20160423182652',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

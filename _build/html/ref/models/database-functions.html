@@ -1,0 +1,575 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Database Functions &mdash; Django 1.10.dev20160423182652 文档</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Django 1.10.dev20160423182652 文档" href="../../index.html"/>
+        <link rel="up" title="Models" href="index.html"/>
+        <link rel="next" title="Request and response objects" href="../request-response.html"/>
+        <link rel="prev" title="Conditional Expressions" href="conditional-expressions.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../contents.html" class="icon icon-home"> Django
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.10
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Django 最新中文文档</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../intro/index.html">开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../topics/index.html">Using Django</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../howto/index.html">&#8220;How-to&#8221; guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq/index.html">Django FAQ</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../applications.html">Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../checks.html">System check framework</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../class-based-views/index.html">Built-in class-based views API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../clickjacking.html">Clickjacking Protection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contrib/index.html"><code class="docutils literal"><span class="pre">contrib</span></code> packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../csrf.html">Cross Site Request Forgery protection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../databases.html">Databases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../django-admin.html"><code class="docutils literal"><span class="pre">django-admin</span></code> and <code class="docutils literal"><span class="pre">manage.py</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../django-admin.html#running-management-commands-from-your-code">Running management commands from your code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../exceptions.html">Django Exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../files/index.html">File handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../forms/index.html">Forms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../middleware.html">Middleware</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../migration-operations.html">Migration Operations</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Models</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="fields.html">Model field reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fields.html#field-attribute-reference">Field attribute reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="meta.html">Model <code class="docutils literal"><span class="pre">_meta</span></code> API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="relations.html">Related objects reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="class.html">Model class reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="options.html">Model <code class="docutils literal"><span class="pre">Meta</span></code> options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="instances.html">Model instance reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="querysets.html"><code class="docutils literal"><span class="pre">QuerySet</span></code> API reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lookups.html">Lookup API reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="expressions.html">Query Expressions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="conditional-expressions.html">Conditional Expressions</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="">Database Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cast"><code class="docutils literal"><span class="pre">Cast</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#coalesce"><code class="docutils literal"><span class="pre">Coalesce</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#concat"><code class="docutils literal"><span class="pre">Concat</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#greatest"><code class="docutils literal"><span class="pre">Greatest</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#least"><code class="docutils literal"><span class="pre">Least</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#length"><code class="docutils literal"><span class="pre">Length</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lower"><code class="docutils literal"><span class="pre">Lower</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#now"><code class="docutils literal"><span class="pre">Now</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#substr"><code class="docutils literal"><span class="pre">Substr</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#upper"><code class="docutils literal"><span class="pre">Upper</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../request-response.html">Request and response objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../schema-editor.html"><code class="docutils literal"><span class="pre">SchemaEditor</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../settings.html">Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../signals.html">Signals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../templates/index.html">Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../template-response.html"><code class="docutils literal"><span class="pre">TemplateResponse</span></code> and <code class="docutils literal"><span class="pre">SimpleTemplateResponse</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../unicode.html">Unicode data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../urlresolvers.html"><code class="docutils literal"><span class="pre">django.urls</span></code> utility functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../urls.html"><code class="docutils literal"><span class="pre">django.conf.urls</span></code> utility functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../utils.html">Django Utils</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../validators.html">Validators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../views.html">Built-in Views</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../misc/index.html">元文件和杂记</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../internals/index.html">Django internals</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../contents.html">Django</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../contents.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">API Reference</a> &raquo;</li>
+      
+          <li><a href="index.html">Models</a> &raquo;</li>
+      
+    <li>Database Functions</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/ref/models/database-functions.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="s-module-django.db.models.functions">
+<span id="s-database-functions"></span><span id="module-django.db.models.functions"></span><span id="database-functions"></span><h1>Database Functions<a class="headerlink" href="#module-django.db.models.functions" title="永久链接至标题">¶</a></h1>
+<p>The classes documented below provide a way for users to use functions provided
+by the underlying database as annotations, aggregations, or filters in Django.
+Functions are also <a class="reference internal" href="expressions.html"><em>expressions</em></a>, so they can be used and
+combined with other expressions like <a class="reference internal" href="querysets.html#aggregation-functions"><span>aggregate functions</span></a>.</p>
+<p>We&#8217;ll be using the following model in examples of each function:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Author</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+    <span class="n">age</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">PositiveIntegerField</span><span class="p">(</span><span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">alias</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">goes_by</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We don&#8217;t usually recommend allowing <code class="docutils literal"><span class="pre">null=True</span></code> for <code class="docutils literal"><span class="pre">CharField</span></code> since this
+allows the field to have two &#8220;empty values&#8221;, but it&#8217;s important for the
+<code class="docutils literal"><span class="pre">Coalesce</span></code> example below.</p>
+<div class="section" id="s-cast">
+<span id="cast"></span><h2><code class="docutils literal"><span class="pre">Cast</span></code><a class="headerlink" href="#cast" title="永久链接至标题">¶</a></h2>
+<dl class="class">
+<dt id="django.db.models.functions.Cast">
+<em class="property">class </em><code class="descname">Cast</code>(<em>expression</em>, <em>output_field</em>)<a class="reference internal" href="../../_modules/django/db/models/functions.html#Cast"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#django.db.models.functions.Cast" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<div class="versionadded">
+<span class="title">New in Django Development version.</span> </div>
+<p>Forces the result type of <code class="docutils literal"><span class="pre">expression</span></code> to be the one from <code class="docutils literal"><span class="pre">output_field</span></code>.</p>
+<p>Usage example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">django.db.models</span> <span class="kn">import</span> <span class="n">FloatField</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">django.db.models.functions</span> <span class="kn">import</span> <span class="n">Cast</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Value</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">integer</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">value</span> <span class="o">=</span> <span class="n">Value</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">as_float</span><span class="o">=</span><span class="n">Cast</span><span class="p">(</span><span class="s1">&#39;integer&#39;</span><span class="p">,</span> <span class="n">FloatField</span><span class="p">))</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">as_float</span><span class="p">)</span>
+<span class="go">4.0</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="s-coalesce">
+<span id="coalesce"></span><h2><code class="docutils literal"><span class="pre">Coalesce</span></code><a class="headerlink" href="#coalesce" title="永久链接至标题">¶</a></h2>
+<dl class="class">
+<dt id="django.db.models.functions.Coalesce">
+<em class="property">class </em><code class="descname">Coalesce</code>(<em>*expressions</em>, <em>**extra</em>)<a class="reference internal" href="../../_modules/django/db/models/functions.html#Coalesce"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#django.db.models.functions.Coalesce" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<p>Accepts a list of at least two field names or expressions and returns the
+first non-null value (note that an empty string is not considered a null
+value). Each argument must be of a similar type, so mixing text and numbers
+will result in a database error.</p>
+<p>Usage examples:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Get a screen name from least to most public</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">django.db.models</span> <span class="kn">import</span> <span class="n">Sum</span><span class="p">,</span> <span class="n">Value</span> <span class="k">as</span> <span class="n">V</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">django.db.models.functions</span> <span class="kn">import</span> <span class="n">Coalesce</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Author</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Margaret Smith&#39;</span><span class="p">,</span> <span class="n">goes_by</span><span class="o">=</span><span class="s1">&#39;Maggie&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">author</span> <span class="o">=</span> <span class="n">Author</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span>
+<span class="gp">... </span>   <span class="n">screen_name</span><span class="o">=</span><span class="n">Coalesce</span><span class="p">(</span><span class="s1">&#39;alias&#39;</span><span class="p">,</span> <span class="s1">&#39;goes_by&#39;</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">author</span><span class="o">.</span><span class="n">screen_name</span><span class="p">)</span>
+<span class="go">Maggie</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Prevent an aggregate Sum() from returning None</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">aggregated</span> <span class="o">=</span> <span class="n">Author</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span>
+<span class="gp">... </span>   <span class="n">combined_age</span><span class="o">=</span><span class="n">Coalesce</span><span class="p">(</span><span class="n">Sum</span><span class="p">(</span><span class="s1">&#39;age&#39;</span><span class="p">),</span> <span class="n">V</span><span class="p">(</span><span class="mi">0</span><span class="p">)),</span>
+<span class="gp">... </span>   <span class="n">combined_age_default</span><span class="o">=</span><span class="n">Sum</span><span class="p">(</span><span class="s1">&#39;age&#39;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">aggregated</span><span class="p">[</span><span class="s1">&#39;combined_age&#39;</span><span class="p">])</span>
+<span class="go">0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">aggregated</span><span class="p">[</span><span class="s1">&#39;combined_age_default&#39;</span><span class="p">])</span>
+<span class="go">None</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">警告</p>
+<p>A Python value passed to <code class="docutils literal"><span class="pre">Coalesce</span></code> on MySQL may be converted to an
+incorrect type unless explicitly cast to the correct database type:</p>
+<div class="last highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">django.db.models.expressions</span> <span class="kn">import</span> <span class="n">RawSQL</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">django.utils</span> <span class="kn">import</span> <span class="n">timezone</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">now</span> <span class="o">=</span> <span class="n">timezone</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">now_sql</span> <span class="o">=</span> <span class="n">RawSQL</span><span class="p">(</span><span class="s2">&quot;cast(</span><span class="si">%s</span><span class="s2"> as datetime)&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">now</span><span class="p">,))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Coalesce</span><span class="p">(</span><span class="s1">&#39;updated&#39;</span><span class="p">,</span> <span class="n">now_sql</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="s-concat">
+<span id="concat"></span><h2><code class="docutils literal"><span class="pre">Concat</span></code><a class="headerlink" href="#concat" title="永久链接至标题">¶</a></h2>
+<dl class="class">
+<dt id="django.db.models.functions.Concat">
+<em class="property">class </em><code class="descname">Concat</code>(<em>*expressions</em>, <em>**extra</em>)<a class="reference internal" href="../../_modules/django/db/models/functions.html#Concat"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#django.db.models.functions.Concat" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<p>Accepts a list of at least two text fields or expressions and returns the
+concatenated text. Each argument must be of a text or char type. If you want
+to concatenate a <code class="docutils literal"><span class="pre">TextField()</span></code> with a <code class="docutils literal"><span class="pre">CharField()</span></code>, then be sure to tell
+Django that the <code class="docutils literal"><span class="pre">output_field</span></code> should be a <code class="docutils literal"><span class="pre">TextField()</span></code>. This is also
+required when concatenating a <code class="docutils literal"><span class="pre">Value</span></code> as in the example below.</p>
+<p>This function will never have a null result. On backends where a null argument
+results in the entire expression being null, Django will ensure that each null
+part is converted to an empty string first.</p>
+<p>Usage example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Get the display name as &quot;name (goes_by)&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">django.db.models</span> <span class="kn">import</span> <span class="n">CharField</span><span class="p">,</span> <span class="n">Value</span> <span class="k">as</span> <span class="n">V</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">django.db.models.functions</span> <span class="kn">import</span> <span class="n">Concat</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Author</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Margaret Smith&#39;</span><span class="p">,</span> <span class="n">goes_by</span><span class="o">=</span><span class="s1">&#39;Maggie&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">author</span> <span class="o">=</span> <span class="n">Author</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span>
+<span class="gp">... </span>   <span class="n">screen_name</span><span class="o">=</span><span class="n">Concat</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="n">V</span><span class="p">(</span><span class="s1">&#39; (&#39;</span><span class="p">),</span> <span class="s1">&#39;goes_by&#39;</span><span class="p">,</span> <span class="n">V</span><span class="p">(</span><span class="s1">&#39;)&#39;</span><span class="p">),</span>
+<span class="gp">... </span>   <span class="n">output_field</span><span class="o">=</span><span class="n">CharField</span><span class="p">()))</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">author</span><span class="o">.</span><span class="n">screen_name</span><span class="p">)</span>
+<span class="go">Margaret Smith (Maggie)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="s-greatest">
+<span id="greatest"></span><h2><code class="docutils literal"><span class="pre">Greatest</span></code><a class="headerlink" href="#greatest" title="永久链接至标题">¶</a></h2>
+<dl class="class">
+<dt id="django.db.models.functions.Greatest">
+<em class="property">class </em><code class="descname">Greatest</code>(<em>*expressions</em>, <em>**extra</em>)<a class="reference internal" href="../../_modules/django/db/models/functions.html#Greatest"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#django.db.models.functions.Greatest" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<div class="versionadded">
+<span class="title">New in Django 1.9.</span> </div>
+<p>Accepts a list of at least two field names or expressions and returns the
+greatest value. Each argument must be of a similar type, so mixing text and
+numbers will result in a database error.</p>
+<p>Usage example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>class Blog(models.Model):
+    body = models.TextField()
+    modified = models.DateTimeField(auto_now=True)
+
+class Comment(models.Model):
+    body = models.TextField()
+    modified = models.DateTimeField(auto_now=True)
+    blog = models.ForeignKey(Blog, on_delete=models.CASCADE)
+
+&gt;&gt;&gt; from django.db.models.functions import Greatest
+&gt;&gt;&gt; blog = Blog.objects.create(body=&#39;Greatest is the best.&#39;)
+&gt;&gt;&gt; comment = Comment.objects.create(body=&#39;No, Least is better.&#39;, blog=blog)
+&gt;&gt;&gt; comments = Comment.objects.annotate(last_updated=Greatest(&#39;modified&#39;, &#39;blog__modified&#39;))
+&gt;&gt;&gt; annotated_comment = comments.get()
+</pre></div>
+</div>
+<p><code class="docutils literal"><span class="pre">annotated_comment.last_updated</span></code> will be the most recent of <code class="docutils literal"><span class="pre">blog.modified</span></code>
+and <code class="docutils literal"><span class="pre">comment.modified</span></code>.</p>
+<div class="admonition warning">
+<p class="first admonition-title">警告</p>
+<p>The behavior of <code class="docutils literal"><span class="pre">Greatest</span></code> when one or more expression may be <code class="docutils literal"><span class="pre">null</span></code>
+varies between databases:</p>
+<ul class="simple">
+<li>PostgreSQL: <code class="docutils literal"><span class="pre">Greatest</span></code> will return the largest non-null expression,
+or <code class="docutils literal"><span class="pre">null</span></code> if all expressions are <code class="docutils literal"><span class="pre">null</span></code>.</li>
+<li>SQLite, Oracle, and MySQL: If any expression is <code class="docutils literal"><span class="pre">null</span></code>, <code class="docutils literal"><span class="pre">Greatest</span></code>
+will return <code class="docutils literal"><span class="pre">null</span></code>.</li>
+</ul>
+<p class="last">The PostgreSQL behavior can be emulated using <code class="docutils literal"><span class="pre">Coalesce</span></code> if you know
+a sensible minimum value to provide as a default.</p>
+</div>
+</div>
+<div class="section" id="s-least">
+<span id="least"></span><h2><code class="docutils literal"><span class="pre">Least</span></code><a class="headerlink" href="#least" title="永久链接至标题">¶</a></h2>
+<dl class="class">
+<dt id="django.db.models.functions.Least">
+<em class="property">class </em><code class="descname">Least</code>(<em>*expressions</em>, <em>**extra</em>)<a class="reference internal" href="../../_modules/django/db/models/functions.html#Least"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#django.db.models.functions.Least" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<div class="versionadded">
+<span class="title">New in Django 1.9.</span> </div>
+<p>Accepts a list of at least two field names or expressions and returns the
+least value. Each argument must be of a similar type, so mixing text and numbers
+will result in a database error.</p>
+<div class="admonition warning">
+<p class="first admonition-title">警告</p>
+<p>The behavior of <code class="docutils literal"><span class="pre">Least</span></code> when one or more expression may be <code class="docutils literal"><span class="pre">null</span></code>
+varies between databases:</p>
+<ul class="simple">
+<li>PostgreSQL: <code class="docutils literal"><span class="pre">Least</span></code> will return the smallest non-null expression,
+or <code class="docutils literal"><span class="pre">null</span></code> if all expressions are <code class="docutils literal"><span class="pre">null</span></code>.</li>
+<li>SQLite, Oracle, and MySQL: If any expression is <code class="docutils literal"><span class="pre">null</span></code>, <code class="docutils literal"><span class="pre">Least</span></code>
+will return <code class="docutils literal"><span class="pre">null</span></code>.</li>
+</ul>
+<p class="last">The PostgreSQL behavior can be emulated using <code class="docutils literal"><span class="pre">Coalesce</span></code> if you know
+a sensible maximum value to provide as a default.</p>
+</div>
+</div>
+<div class="section" id="s-length">
+<span id="length"></span><h2><code class="docutils literal"><span class="pre">Length</span></code><a class="headerlink" href="#length" title="永久链接至标题">¶</a></h2>
+<dl class="class">
+<dt id="django.db.models.functions.Length">
+<em class="property">class </em><code class="descname">Length</code>(<em>expression</em>, <em>**extra</em>)<a class="reference internal" href="../../_modules/django/db/models/functions.html#Length"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#django.db.models.functions.Length" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<p>Accepts a single text field or expression and returns the number of characters
+the value has. If the expression is null, then the length will also be null.</p>
+<p>Usage example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Get the length of the name and goes_by fields</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">django.db.models.functions</span> <span class="kn">import</span> <span class="n">Length</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Author</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Margaret Smith&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">author</span> <span class="o">=</span> <span class="n">Author</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span>
+<span class="gp">... </span>   <span class="n">name_length</span><span class="o">=</span><span class="n">Length</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">),</span>
+<span class="gp">... </span>   <span class="n">goes_by_length</span><span class="o">=</span><span class="n">Length</span><span class="p">(</span><span class="s1">&#39;goes_by&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">author</span><span class="o">.</span><span class="n">name_length</span><span class="p">,</span> <span class="n">author</span><span class="o">.</span><span class="n">goes_by_length</span><span class="p">)</span>
+<span class="go">(14, None)</span>
+</pre></div>
+</div>
+<p>It can also be registered as a transform. For example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">django.db.models</span> <span class="kn">import</span> <span class="n">CharField</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">django.db.models.functions</span> <span class="kn">import</span> <span class="n">Length</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">CharField</span><span class="o">.</span><span class="n">register_lookup</span><span class="p">(</span><span class="n">Length</span><span class="p">,</span> <span class="s1">&#39;length&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Get authors whose name is longer than 7 characters</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">authors</span> <span class="o">=</span> <span class="n">Author</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">name__length__gt</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="versionchanged">
+<span class="title">Changed in Django 1.9:</span> <p>The ability to register the function as a transform was added.</p>
+</div>
+</div>
+<div class="section" id="s-lower">
+<span id="lower"></span><h2><code class="docutils literal"><span class="pre">Lower</span></code><a class="headerlink" href="#lower" title="永久链接至标题">¶</a></h2>
+<dl class="class">
+<dt id="django.db.models.functions.Lower">
+<em class="property">class </em><code class="descname">Lower</code>(<em>expression</em>, <em>**extra</em>)<a class="reference internal" href="../../_modules/django/db/models/functions.html#Lower"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#django.db.models.functions.Lower" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<p>Accepts a single text field or expression and returns the lowercase
+representation.</p>
+<p>It can also be registered as a transform as described in <a class="reference internal" href="#django.db.models.functions.Length" title="django.db.models.functions.Length"><code class="xref py py-class docutils literal"><span class="pre">Length</span></code></a>.</p>
+<p>Usage example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">django.db.models.functions</span> <span class="kn">import</span> <span class="n">Lower</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Author</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Margaret Smith&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">author</span> <span class="o">=</span> <span class="n">Author</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">name_lower</span><span class="o">=</span><span class="n">Lower</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">author</span><span class="o">.</span><span class="n">name_lower</span><span class="p">)</span>
+<span class="go">margaret smith</span>
+</pre></div>
+</div>
+<div class="versionchanged">
+<span class="title">Changed in Django 1.9:</span> <p>The ability to register the function as a transform was added.</p>
+</div>
+</div>
+<div class="section" id="s-now">
+<span id="now"></span><h2><code class="docutils literal"><span class="pre">Now</span></code><a class="headerlink" href="#now" title="永久链接至标题">¶</a></h2>
+<dl class="class">
+<dt id="django.db.models.functions.Now">
+<em class="property">class </em><code class="descname">Now</code><a class="reference internal" href="../../_modules/django/db/models/functions.html#Now"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#django.db.models.functions.Now" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<div class="versionadded">
+<span class="title">New in Django 1.9.</span> </div>
+<p>Returns the database server&#8217;s current date and time when the query is executed,
+typically using the SQL <code class="docutils literal"><span class="pre">CURRENT_TIMESTAMP</span></code>.</p>
+<p>Usage example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">django.db.models.functions</span> <span class="kn">import</span> <span class="n">Now</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Article</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">published__lte</span><span class="o">=</span><span class="n">Now</span><span class="p">())</span>
+<span class="go">&lt;QuerySet [&lt;Article: How to Django&gt;]&gt;</span>
+</pre></div>
+</div>
+<div class="admonition-postgresql-considerations admonition">
+<p class="first admonition-title">PostgreSQL considerations</p>
+<p class="last">On PostgreSQL, the SQL <code class="docutils literal"><span class="pre">CURRENT_TIMESTAMP</span></code> returns the time that the
+current transaction started. Therefore for cross-database compatibility,
+<code class="docutils literal"><span class="pre">Now()</span></code> uses <code class="docutils literal"><span class="pre">STATEMENT_TIMESTAMP</span></code> instead. If you need the transaction
+timestamp, use <a class="reference internal" href="../contrib/postgres/functions.html#django.contrib.postgres.functions.TransactionNow" title="django.contrib.postgres.functions.TransactionNow"><code class="xref py py-class docutils literal"><span class="pre">django.contrib.postgres.functions.TransactionNow</span></code></a>.</p>
+</div>
+</div>
+<div class="section" id="s-substr">
+<span id="substr"></span><h2><code class="docutils literal"><span class="pre">Substr</span></code><a class="headerlink" href="#substr" title="永久链接至标题">¶</a></h2>
+<dl class="class">
+<dt id="django.db.models.functions.Substr">
+<em class="property">class </em><code class="descname">Substr</code>(<em>expression</em>, <em>pos</em>, <em>length=None</em>, <em>**extra</em>)<a class="reference internal" href="../../_modules/django/db/models/functions.html#Substr"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#django.db.models.functions.Substr" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<p>Returns a substring of length <code class="docutils literal"><span class="pre">length</span></code> from the field or expression starting
+at position <code class="docutils literal"><span class="pre">pos</span></code>. The position is 1-indexed, so the position must be greater
+than 0. If <code class="docutils literal"><span class="pre">length</span></code> is <code class="docutils literal"><span class="pre">None</span></code>, then the rest of the string will be returned.</p>
+<p>Usage example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Set the alias to the first 5 characters of the name as lowercase</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">django.db.models.functions</span> <span class="kn">import</span> <span class="n">Substr</span><span class="p">,</span> <span class="n">Lower</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Author</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Margaret Smith&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Author</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">alias</span><span class="o">=</span><span class="n">Lower</span><span class="p">(</span><span class="n">Substr</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">)))</span>
+<span class="go">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">Author</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Margaret Smith&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">)</span>
+<span class="go">marga</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="s-upper">
+<span id="upper"></span><h2><code class="docutils literal"><span class="pre">Upper</span></code><a class="headerlink" href="#upper" title="永久链接至标题">¶</a></h2>
+<dl class="class">
+<dt id="django.db.models.functions.Upper">
+<em class="property">class </em><code class="descname">Upper</code>(<em>expression</em>, <em>**extra</em>)<a class="reference internal" href="../../_modules/django/db/models/functions.html#Upper"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#django.db.models.functions.Upper" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<p>Accepts a single text field or expression and returns the uppercase
+representation.</p>
+<p>It can also be registered as a transform as described in <a class="reference internal" href="#django.db.models.functions.Length" title="django.db.models.functions.Length"><code class="xref py py-class docutils literal"><span class="pre">Length</span></code></a>.</p>
+<p>Usage example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">django.db.models.functions</span> <span class="kn">import</span> <span class="n">Upper</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Author</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Margaret Smith&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">author</span> <span class="o">=</span> <span class="n">Author</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">name_upper</span><span class="o">=</span><span class="n">Upper</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">author</span><span class="o">.</span><span class="n">name_upper</span><span class="p">)</span>
+<span class="go">MARGARET SMITH</span>
+</pre></div>
+</div>
+<div class="versionchanged">
+<span class="title">Changed in Django 1.9:</span> <p>The ability to register the function as a transform was added.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../request-response.html" class="btn btn-neutral float-right" title="Request and response objects" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="conditional-expressions.html" class="btn btn-neutral" title="Conditional Expressions" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 Django Software Foundation and contributors.
+      最后更新于 Apr 27, 2016.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.10.dev20160423182652',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

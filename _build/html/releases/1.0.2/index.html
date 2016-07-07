@@ -1,0 +1,280 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Django 1.0.2 release notes &mdash; Django 1.10.dev20160423182652 文档</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Django 1.10.dev20160423182652 文档" href="../../"/>
+        <link rel="up" title="Release notes" href="../"/>
+        <link rel="next" title="Django 1.0.1 release notes" href="../1.0.1/"/>
+        <link rel="prev" title="Django 1.1 release notes" href="../1.1/"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../contents/" class="icon icon-home"> Django
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.10
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search/" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../">Django 最新中文文档</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../intro/">开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../topics/">Using Django</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../howto/">&#8220;How-to&#8221; guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq/">Django FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ref/">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../misc/">元文件和杂记</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/">Glossary</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../">Release notes</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../#final-releases">Final releases</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../#release">1.10 release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../#id1">1.9 release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../#id2">1.8 release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../#id3">1.7 release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../#id4">1.6 release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../#id5">1.5 release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../#id6">1.4 release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../#id7">1.3 release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../#id8">1.2 release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../#id9">1.1 release</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../#id10">1.0 release</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="">Django 1.0.2 release notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../1.0.1/">Django 1.0.1 release notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../1.0/">Django 1.0 release notes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../#pre-1-0-releases">Pre-1.0 releases</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../#security-releases">Security releases</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../internals/">Django internals</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../contents/">Django</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../contents/">Docs</a> &raquo;</li>
+      
+          <li><a href="../">Release notes</a> &raquo;</li>
+      
+    <li>Django 1.0.2 release notes</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/releases/1.0.2.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="s-django-1-0-2-release-notes">
+<span id="django-1-0-2-release-notes"></span><h1>Django 1.0.2 release notes<a class="headerlink" href="#django-1-0-2-release-notes" title="永久链接至标题">¶</a></h1>
+<p>Welcome to Django 1.0.2!</p>
+<p>This is the second &#8220;bugfix&#8221; release in the Django 1.0 series,
+improving the stability and performance of the Django 1.0 codebase. As
+such, Django 1.0.2 contains no new features (and, pursuant to
+<a class="reference internal" href="../../misc/api-stability/"><em>our compatibility policy</em></a>, maintains backwards compatibility with Django
+1.0.0), but does contain a number of fixes and other
+improvements. Django 1.0.2 is a recommended upgrade for any
+development or deployment currently using or targeting Django 1.0.</p>
+<div class="section" id="s-fixes-and-improvements-in-django-1-0-2">
+<span id="fixes-and-improvements-in-django-1-0-2"></span><h2>Fixes and improvements in Django 1.0.2<a class="headerlink" href="#fixes-and-improvements-in-django-1-0-2" title="永久链接至标题">¶</a></h2>
+<p>The primary reason behind this release is to remedy an issue in the
+recently-released Django 1.0.1; the packaging scripts used for Django
+1.0.1 omitted some directories from the final release package,
+including one directory required by <code class="docutils literal"><span class="pre">django.contrib.gis</span></code> and part of
+Django&#8217;s unit-test suite.</p>
+<p>Django 1.0.2 contains updated packaging scripts, and the release
+package contains the directories omitted from Django 1.0.1. As such,
+this release contains all of the fixes and improvements from Django
+1.0.1; see <a class="reference internal" href="../1.0.1/"><em>the Django 1.0.1 release notes</em></a> for
+details.</p>
+<p>Additionally, in the period since Django 1.0.1 was released:</p>
+<ul class="simple">
+<li>Updated Hebrew and Danish translations have been added.</li>
+<li>The default <code class="docutils literal"><span class="pre">__repr__</span></code> method of Django models has been made more
+robust in the face of bad Unicode data coming from the
+<code class="docutils literal"><span class="pre">__unicode__</span></code> method; rather than raise an exception in such
+cases, <code class="docutils literal"><span class="pre">repr()</span></code> will now contain the string &#8220;[Bad Unicode data]&#8221;
+in place of the invalid Unicode.</li>
+<li>A bug involving the interaction of Django&#8217;s <code class="docutils literal"><span class="pre">SafeUnicode</span></code> class
+and the MySQL adapter has been resolved; <code class="docutils literal"><span class="pre">SafeUnicode</span></code> instances
+(generated, for example, by template rendering) can now be assigned
+to model attributes and saved to MySQL without requiring an explicit
+intermediate cast to <code class="docutils literal"><span class="pre">unicode</span></code>.</li>
+<li>A bug affecting filtering on a nullable <code class="docutils literal"><span class="pre">DateField</span></code> in SQLite has
+been resolved.</li>
+<li>Several updates and improvements have been made to Django&#8217;s
+documentation.</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../1.0.1/" class="btn btn-neutral float-right" title="Django 1.0.1 release notes" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../1.1/" class="btn btn-neutral" title="Django 1.1 release notes" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 Django Software Foundation and contributors.
+      最后更新于 Apr 27, 2016.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.10.dev20160423182652',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

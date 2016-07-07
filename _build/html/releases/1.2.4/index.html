@@ -1,0 +1,314 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Django 1.2.4 release notes &mdash; Django 1.10.dev20160423182652 文档</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Django 1.10.dev20160423182652 文档" href="../../"/>
+        <link rel="up" title="Release notes" href="../"/>
+        <link rel="next" title="Django 1.2.3 release notes" href="../1.2.3/"/>
+        <link rel="prev" title="Django 1.2.5 release notes" href="../1.2.5/"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../contents/" class="icon icon-home"> Django
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.10
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search/" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../">Django 最新中文文档</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../intro/">开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../topics/">Using Django</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../howto/">&#8220;How-to&#8221; guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq/">Django FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ref/">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../misc/">元文件和杂记</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/">Glossary</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../">Release notes</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../#final-releases">Final releases</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../#release">1.10 release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../#id1">1.9 release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../#id2">1.8 release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../#id3">1.7 release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../#id4">1.6 release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../#id5">1.5 release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../#id6">1.4 release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../#id7">1.3 release</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../#id8">1.2 release</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../1.2.7/">Django 1.2.7 release notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../1.2.6/">Django 1.2.6 release notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../1.2.5/">Django 1.2.5 release notes</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="">Django 1.2.4 release notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../1.2.3/">Django 1.2.3 release notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../1.2.2/">Django 1.2.2 release notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../1.2.1/">Django 1.2.1 release notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../1.2/">Django 1.2 release notes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../#id9">1.1 release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../#id10">1.0 release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../#pre-1-0-releases">Pre-1.0 releases</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../#security-releases">Security releases</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../internals/">Django internals</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../contents/">Django</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../contents/">Docs</a> &raquo;</li>
+      
+          <li><a href="../">Release notes</a> &raquo;</li>
+      
+    <li>Django 1.2.4 release notes</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/releases/1.2.4.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="s-django-1-2-4-release-notes">
+<span id="django-1-2-4-release-notes"></span><h1>Django 1.2.4 release notes<a class="headerlink" href="#django-1-2-4-release-notes" title="永久链接至标题">¶</a></h1>
+<p>Welcome to Django 1.2.4!</p>
+<p>This is the fourth &#8220;bugfix&#8221; release in the Django 1.2 series,
+improving the stability and performance of the Django 1.2 codebase.</p>
+<p>With one exception, Django 1.2.4 maintains backwards compatibility
+with Django 1.2.3. It also contains a number of fixes and other
+improvements. Django 1.2.4 is a recommended upgrade for any
+development or deployment currently using or targeting Django 1.2.</p>
+<p>For full details on the new features, backwards incompatibilities, and
+deprecated features in the 1.2 branch, see the <a class="reference internal" href="../1.2/"><em>Django 1.2 release notes</em></a>.</p>
+<div class="section" id="s-backwards-incompatible-changes">
+<span id="backwards-incompatible-changes"></span><h2>Backwards incompatible changes<a class="headerlink" href="#backwards-incompatible-changes" title="永久链接至标题">¶</a></h2>
+<div class="section" id="s-restricted-filters-in-admin-interface">
+<span id="restricted-filters-in-admin-interface"></span><h3>Restricted filters in admin interface<a class="headerlink" href="#restricted-filters-in-admin-interface" title="永久链接至标题">¶</a></h3>
+<p>The Django administrative interface, django.contrib.admin, supports
+filtering of displayed lists of objects by fields on the corresponding
+models, including across database-level relationships. This is
+implemented by passing lookup arguments in the querystring portion of
+the URL, and options on the ModelAdmin class allow developers to
+specify particular fields or relationships which will generate
+automatic links for filtering.</p>
+<p>One historically-undocumented and -unofficially-supported feature has
+been the ability for a user with sufficient knowledge of a model&#8217;s
+structure and the format of these lookup arguments to invent useful
+new filters on the fly by manipulating the querystring.</p>
+<p>However, it has been demonstrated that this can be abused to gain
+access to information outside of an admin user&#8217;s permissions; for
+example, an attacker with access to the admin and sufficient knowledge
+of model structure and relations could construct query strings which &#8211;
+with repeated use of regular-expression lookups supported by the
+Django database API &#8211; expose sensitive information such as users&#8217;
+password hashes.</p>
+<p>To remedy this, django.contrib.admin will now validate that
+querystring lookup arguments either specify only fields on the model
+being viewed, or cross relations which have been explicitly
+whitelisted by the application developer using the pre-existing
+mechanism mentioned above. This is backwards-incompatible for any
+users relying on the prior ability to insert arbitrary lookups.</p>
+</div>
+</div>
+<div class="section" id="s-one-new-feature">
+<span id="one-new-feature"></span><h2>One new feature<a class="headerlink" href="#one-new-feature" title="永久链接至标题">¶</a></h2>
+<p>Ordinarily, a point release would not include new features, but in the
+case of Django 1.2.4, we have made an exception to this rule.</p>
+<p>One of the bugs fixed in Django 1.2.4 involves a set of
+circumstances whereby a running a test suite on a multiple database
+configuration could cause the original source database (i.e., the
+actual production database) to be dropped, causing catastrophic loss
+of data. In order to provide a fix for this problem, it was necessary
+to introduce a new setting &#8211; <a class="reference internal" href="../../ref/settings/#std:setting-TEST_DEPENDENCIES"><code class="xref std std-setting docutils literal"><span class="pre">TEST_DEPENDENCIES</span></code></a> &#8211; that
+allows you to define any creation order dependencies in your database
+configuration.</p>
+<p>Most users &#8211; even users with multiple-database configurations &#8211; need
+not be concerned about the data loss bug, or the manual configuration of
+<a class="reference internal" href="../../ref/settings/#std:setting-TEST_DEPENDENCIES"><code class="xref std std-setting docutils literal"><span class="pre">TEST_DEPENDENCIES</span></code></a>. See the <a class="reference external" href="https://code.djangoproject.com/ticket/14415">original problem report</a>
+documentation on <a class="reference internal" href="../../topics/testing/advanced/#topics-testing-creation-dependencies"><span>controlling the creation order of test
+databases</span></a> for details.</p>
+</div>
+<div class="section" id="s-geodjango">
+<span id="geodjango"></span><h2>GeoDjango<a class="headerlink" href="#geodjango" title="永久链接至标题">¶</a></h2>
+<p>The function-based <a class="reference internal" href="../../ref/settings/#std:setting-TEST_RUNNER"><code class="xref std std-setting docutils literal"><span class="pre">TEST_RUNNER</span></code></a> previously used to execute
+the GeoDjango test suite, <code class="docutils literal"><span class="pre">django.contrib.gis.tests.run_gis_tests</span></code>,
+was finally deprecated in favor of a class-based test runner,
+<code class="docutils literal"><span class="pre">django.contrib.gis.tests.GeoDjangoTestSuiteRunner</span></code>, added in this
+release.</p>
+<p>In addition, the GeoDjango test suite is now included when
+<a class="reference internal" href="../../internals/contributing/writing-code/unit-tests/#running-unit-tests"><span>running the Django test suite</span></a> with <code class="docutils literal"><span class="pre">runtests.py</span></code>
+and using <a class="reference internal" href="../../ref/contrib/gis/db-api/#spatial-backends"><span>spatial database backends</span></a>.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../1.2.3/" class="btn btn-neutral float-right" title="Django 1.2.3 release notes" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../1.2.5/" class="btn btn-neutral" title="Django 1.2.5 release notes" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 Django Software Foundation and contributors.
+      最后更新于 Apr 27, 2016.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.10.dev20160423182652',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

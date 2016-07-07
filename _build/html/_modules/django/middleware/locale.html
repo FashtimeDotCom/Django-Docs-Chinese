@@ -1,0 +1,267 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>django.middleware.locale &mdash; Django 1.10.dev20160423182652 文档</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Django 1.10.dev20160423182652 文档" href="../../../index.html"/>
+        <link rel="up" title="django" href="../../django.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../contents.html" class="icon icon-home"> Django
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.10
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Django 最新中文文档</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../intro/index.html">开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../topics/index.html">Using Django</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../howto/index.html">&#8220;How-to&#8221; guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq/index.html">Django FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ref/index.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../misc/index.html">元文件和杂记</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../releases/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../internals/index.html">Django internals</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../contents.html">Django</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../contents.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../index.html">模块代码</a> &raquo;</li>
+      
+          <li><a href="../../django.html">django</a> &raquo;</li>
+      
+    <li>django.middleware.locale</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>django.middleware.locale 源代码</h1><div class="highlight"><pre>
+<span></span><span class="s2">&quot;This is the locale selecting middleware that will look at accept headers&quot;</span>
+
+<span class="kn">from</span> <span class="nn">django.conf</span> <span class="kn">import</span> <span class="n">settings</span>
+<span class="kn">from</span> <span class="nn">django.conf.urls.i18n</span> <span class="kn">import</span> <span class="n">is_language_prefix_patterns_used</span>
+<span class="kn">from</span> <span class="nn">django.http</span> <span class="kn">import</span> <span class="n">HttpResponseRedirect</span>
+<span class="kn">from</span> <span class="nn">django.urls</span> <span class="kn">import</span> <span class="n">get_script_prefix</span><span class="p">,</span> <span class="n">is_valid_path</span>
+<span class="kn">from</span> <span class="nn">django.utils</span> <span class="kn">import</span> <span class="n">translation</span>
+<span class="kn">from</span> <span class="nn">django.utils.cache</span> <span class="kn">import</span> <span class="n">patch_vary_headers</span>
+
+
+<div class="viewcode-block" id="LocaleMiddleware"><a class="viewcode-back" href="../../../ref/middleware.html#django.middleware.locale.LocaleMiddleware">[文档]</a><span class="k">class</span> <span class="nc">LocaleMiddleware</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This is a very simple middleware that parses a request</span>
+<span class="sd">    and decides what translation object to install in the current</span>
+<span class="sd">    thread context. This allows pages to be dynamically</span>
+<span class="sd">    translated to the language the user desires (if the language</span>
+<span class="sd">    is available, of course).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">response_redirect_class</span> <span class="o">=</span> <span class="n">HttpResponseRedirect</span>
+
+    <span class="k">def</span> <span class="nf">process_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="n">urlconf</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;urlconf&#39;</span><span class="p">,</span> <span class="n">settings</span><span class="o">.</span><span class="n">ROOT_URLCONF</span><span class="p">)</span>
+        <span class="n">i18n_patterns_used</span><span class="p">,</span> <span class="n">prefixed_default_language</span> <span class="o">=</span> <span class="n">is_language_prefix_patterns_used</span><span class="p">(</span><span class="n">urlconf</span><span class="p">)</span>
+        <span class="n">language</span> <span class="o">=</span> <span class="n">translation</span><span class="o">.</span><span class="n">get_language_from_request</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">check_path</span><span class="o">=</span><span class="n">i18n_patterns_used</span><span class="p">)</span>
+        <span class="n">language_from_path</span> <span class="o">=</span> <span class="n">translation</span><span class="o">.</span><span class="n">get_language_from_path</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">path_info</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">language_from_path</span> <span class="ow">and</span> <span class="n">i18n_patterns_used</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">prefixed_default_language</span><span class="p">:</span>
+            <span class="n">language</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">LANGUAGE_CODE</span>
+        <span class="n">translation</span><span class="o">.</span><span class="n">activate</span><span class="p">(</span><span class="n">language</span><span class="p">)</span>
+        <span class="n">request</span><span class="o">.</span><span class="n">LANGUAGE_CODE</span> <span class="o">=</span> <span class="n">translation</span><span class="o">.</span><span class="n">get_language</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">process_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
+        <span class="n">language</span> <span class="o">=</span> <span class="n">translation</span><span class="o">.</span><span class="n">get_language</span><span class="p">()</span>
+        <span class="n">language_from_path</span> <span class="o">=</span> <span class="n">translation</span><span class="o">.</span><span class="n">get_language_from_path</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">path_info</span><span class="p">)</span>
+        <span class="n">urlconf</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;urlconf&#39;</span><span class="p">,</span> <span class="n">settings</span><span class="o">.</span><span class="n">ROOT_URLCONF</span><span class="p">)</span>
+        <span class="n">i18n_patterns_used</span><span class="p">,</span> <span class="n">prefixed_default_language</span> <span class="o">=</span> <span class="n">is_language_prefix_patterns_used</span><span class="p">(</span><span class="n">urlconf</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">404</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">language_from_path</span> <span class="ow">and</span> <span class="n">i18n_patterns_used</span><span class="p">:</span>
+            <span class="n">language_path</span> <span class="o">=</span> <span class="s1">&#39;/</span><span class="si">%s%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">language</span><span class="p">,</span> <span class="n">request</span><span class="o">.</span><span class="n">path_info</span><span class="p">)</span>
+            <span class="n">path_valid</span> <span class="o">=</span> <span class="n">is_valid_path</span><span class="p">(</span><span class="n">language_path</span><span class="p">,</span> <span class="n">urlconf</span><span class="p">)</span>
+            <span class="n">path_needs_slash</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="ow">not</span> <span class="n">path_valid</span> <span class="ow">and</span> <span class="p">(</span>
+                    <span class="n">settings</span><span class="o">.</span><span class="n">APPEND_SLASH</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">language_path</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span> <span class="ow">and</span>
+                    <span class="n">is_valid_path</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">/&#39;</span> <span class="o">%</span> <span class="n">language_path</span><span class="p">,</span> <span class="n">urlconf</span><span class="p">)</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">path_valid</span> <span class="ow">or</span> <span class="n">path_needs_slash</span><span class="p">:</span>
+                <span class="n">script_prefix</span> <span class="o">=</span> <span class="n">get_script_prefix</span><span class="p">()</span>
+                <span class="c1"># Insert language after the script prefix and before the</span>
+                <span class="c1"># rest of the URL</span>
+                <span class="n">language_url</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">get_full_path</span><span class="p">(</span><span class="n">force_append_slash</span><span class="o">=</span><span class="n">path_needs_slash</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span>
+                    <span class="n">script_prefix</span><span class="p">,</span>
+                    <span class="s1">&#39;</span><span class="si">%s%s</span><span class="s1">/&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">script_prefix</span><span class="p">,</span> <span class="n">language</span><span class="p">),</span>
+                    <span class="mi">1</span>
+                <span class="p">)</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">response_redirect_class</span><span class="p">(</span><span class="n">language_url</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">i18n_patterns_used</span> <span class="ow">and</span> <span class="n">language_from_path</span><span class="p">):</span>
+            <span class="n">patch_vary_headers</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;Accept-Language&#39;</span><span class="p">,))</span>
+        <span class="k">if</span> <span class="s1">&#39;Content-Language&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>
+            <span class="n">response</span><span class="p">[</span><span class="s1">&#39;Content-Language&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">language</span>
+        <span class="k">return</span> <span class="n">response</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 Django Software Foundation and contributors.
+      最后更新于 Apr 27, 2016.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'1.10.dev20160423182652',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

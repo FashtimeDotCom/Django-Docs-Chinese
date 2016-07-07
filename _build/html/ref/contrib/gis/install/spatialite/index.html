@@ -1,0 +1,409 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Installing Spatialite &mdash; Django 1.10.dev20160423182652 文档</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Django 1.10.dev20160423182652 文档" href="../../../../../"/>
+        <link rel="up" title="GeoDjango Installation" href="../"/>
+        <link rel="next" title="GeoDjango Model API" href="../../model-api/"/>
+        <link rel="prev" title="Installing PostGIS" href="../postgis/"/> 
+
+  
+  <script src="../../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../../../contents/" class="icon icon-home"> Django
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.10
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search/" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../">Django 最新中文文档</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../intro/">开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../topics/">Using Django</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../howto/">&#8220;How-to&#8221; guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../faq/">Django FAQ</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../../">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../../applications/">Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../checks/">System check framework</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../class-based-views/">Built-in class-based views API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../clickjacking/">Clickjacking Protection</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../../"><code class="docutils literal"><span class="pre">contrib</span></code> packages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../../admin/">The Django admin site</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../auth/"><code class="docutils literal"><span class="pre">django.contrib.auth</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contenttypes/">The contenttypes framework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../flatpages/">The flatpages app</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../../">GeoDjango</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/">GeoDjango Tutorial</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="../">GeoDjango Installation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../model-api/">GeoDjango Model API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../db-api/">GeoDjango Database API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../forms-api/">GeoDjango Forms API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../geoquerysets/">GeoQuerySet API Reference</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../functions/">Geographic Database Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../measure/">Measurement Objects</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../geos/">GEOS API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../gdal/">GDAL API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../geoip/">Geolocation with GeoIP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../geoip2/">Geolocation with GeoIP2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../utils/">GeoDjango Utilities</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../commands/">GeoDjango Management Commands</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../admin/">GeoDjango&#8217;s admin site</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../feeds/">Geographic Feeds</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../sitemaps/">Geographic Sitemaps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../testing/">Testing GeoDjango apps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../deployment/">Deploying GeoDjango</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../humanize/"><code class="docutils literal"><span class="pre">django.contrib.humanize</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../messages/">The messages framework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../postgres/"><code class="docutils literal"><span class="pre">django.contrib.postgres</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../redirects/">The redirects app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../sitemaps/">The sitemap framework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../sites/">The &#8220;sites&#8221; framework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../staticfiles/">The <code class="docutils literal"><span class="pre">staticfiles</span></code> app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../syndication/">The syndication feed framework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../#admin"><code class="docutils literal"><span class="pre">admin</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../#auth"><code class="docutils literal"><span class="pre">auth</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../#contenttypes"><code class="docutils literal"><span class="pre">contenttypes</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../#flatpages"><code class="docutils literal"><span class="pre">flatpages</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../#gis"><code class="docutils literal"><span class="pre">gis</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../#humanize"><code class="docutils literal"><span class="pre">humanize</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../#messages"><code class="docutils literal"><span class="pre">messages</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../#postgres"><code class="docutils literal"><span class="pre">postgres</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../#redirects"><code class="docutils literal"><span class="pre">redirects</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../#sessions"><code class="docutils literal"><span class="pre">sessions</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../#sites"><code class="docutils literal"><span class="pre">sites</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../#sitemaps"><code class="docutils literal"><span class="pre">sitemaps</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../#syndication"><code class="docutils literal"><span class="pre">syndication</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../#other-add-ons">Other add-ons</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../csrf/">Cross Site Request Forgery protection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../databases/">Databases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../django-admin/"><code class="docutils literal"><span class="pre">django-admin</span></code> and <code class="docutils literal"><span class="pre">manage.py</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../django-admin/#running-management-commands-from-your-code">Running management commands from your code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../exceptions/">Django Exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../files/">File handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../forms/">Forms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../middleware/">Middleware</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../migration-operations/">Migration Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../models/">Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../request-response/">Request and response objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../schema-editor/"><code class="docutils literal"><span class="pre">SchemaEditor</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../settings/">Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../signals/">Signals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../templates/">Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../template-response/"><code class="docutils literal"><span class="pre">TemplateResponse</span></code> and <code class="docutils literal"><span class="pre">SimpleTemplateResponse</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../unicode/">Unicode data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../urlresolvers/"><code class="docutils literal"><span class="pre">django.urls</span></code> utility functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../urls/"><code class="docutils literal"><span class="pre">django.conf.urls</span></code> utility functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../utils/">Django Utils</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../validators/">Validators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../views/">Built-in Views</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../misc/">元文件和杂记</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../glossary/">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../releases/">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../internals/">Django internals</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../../../contents/">Django</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../../../contents/">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../../">API Reference</a> &raquo;</li>
+      
+          <li><a href="../../../"><code class="docutils literal"><span class="pre">contrib</span></code> packages</a> &raquo;</li>
+      
+          <li><a href="../../">GeoDjango</a> &raquo;</li>
+      
+          <li><a href="../">GeoDjango Installation</a> &raquo;</li>
+      
+    <li>Installing Spatialite</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../../../../_sources/ref/contrib/gis/install/spatialite.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="s-installing-spatialite">
+<span id="installing-spatialite"></span><h1>Installing Spatialite<a class="headerlink" href="#installing-spatialite" title="永久链接至标题">¶</a></h1>
+<p><a class="reference external" href="https://www.gaia-gis.it/fossil/libspatialite">SpatiaLite</a> adds spatial support to SQLite, turning it into a full-featured
+spatial database.</p>
+<p>First, check if you can install Spatialite from system packages or binaries.</p>
+<p>For example, on Debian-based distributions, try to install the
+<code class="docutils literal"><span class="pre">spatialite-bin</span></code> package. For distributions that package SpatiaLite 4.2+,
+install <code class="docutils literal"><span class="pre">libsqlite3-mod-spatialite</span></code>.</p>
+<p>For Mac OS X, follow the <a class="reference internal" href="#spatialite-macosx"><span>instructions below</span></a>.</p>
+<p>For Windows, you may find binaries on the <a class="reference external" href="http://www.gaia-gis.it/gaia-sins/">Gaia-SINS</a> home page.</p>
+<p>In any case, you should always be able to <a class="reference internal" href="#spatialite-source"><span>install from source</span></a>.</p>
+<div class="admonition-spatialite-library-path-setting-required-for-spatialite-4-2 admonition" id="spatialite-source">
+<p class="first admonition-title"><code class="docutils literal"><span class="pre">SPATIALITE_LIBRARY_PATH</span></code> setting required for SpatiaLite 4.2+</p>
+<p>If you&#8217;re using SpatiaLite 4.2+, you must put this in your settings:</p>
+<div class="last highlight-python"><div class="highlight"><pre><span></span><span class="n">SPATIALITE_LIBRARY_PATH</span> <span class="o">=</span> <span class="s1">&#39;mod_spatialite&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="s-installing-from-source">
+<span id="installing-from-source"></span><h2>Installing from source<a class="headerlink" href="#installing-from-source" title="永久链接至标题">¶</a></h2>
+<p><a class="reference internal" href="../geolibs/"><em>GEOS and PROJ.4</em></a> should be installed
+prior to building SpatiaLite.</p>
+<div class="section" id="s-sqlite">
+<span id="sqlite"></span><h3>SQLite<a class="headerlink" href="#sqlite" title="永久链接至标题">¶</a></h3>
+<p>Check first if SQLite is compiled with the <a class="reference external" href="https://www.sqlite.org/rtree.html">R*Tree module</a>. Run the sqlite3
+command line interface and enter the following query:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>sqlite&gt; CREATE VIRTUAL TABLE testrtree USING rtree(id,minX,maxX,minY,maxY);
+</pre></div>
+</div>
+<p>If you obtain an error, you will have to recompile SQLite from source. Otherwise,
+just skip this section.</p>
+<p>To install from sources, download the latest amalgamation source archive from
+the <a class="reference external" href="https://www.sqlite.org/download.html">SQLite download page</a>, and extract:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>$ wget https://sqlite.org/sqlite-amalgamation-3.6.23.1.tar.gz
+$ tar xzf sqlite-amalgamation-3.6.23.1.tar.gz
+$ cd sqlite-3.6.23.1
+</pre></div>
+</div>
+<p>Next, run the <code class="docutils literal"><span class="pre">configure</span></code> script &#8211; however the <code class="docutils literal"><span class="pre">CFLAGS</span></code> environment variable
+needs to be customized so that SQLite knows to build the R*Tree module:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>$ CFLAGS=&quot;-DSQLITE_ENABLE_RTREE=1&quot; ./configure
+$ make
+$ sudo make install
+$ cd ..
+</pre></div>
+</div>
+</div>
+<div class="section" id="s-spatialite-library-libspatialite">
+<span id="s-spatialitebuild"></span><span id="spatialite-library-libspatialite"></span><span id="spatialitebuild"></span><h3>SpatiaLite library (<code class="docutils literal"><span class="pre">libspatialite</span></code>)<a class="headerlink" href="#spatialite-library-libspatialite" title="永久链接至标题">¶</a></h3>
+<p>Get the latest SpatiaLite library source bundle from the
+<a class="reference external" href="http://www.gaia-gis.it/gaia-sins/libspatialite-sources/">download page</a>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>$ wget http://www.gaia-gis.it/gaia-sins/libspatialite-sources/libspatialite-4.1.0.tar.gz
+$ tar xaf libspatialite-4.1.0.tar.gz
+$ cd libspatialite-4.1.0
+$ ./configure
+$ make
+$ sudo make install
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p>For Mac OS X users building from source, the SpatiaLite library <em>and</em> tools
+need to have their <code class="docutils literal"><span class="pre">target</span></code> configured:</p>
+<div class="last highlight-python"><div class="highlight"><pre><span></span>$ ./configure --target=macosx
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="s-mac-os-x-specific-instructions">
+<span id="s-spatialite-macosx"></span><span id="mac-os-x-specific-instructions"></span><span id="spatialite-macosx"></span><h2>Mac OS X-specific instructions<a class="headerlink" href="#mac-os-x-specific-instructions" title="永久链接至标题">¶</a></h2>
+<p>To install the SpatiaLite library and tools, Mac OS X users can choose between
+<a class="reference internal" href="../#kyngchaos"><span>KyngChaos packages</span></a> and <a class="reference external" href="http://brew.sh/">Homebrew</a>.</p>
+<div class="section" id="s-kyngchaos">
+<span id="kyngchaos"></span><h3>KyngChaos<a class="headerlink" href="#kyngchaos" title="永久链接至标题">¶</a></h3>
+<p>First, follow the instructions in the <a class="reference internal" href="../#kyngchaos"><span>KyngChaos packages</span></a> section.</p>
+<p>When creating a SpatiaLite database, the <code class="docutils literal"><span class="pre">spatialite</span></code> program is required.
+However, instead of attempting to compile the SpatiaLite tools from source,
+download the <a class="reference external" href="http://www.gaia-gis.it/spatialite-2.3.1/binaries.html">SpatiaLite Binaries</a> for OS X, and install <code class="docutils literal"><span class="pre">spatialite</span></code> in a
+location available in your <code class="docutils literal"><span class="pre">PATH</span></code>.  For example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>$ curl -O http://www.gaia-gis.it/spatialite/spatialite-tools-osx-x86-2.3.1.tar.gz
+$ tar xzf spatialite-tools-osx-x86-2.3.1.tar.gz
+$ cd spatialite-tools-osx-x86-2.3.1/bin
+$ sudo cp spatialite /Library/Frameworks/SQLite3.framework/Programs
+</pre></div>
+</div>
+<p>Finally, for GeoDjango to be able to find the KyngChaos SpatiaLite library,
+add the following to your <code class="docutils literal"><span class="pre">settings.py</span></code>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">SPATIALITE_LIBRARY_PATH</span><span class="o">=</span><span class="s1">&#39;/Library/Frameworks/SQLite3.framework/SQLite3&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="s-homebrew">
+<span id="homebrew"></span><h3>Homebrew<a class="headerlink" href="#homebrew" title="永久链接至标题">¶</a></h3>
+<p><a class="reference external" href="http://brew.sh/">Homebrew</a> handles all the SpatiaLite related packages on your behalf,
+including SQLite3, SpatiaLite, PROJ, and GEOS. Install them like this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>$ brew update
+$ brew install spatialite-tools
+$ brew install gdal
+</pre></div>
+</div>
+<p>Finally, for GeoDjango to be able to find the SpatiaLite library, add the
+following to your <code class="docutils literal"><span class="pre">settings.py</span></code>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">SPATIALITE_LIBRARY_PATH</span><span class="o">=</span><span class="s1">&#39;/usr/local/lib/mod_spatialite.dylib&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../model-api/" class="btn btn-neutral float-right" title="GeoDjango Model API" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../postgis/" class="btn btn-neutral" title="Installing PostGIS" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 Django Software Foundation and contributors.
+      最后更新于 Apr 27, 2016.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../../',
+            VERSION:'1.10.dev20160423182652',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../../../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

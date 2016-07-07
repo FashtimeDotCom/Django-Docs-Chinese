@@ -1,0 +1,368 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>GeoJSON Serializer &mdash; Django 1.10.dev20160423182652 文档</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Django 1.10.dev20160423182652 文档" href="../../../../"/>
+        <link rel="up" title="GeoDjango Utilities" href="../utils/"/>
+        <link rel="next" title="GeoDjango Management Commands" href="../commands/"/>
+        <link rel="prev" title="OGR Inspection" href="../ogrinspect/"/> 
+
+  
+  <script src="../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../../contents/" class="icon icon-home"> Django
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.10
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search/" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../">Django 最新中文文档</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../intro/">开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../topics/">Using Django</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../howto/">&#8220;How-to&#8221; guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../faq/">Django FAQ</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../applications/">Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../checks/">System check framework</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../class-based-views/">Built-in class-based views API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../clickjacking/">Clickjacking Protection</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../"><code class="docutils literal"><span class="pre">contrib</span></code> packages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../admin/">The Django admin site</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../auth/"><code class="docutils literal"><span class="pre">django.contrib.auth</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../contenttypes/">The contenttypes framework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flatpages/">The flatpages app</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../">GeoDjango</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../tutorial/">GeoDjango Tutorial</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../install/">GeoDjango Installation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../model-api/">GeoDjango Model API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../db-api/">GeoDjango Database API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../forms-api/">GeoDjango Forms API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../geoquerysets/">GeoQuerySet API Reference</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../functions/">Geographic Database Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../measure/">Measurement Objects</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../geos/">GEOS API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../gdal/">GDAL API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../geoip/">Geolocation with GeoIP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../geoip2/">Geolocation with GeoIP2</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="../utils/">GeoDjango Utilities</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../commands/">GeoDjango Management Commands</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../admin/">GeoDjango&#8217;s admin site</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../feeds/">Geographic Feeds</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sitemaps/">Geographic Sitemaps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../testing/">Testing GeoDjango apps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deployment/">Deploying GeoDjango</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../humanize/"><code class="docutils literal"><span class="pre">django.contrib.humanize</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../messages/">The messages framework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../postgres/"><code class="docutils literal"><span class="pre">django.contrib.postgres</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../redirects/">The redirects app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../sitemaps/">The sitemap framework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../sites/">The &#8220;sites&#8221; framework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../staticfiles/">The <code class="docutils literal"><span class="pre">staticfiles</span></code> app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../syndication/">The syndication feed framework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../#admin"><code class="docutils literal"><span class="pre">admin</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../#auth"><code class="docutils literal"><span class="pre">auth</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../#contenttypes"><code class="docutils literal"><span class="pre">contenttypes</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../#flatpages"><code class="docutils literal"><span class="pre">flatpages</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../#gis"><code class="docutils literal"><span class="pre">gis</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../#humanize"><code class="docutils literal"><span class="pre">humanize</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../#messages"><code class="docutils literal"><span class="pre">messages</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../#postgres"><code class="docutils literal"><span class="pre">postgres</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../#redirects"><code class="docutils literal"><span class="pre">redirects</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../#sessions"><code class="docutils literal"><span class="pre">sessions</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../#sites"><code class="docutils literal"><span class="pre">sites</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../#sitemaps"><code class="docutils literal"><span class="pre">sitemaps</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../#syndication"><code class="docutils literal"><span class="pre">syndication</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../#other-add-ons">Other add-ons</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../csrf/">Cross Site Request Forgery protection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../databases/">Databases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../django-admin/"><code class="docutils literal"><span class="pre">django-admin</span></code> and <code class="docutils literal"><span class="pre">manage.py</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../django-admin/#running-management-commands-from-your-code">Running management commands from your code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../exceptions/">Django Exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../files/">File handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../forms/">Forms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../middleware/">Middleware</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../migration-operations/">Migration Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../models/">Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../request-response/">Request and response objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../schema-editor/"><code class="docutils literal"><span class="pre">SchemaEditor</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../settings/">Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../signals/">Signals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../templates/">Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../template-response/"><code class="docutils literal"><span class="pre">TemplateResponse</span></code> and <code class="docutils literal"><span class="pre">SimpleTemplateResponse</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../unicode/">Unicode data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../urlresolvers/"><code class="docutils literal"><span class="pre">django.urls</span></code> utility functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../urls/"><code class="docutils literal"><span class="pre">django.conf.urls</span></code> utility functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../utils/">Django Utils</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../validators/">Validators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../views/">Built-in Views</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../misc/">元文件和杂记</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../glossary/">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../releases/">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../internals/">Django internals</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../../contents/">Django</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../../contents/">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../">API Reference</a> &raquo;</li>
+      
+          <li><a href="../../"><code class="docutils literal"><span class="pre">contrib</span></code> packages</a> &raquo;</li>
+      
+          <li><a href="../">GeoDjango</a> &raquo;</li>
+      
+          <li><a href="../utils/">GeoDjango Utilities</a> &raquo;</li>
+      
+    <li><code class="docutils literal"><span class="pre">GeoJSON</span></code> Serializer</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../../../_sources/ref/contrib/gis/serializers.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="s-module-django.contrib.gis.serializers.geojson">
+<span id="s-geojson-serializer"></span><span id="module-django.contrib.gis.serializers.geojson"></span><span id="geojson-serializer"></span><h1><code class="docutils literal"><span class="pre">GeoJSON</span></code> Serializer<a class="headerlink" href="#module-django.contrib.gis.serializers.geojson" title="永久链接至标题">¶</a></h1>
+<p>GeoDjango provides a specific serializer for the <a class="reference external" href="http://geojson.org/">GeoJSON</a> format. See
+<a class="reference internal" href="../../../../topics/serialization/"><em>Serializing Django objects</em></a> for more information on serialization.</p>
+<p>The GDAL library is required if any of the serialized geometries need
+coordinate transformations (that is if the geometry&#8217;s spatial reference system
+differs from the <code class="docutils literal"><span class="pre">srid</span></code> serializer option).</p>
+<div class="versionchanged">
+<span class="title">Changed in Django 1.9:</span> <p>The GeoJSON serializer no longer needs GDAL if all geometries are in the
+same coordinate system as the <code class="docutils literal"><span class="pre">srid</span></code> serializer option.</p>
+</div>
+<p>The <code class="docutils literal"><span class="pre">geojson</span></code> serializer is not meant for round-tripping data, as it has no
+deserializer equivalent. For example, you cannot use <a class="reference internal" href="../../../django-admin/#django-admin-loaddata"><code class="xref std std-djadmin docutils literal"><span class="pre">loaddata</span></code></a> to
+reload the output produced by this serializer. If you plan to reload the
+outputted data, use the plain <a class="reference internal" href="../../../../topics/serialization/#serialization-formats-json"><span>json serializer</span></a>
+instead.</p>
+<p>In addition to the options of the <code class="docutils literal"><span class="pre">json</span></code> serializer, the <code class="docutils literal"><span class="pre">geojson</span></code>
+serializer accepts the following additional option when it is called by
+<code class="docutils literal"><span class="pre">serializers.serialize()</span></code>:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">geometry_field</span></code>: A string containing the name of a geometry field to use
+for the <code class="docutils literal"><span class="pre">geometry</span></code> key of the GeoJSON feature. This is only needed when you
+have a model with more than one geometry field and you don&#8217;t want to use the
+first defined geometry field (by default, the first geometry field is picked).</li>
+<li><code class="docutils literal"><span class="pre">srid</span></code>: The SRID to use for the <code class="docutils literal"><span class="pre">geometry</span></code> content. Defaults to 4326
+(WGS 84).</li>
+</ul>
+<p>The <a class="reference internal" href="../../../../topics/serialization/#subset-of-fields"><span>fields</span></a> option can be used to limit fields that
+will be present in the <code class="docutils literal"><span class="pre">properties</span></code> key, as it works with all other
+serializers.</p>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.core.serializers</span> <span class="kn">import</span> <span class="n">serialize</span>
+<span class="kn">from</span> <span class="nn">my_app.models</span> <span class="kn">import</span> <span class="n">City</span>
+
+<span class="n">serialize</span><span class="p">(</span><span class="s1">&#39;geojson&#39;</span><span class="p">,</span> <span class="n">City</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">(),</span>
+          <span class="n">geometry_field</span><span class="o">=</span><span class="s1">&#39;point&#39;</span><span class="p">,</span>
+          <span class="n">fields</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,))</span>
+</pre></div>
+</div>
+<p>Would output:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;FeatureCollection&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;crs&#39;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;properties&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;EPSG:4326&#39;</span><span class="p">}</span>
+  <span class="p">},</span>
+  <span class="s1">&#39;features&#39;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;Feature&#39;</span><span class="p">,</span>
+      <span class="s1">&#39;geometry&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;Point&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;coordinates&#39;</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mf">87.650175</span><span class="p">,</span> <span class="mf">41.850385</span><span class="p">]</span>
+      <span class="p">},</span>
+      <span class="s1">&#39;properties&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Chicago&#39;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>When the <code class="docutils literal"><span class="pre">fields</span></code> parameter is not specified, the <code class="docutils literal"><span class="pre">geojson</span></code> serializer adds
+a <code class="docutils literal"><span class="pre">pk</span></code> key to the <code class="docutils literal"><span class="pre">properties</span></code> dictionary with the primary key of the
+object as the value.</p>
+<div class="versionchanged">
+<span class="title">Changed in Django Development version:</span> <p>The <code class="docutils literal"><span class="pre">pk</span></code> key was added to the <code class="docutils literal"><span class="pre">properties</span></code> dictionary.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../commands/" class="btn btn-neutral float-right" title="GeoDjango Management Commands" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../ogrinspect/" class="btn btn-neutral" title="OGR Inspection" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 Django Software Foundation and contributors.
+      最后更新于 Apr 27, 2016.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../',
+            VERSION:'1.10.dev20160423182652',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
